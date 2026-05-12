@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 PHOTO = ROOT / "写真"
 OUT = ROOT / "gallery-manifest.json"
 
-EXT = {".jpg", ".jpeg", ".png", ".webp"}
+EXT = {".jpg", ".jpeg", ".jfif", ".png", ".webp"}
 
 # 表示タブの並び（写真/ 直下のフォルダ名と一致）
 GALLERY_FOLDER_ORDER = [

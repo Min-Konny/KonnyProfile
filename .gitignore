@@ -8,3 +8,19 @@ __pycache__/
 .cursor/
 *.log
 .image-slots.state.json
+
+# ブラウザで img 直リンクしにくい／ギャラリー対象外の拡張子（誤コミット防止）
+*.heic
+*.HEIC
+*.mov
+*.MOV
+*.mp4
+*.MP4
+*.avi
+*.mkv
+*.tif
+*.tiff
+*.bmp
+*.raw
+*.cr2
+*.nef
