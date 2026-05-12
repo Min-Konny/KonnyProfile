@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+.env
+.env.*.local
+__pycache__/
+*.py[cod]
+.cursor/
+*.log
+.image-slots.state.json

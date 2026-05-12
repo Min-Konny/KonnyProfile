@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>こにー / Konny — VRChat Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Shippori+Mincho:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" />
+<link rel="stylesheet" href="style.css" />
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <rect width="200" height="200" fill="#08040d"/>
+  </svg>
+</template>
+</head>
+<body>
+<div class="intro" id="intro">
+  <div class="intro-bokeh"><i></i><i></i><i></i></div>
+  <div class="intro-inner">
+    <div class="intro-ring">
+      <svg viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="180" stroke="#d4af7a" stroke-width="0.4" stroke-dasharray="1 6" opacity="0.5"/>
+        <circle cx="200" cy="200" r="168" stroke="#f1d9a8" stroke-width="0.3" opacity="0.4"/>
+        <g fill="#f1d9a8" opacity="0.7">
+          <circle cx="200" cy="20" r="1.5"/>
+          <circle cx="380" cy="200" r="1.5"/>
+          <circle cx="200" cy="380" r="1.5"/>
+          <circle cx="20" cy="200" r="1.5"/>
+        </g>
+        <g stroke="#d4af7a" stroke-width="0.5" opacity="0.6" fill="none">
+          <path d="M 200 38 q 6 -10, 14 -4 q -8 8, -14 4 Z"/>
+          <path d="M 362 200 q 10 6, 4 14 q -8 -8, -4 -14 Z"/>
+          <path d="M 200 362 q 6 10, 14 4 q -8 -8, -14 -4 Z"/>
+          <path d="M 38 200 q -10 6, -4 14 q 8 -8, 4 -14 Z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="intro-eyebrow">A VRC Profile</div>
+    <div class="intro-line">
+      <span class="bar"></span><span class="star">✦</span><span class="bar"></span>
+    </div>
+    <div class="intro-name">こにー</div>
+    <div class="intro-swash">
+      <svg viewBox="0 0 360 30" fill="none">
+        <defs>
+          <linearGradient id="swashGI" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#e8b4b8"/>
+            <stop offset="50%" stop-color="#f1d9a8"/>
+            <stop offset="100%" stop-color="#d4af7a"/>
+          </linearGradient>
+        </defs>
+        <path d="M 4 16 Q 60 4, 130 16 T 250 16 Q 310 22, 352 10" stroke="url(#swashGI)" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="352" cy="10" r="2" fill="#f1d9a8"/>
+        <circle cx="4" cy="16" r="1.6" fill="#e8b4b8"/>
+      </svg>
+    </div>
+    <div class="intro-en">K O N N Y</div>
+    <div class="intro-sub">Est. 2024 · PCVR / Desktop</div>
+  </div>
+</div>
+<div class="bg-spotlight"></div>
+<div class="bg-aurora"></div>
+<div class="bg-silk"></div>
+<div class="bg-orbs">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+<div class="bg-stardust" id="bg-stardust"></div>
+<div class="noise"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="bg-filigree">
+  <svg class="tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.6">
+    <path d="M 0 30 Q 8 12, 30 8 M 0 50 Q 20 22, 50 18 M 0 70 Q 30 32, 70 30"/>
+    <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+    <path d="M 6 6 L 22 22 M 14 6 L 6 14" stroke-width="0.4"/>
+    <path d="M 30 8 q 4 -8, 12 -2 q -6 6, -12 2 Z" fill="currentColor" fill-opacity="0.4"/>
+  </svg>
+  <svg class="tr" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.6">
+    <path d="M 0 30 Q 8 12, 30 8 M 0 50 Q 20 22, 50 18 M 0 70 Q 30 32, 70 30"/>
+    <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+    <path d="M 6 6 L 22 22 M 14 6 L 6 14" stroke-width="0.4"/>
+    <path d="M 30 8 q 4 -8, 12 -2 q -6 6, -12 2 Z" fill="currentColor" fill-opacity="0.4"/>
+  </svg>
+  <svg class="bl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.6">
+    <path d="M 0 30 Q 8 12, 30 8 M 0 50 Q 20 22, 50 18 M 0 70 Q 30 32, 70 30"/>
+    <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+    <path d="M 6 6 L 22 22 M 14 6 L 6 14" stroke-width="0.4"/>
+    <path d="M 30 8 q 4 -8, 12 -2 q -6 6, -12 2 Z" fill="currentColor" fill-opacity="0.4"/>
+  </svg>
+  <svg class="br" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.6">
+    <path d="M 0 30 Q 8 12, 30 8 M 0 50 Q 20 22, 50 18 M 0 70 Q 30 32, 70 30"/>
+    <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+    <path d="M 6 6 L 22 22 M 14 6 L 6 14" stroke-width="0.4"/>
+    <path d="M 30 8 q 4 -8, 12 -2 q -6 6, -12 2 Z" fill="currentColor" fill-opacity="0.4"/>
+  </svg>
+</div>
+<div class="vignette"></div>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="image-slot.js"></script>
+<script src="effects.js"></script>
+<script type="text/babel" src="bundle.jsx"></script>
+</body>
+</html>
