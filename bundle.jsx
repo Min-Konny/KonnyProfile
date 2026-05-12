@@ -37,13 +37,13 @@ const PAL = {
 
 const GAMES = [
   { code: "LOL", name: "League of Legends", rank: "Challenger", years: "16", pct: 100,
-    note: "❋ADCメイン\n❋超攻撃的なプレイスタイル",
+    note: "ADCメイン\n超攻撃的なプレイスタイル",
     a1: PAL.goldHi, a2: PAL.lilac, tag: "MOBA" },
   { code: "TFT", name: "Teamfight Tactics", rank: "Grandmaster", years: "5", pct: 92,
-    note: "❋オートチェスはやめられない。\n❋TFTもチャレンジャー行きたい。",
+    note: "オートチェスはやめられない。\nTFTもチャレンジャー行きたい。",
     a1: PAL.rose, a2: PAL.lilac, tag: "AUTO-CHESS" },
   { code: "L4D2", name: "Left 4 Dead 2", rank: "3,000+ hrs", years: "10+", pct: 100,
-    note: "❋ゲーム人生はここから始まった。\n❋対戦モード以外やりません。",
+    note: "ゲーム人生はここから始まった。\n対戦モード以外やりません。",
     a1: PAL.amber, a2: PAL.blush, tag: "CO-OP FPS" },
   { code: "EFT", name: "Escape from Tarkov", rank: "60レベ", years: "4", pct: 80,
     note: "しょっちゅう生還、たまに全ロス。\nレイド組める人募集中。",
@@ -112,7 +112,7 @@ const HOBBIES = [
     body: "NLHメイン。\nJOPTとか戦国とか、大型トナメもたまに出ます。\nライブでもオンラインでも遊ぶ。",
     stats: [{ l: "メイン", v: "NLH" }, { l: "プレイ歴", v: "3 yrs" }, { l: "トナメ", v: "JOPT / 戦国" }] },
   { id: "escape", label: "リアル脱出", title: "Real Escape Game", sub: "// SCRAP全般が好き",
-    photo: "写真/脱出ゲーム/IMG_0496.jpg",
+    photo: "写真/脱出ゲーム/IMG_0496.JPG",
     body: "SCRAP系の謎解き・リアル脱出ゲームが好き。「豪華客船からの脱出」が過去一。\n是非一緒に行きましょう。",
     stats: [{ l: "主催", v: "SCRAP全般" }, { l: "ベスト", v: "豪華客船" }, { l: "頻度", v: "新公演ごと" }] },
   { id: "futsal", label: "フットサル", title: "Futsal", sub: "// 部活・友人と定期",
@@ -382,9 +382,12 @@ function GameCard({ g }) {
         </div>
       </div>
       <div className="gc-note" style={{ opacity: hover ? 1 : 0.7, transition: "opacity 0.3s" }}>
-        {g.note.split("\n").map((l, i) => (
-          <div key={i}><span className="glyph">❋</span>{l}</div>
-        ))}
+        {g.note.split("\n").map((l, i) => {
+          const text = l.replace(/^\s*❋\s*/, "");
+          return (
+            <div key={i}><span className="glyph">❋</span>{text}</div>
+          );
+        })}
       </div>
     </article>
   );
@@ -396,7 +399,10 @@ function GamesSection() {
       <div className="reveal">
         <div className="section-label">04 / Games — 一緒に遊びませんか</div>
         <h2 className="section-title">よく遊ぶ <em>ゲーム</em></h2>
-        <div className="section-subtitle">初心者歓迎・一緒にやれる人募集中！！</div>
+        <div className="section-subtitle">
+          初心者歓迎・一緒にやれる人募集中！！<br/>
+          VALORANT とか Overwatch（OW）もやってるよ。
+        </div>
       </div>
       <div className="game-grid">
         {GAMES.map((g) => <GameCard key={g.code} g={g} />)}
