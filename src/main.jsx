@@ -705,11 +705,20 @@ function prefetchThumbs(items, limit = 12) {
 
 function GalleryThumb({ item, priority = false }) {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef(null);
   const src = galleryThumbSrc(item);
+
+  useEffect(() => {
+    setLoaded(false);
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth > 0) setLoaded(true);
+  }, [src]);
+
   return (
     <div className={`gallery-thumb ${loaded ? "is-loaded" : ""}`}>
       {!loaded && <div className="gallery-thumb-skel" aria-hidden="true" />}
       <img
+        ref={imgRef}
         src={src}
         alt=""
         loading={priority ? "eager" : "lazy"}
@@ -938,7 +947,10 @@ function GallerySection() {
                   role="tab"
                   aria-selected={folder === name}
                   className={`gallery-folder-tab ${folder === name ? "is-on" : ""}`}
-                  onClick={() => setFolder(name)}
+                  onClick={() => {
+                  setPage(1);
+                  setFolder(name);
+                }}
                   onMouseEnter={() => prefetchThumbs(itemsByCategory[name], pageSize)}
                   onFocus={() => prefetchThumbs(itemsByCategory[name], pageSize)}
                 >
@@ -990,7 +1002,7 @@ function GallerySection() {
             <p className="gallery-empty reveal">このフォルダにはまだ写真がありません。ほかのタブも見てみてください。</p>
           ) : (
             <div
-              className={folder === "ALL" ? "gallery-editorial reveal" : "gallery-page-grid reveal"}
+              className={folder === "ALL" ? "gallery-editorial" : "gallery-page-grid"}
             >
               {pageItems.map((it, i) => {
                 const globalIdx = (safePage - 1) * pageSize + i + 1;
