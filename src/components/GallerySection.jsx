@@ -39,14 +39,14 @@ function GalleryThumb({ item, priority = false }) {
 function GalleryPager({ page, totalPages, total, pageSize, onPage }) {
   if (totalPages <= 0) {
     return (
-      <div className="gallery-pager reveal">
+      <div className="gallery-pager">
         <span className="gallery-pager-meta">0 枚</span>
       </div>
     );
   }
   if (totalPages === 1) {
     return (
-      <div className="gallery-pager reveal">
+      <div className="gallery-pager">
         <span className="gallery-pager-meta">
           {total === 0 ? "0 枚" : `1–${total} / ${total} 枚`}
         </span>
@@ -61,7 +61,7 @@ function GalleryPager({ page, totalPages, total, pageSize, onPage }) {
   const nums = [];
   for (let i = begin; i <= endP; i++) nums.push(i);
   return (
-    <div className="gallery-pager reveal">
+    <div className="gallery-pager">
       <button type="button" className="gp-btn" disabled={page <= 1} onClick={() => onPage(page - 1)}>
         前へ
       </button>
@@ -206,6 +206,13 @@ export function GallerySection() {
     if (totalPages > 0 && page > totalPages) setPage(totalPages);
   }, [page, totalPages]);
 
+  useEffect(() => {
+    if (!manifest) return;
+    window.observeReveal?.();
+    const id = setTimeout(() => window.observeReveal?.(), 100);
+    return () => clearTimeout(id);
+  }, [manifest, folder, safePage]);
+
   return (
     <section id="gallery">
       <div className="reveal">
@@ -229,7 +236,7 @@ export function GallerySection() {
 
       {!loadErr && manifest && (
         <>
-          <div className="gallery-toolbar gallery-toolbar-stack reveal">
+          <div className="gallery-toolbar gallery-toolbar-stack">
             <div className="gallery-folder-tabs" role="tablist" aria-label="フォルダ">
               <button
                 type="button"

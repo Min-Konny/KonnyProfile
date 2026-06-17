@@ -353,10 +353,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   }
   function GalleryPager({ page, totalPages, total, pageSize, onPage }) {
     if (totalPages <= 0) {
-      return /* @__PURE__ */ React.createElement("div", { className: "gallery-pager reveal" }, /* @__PURE__ */ React.createElement("span", { className: "gallery-pager-meta" }, "0 \u679A"));
+      return /* @__PURE__ */ React.createElement("div", { className: "gallery-pager" }, /* @__PURE__ */ React.createElement("span", { className: "gallery-pager-meta" }, "0 \u679A"));
     }
     if (totalPages === 1) {
-      return /* @__PURE__ */ React.createElement("div", { className: "gallery-pager reveal" }, /* @__PURE__ */ React.createElement("span", { className: "gallery-pager-meta" }, total === 0 ? "0 \u679A" : `1\u2013${total} / ${total} \u679A`));
+      return /* @__PURE__ */ React.createElement("div", { className: "gallery-pager" }, /* @__PURE__ */ React.createElement("span", { className: "gallery-pager-meta" }, total === 0 ? "0 \u679A" : `1\u2013${total} / ${total} \u679A`));
     }
     const start = (page - 1) * pageSize + 1;
     const end = Math.min(page * pageSize, total);
@@ -365,7 +365,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     if (endP - begin < 4) begin = Math.max(1, endP - 4);
     const nums = [];
     for (let i = begin; i <= endP; i++) nums.push(i);
-    return /* @__PURE__ */ React.createElement("div", { className: "gallery-pager reveal" }, /* @__PURE__ */ React.createElement("button", { type: "button", className: "gp-btn", disabled: page <= 1, onClick: () => onPage(page - 1) }, "\u524D\u3078"), /* @__PURE__ */ React.createElement("div", { className: "gp-nums" }, nums.map((n) => /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("div", { className: "gallery-pager" }, /* @__PURE__ */ React.createElement("button", { type: "button", className: "gp-btn", disabled: page <= 1, onClick: () => onPage(page - 1) }, "\u524D\u3078"), /* @__PURE__ */ React.createElement("div", { className: "gp-nums" }, nums.map((n) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: n,
@@ -480,7 +480,13 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     (0, import_react8.useEffect)(() => {
       if (totalPages > 0 && page > totalPages) setPage(totalPages);
     }, [page, totalPages]);
-    return /* @__PURE__ */ React.createElement("section", { id: "gallery" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "03 / Gallery \u2014 \u5199\u771F\u3067\u3082\u904A\u3076"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u30B9\u30CA\u30C3\u30D7\u306E ", /* @__PURE__ */ React.createElement("em", null, "\u68DA")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u30EA\u30A2\u30EB\u3068VRC\u306E\u5199\u771F\u3092\u30B8\u30E3\u30F3\u30EB\u5225\u306B\u3002", /* @__PURE__ */ React.createElement("strong", null, "\u3059\u3079\u3066"), " \u306F11\u679A\u305A\u3064\u3081\u304F\u308C\u307E\u3059\u3002\u30AF\u30EA\u30C3\u30AF\u3067\u62E1\u5927\u3001", /* @__PURE__ */ React.createElement("strong", null, "\u21BB \u4E26\u3073\u66FF\u3048"), " \u3067\u9806\u756A\u5909\u66F4\u3002")), !loadErr && !manifest && /* @__PURE__ */ React.createElement("p", { className: "gallery-loading reveal" }, "\u30AE\u30E3\u30E9\u30EA\u30FC\u4E00\u89A7\u3092\u8AAD\u307F\u8FBC\u307F\u4E2D\u2026"), loadErr && /* @__PURE__ */ React.createElement("div", { className: "gallery-load-error reveal" }, /* @__PURE__ */ React.createElement("strong", null, "\u30AE\u30E3\u30E9\u30EA\u30FC\u3092\u8868\u793A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"), /* @__PURE__ */ React.createElement("br", null), "\u901A\u4FE1\u3084\u8868\u793A\u306E\u90FD\u5408\u306E\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u3057\u3070\u3089\u304F\u3057\u3066\u304B\u3089\u30DA\u30FC\u30B8\u3092\u66F4\u65B0\u3059\u308B\u304B\u3001\u3082\u3046\u4E00\u5EA6\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"), !loadErr && manifest && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "gallery-toolbar gallery-toolbar-stack reveal" }, /* @__PURE__ */ React.createElement("div", { className: "gallery-folder-tabs", role: "tablist", "aria-label": "\u30D5\u30A9\u30EB\u30C0" }, /* @__PURE__ */ React.createElement(
+    (0, import_react8.useEffect)(() => {
+      if (!manifest) return;
+      window.observeReveal?.();
+      const id = setTimeout(() => window.observeReveal?.(), 100);
+      return () => clearTimeout(id);
+    }, [manifest, folder, safePage]);
+    return /* @__PURE__ */ React.createElement("section", { id: "gallery" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "03 / Gallery \u2014 \u5199\u771F\u3067\u3082\u904A\u3076"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u30B9\u30CA\u30C3\u30D7\u306E ", /* @__PURE__ */ React.createElement("em", null, "\u68DA")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u30EA\u30A2\u30EB\u3068VRC\u306E\u5199\u771F\u3092\u30B8\u30E3\u30F3\u30EB\u5225\u306B\u3002", /* @__PURE__ */ React.createElement("strong", null, "\u3059\u3079\u3066"), " \u306F11\u679A\u305A\u3064\u3081\u304F\u308C\u307E\u3059\u3002\u30AF\u30EA\u30C3\u30AF\u3067\u62E1\u5927\u3001", /* @__PURE__ */ React.createElement("strong", null, "\u21BB \u4E26\u3073\u66FF\u3048"), " \u3067\u9806\u756A\u5909\u66F4\u3002")), !loadErr && !manifest && /* @__PURE__ */ React.createElement("p", { className: "gallery-loading reveal" }, "\u30AE\u30E3\u30E9\u30EA\u30FC\u4E00\u89A7\u3092\u8AAD\u307F\u8FBC\u307F\u4E2D\u2026"), loadErr && /* @__PURE__ */ React.createElement("div", { className: "gallery-load-error reveal" }, /* @__PURE__ */ React.createElement("strong", null, "\u30AE\u30E3\u30E9\u30EA\u30FC\u3092\u8868\u793A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"), /* @__PURE__ */ React.createElement("br", null), "\u901A\u4FE1\u3084\u8868\u793A\u306E\u90FD\u5408\u306E\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u3057\u3070\u3089\u304F\u3057\u3066\u304B\u3089\u30DA\u30FC\u30B8\u3092\u66F4\u65B0\u3059\u308B\u304B\u3001\u3082\u3046\u4E00\u5EA6\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"), !loadErr && manifest && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "gallery-toolbar gallery-toolbar-stack" }, /* @__PURE__ */ React.createElement("div", { className: "gallery-folder-tabs", role: "tablist", "aria-label": "\u30D5\u30A9\u30EB\u30C0" }, /* @__PURE__ */ React.createElement(
       "button",
       {
         type: "button",
