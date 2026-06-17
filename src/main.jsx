@@ -691,8 +691,7 @@ function galleryThumbSrc(it) {
 }
 
 function galleryLightboxSrc(path) {
-  const web = webPhotoPath(path);
-  return encPhotoPath(web || path);
+  return encPhotoPath(thumbPhotoPath(path));
 }
 
 function prefetchThumbs(items, limit = 12) {
