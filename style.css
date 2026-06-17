@@ -68,7 +68,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     radial-gradient(ellipse 80% 60% at 50% 50%, #1a0e22 0%, #08040d 70%, #04020a 100%);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  animation: introOut 0.9s cubic-bezier(.65,0,.35,1) 2.4s forwards;
+  animation: introOut 0.7s cubic-bezier(.65,0,.35,1) 1.4s forwards;
 }
 .intro::before, .intro::after {
   content: ""; position: absolute; pointer-events: none;
@@ -216,9 +216,14 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 /* Keep #root hidden until intro fades; bg layers stay alive throughout (intro just covers them) */
 #root {
   opacity: 0;
-  animation: introContentIn 1.2s ease 2.5s forwards;
+  animation: introContentIn 0.9s ease 1.7s forwards;
 }
 @keyframes introContentIn { to { opacity: 1; } }
+
+.section-lazy-placeholder {
+  min-height: 1px;
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .intro { animation-delay: 1.2s; }
@@ -1926,7 +1931,7 @@ button.gt-tag {
   color: var(--ivory);
 }
 
-/* Editorial spread — 12枚/ページ: 5列 → 1列 → 2列 → 4列 */
+/* Editorial spread — 11枚/ページ: 5列 → 2列 → 4列 */
 .gallery-editorial {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
@@ -1942,13 +1947,6 @@ button.gt-tag {
 .gallery-editorial .ge-quint {
   grid-column: span 4;
 }
-.gallery-editorial .ge-solo {
-  grid-column: 1 / -1;
-  border-color: rgba(212, 175, 122, 0.32);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 247, 230, 0.05),
-    0 20px 50px -28px rgba(0, 0, 0, 0.7);
-}
 .gallery-editorial .ge-duo {
   grid-column: span 10;
 }
@@ -1962,7 +1960,6 @@ button.gt-tag {
     gap: 12px;
   }
   .gallery-editorial .ge-quint { grid-column: span 1; }
-  .gallery-editorial .ge-solo { grid-column: 1 / -1; }
   .gallery-editorial .ge-duo { grid-column: span 2; }
   .gallery-editorial .ge-quad { grid-column: span 2; }
 }
@@ -1976,18 +1973,17 @@ button.gt-tag {
   .gallery-page-grid .g-card {
     animation: gallery-card-in 0.28s ease backwards;
   }
-  .gallery-editorial .g-card:nth-child(12n + 1) { animation-delay: 0.02s; }
-  .gallery-editorial .g-card:nth-child(12n + 2) { animation-delay: 0.04s; }
-  .gallery-editorial .g-card:nth-child(12n + 3) { animation-delay: 0.06s; }
-  .gallery-editorial .g-card:nth-child(12n + 4) { animation-delay: 0.08s; }
-  .gallery-editorial .g-card:nth-child(12n + 5) { animation-delay: 0.1s; }
-  .gallery-editorial .g-card:nth-child(12n + 6) { animation-delay: 0.14s; }
-  .gallery-editorial .g-card:nth-child(12n + 7) { animation-delay: 0.18s; }
-  .gallery-editorial .g-card:nth-child(12n + 8) { animation-delay: 0.2s; }
-  .gallery-editorial .g-card:nth-child(12n + 9) { animation-delay: 0.22s; }
-  .gallery-editorial .g-card:nth-child(12n + 10) { animation-delay: 0.24s; }
-  .gallery-editorial .g-card:nth-child(12n + 11) { animation-delay: 0.26s; }
-  .gallery-editorial .g-card:nth-child(12n) { animation-delay: 0.28s; }
+  .gallery-editorial .g-card:nth-child(11n + 1) { animation-delay: 0.02s; }
+  .gallery-editorial .g-card:nth-child(11n + 2) { animation-delay: 0.04s; }
+  .gallery-editorial .g-card:nth-child(11n + 3) { animation-delay: 0.06s; }
+  .gallery-editorial .g-card:nth-child(11n + 4) { animation-delay: 0.08s; }
+  .gallery-editorial .g-card:nth-child(11n + 5) { animation-delay: 0.1s; }
+  .gallery-editorial .g-card:nth-child(11n + 6) { animation-delay: 0.14s; }
+  .gallery-editorial .g-card:nth-child(11n + 7) { animation-delay: 0.18s; }
+  .gallery-editorial .g-card:nth-child(11n + 8) { animation-delay: 0.2s; }
+  .gallery-editorial .g-card:nth-child(11n + 9) { animation-delay: 0.22s; }
+  .gallery-editorial .g-card:nth-child(11n + 10) { animation-delay: 0.24s; }
+  .gallery-editorial .g-card:nth-child(11n) { animation-delay: 0.26s; }
 }
 
 /* Gallery thumb — lightweight img (no image-slot) */
@@ -2036,9 +2032,6 @@ button.gt-tag {
 .gallery-editorial .ge-quint .gallery-thumb {
   min-height: clamp(96px, 11vw, 150px);
 }
-.gallery-editorial .ge-solo .gallery-thumb {
-  min-height: clamp(200px, 26vw, 340px);
-}
 .gallery-editorial .ge-duo .gallery-thumb {
   min-height: clamp(170px, 20vw, 280px);
 }
@@ -2047,7 +2040,6 @@ button.gt-tag {
 }
 @media (max-width: 900px) {
   .gallery-editorial .ge-quint .gallery-thumb { min-height: 88px; }
-  .gallery-editorial .ge-solo .gallery-thumb { min-height: 220px; }
   .gallery-editorial .ge-duo .gallery-thumb { min-height: 160px; }
   .gallery-editorial .ge-quad .gallery-thumb { min-height: 130px; }
 }

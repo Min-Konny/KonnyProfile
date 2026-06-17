@@ -1,32 +1,32 @@
 #!/usr/bin/env node
-/** src/main.jsx → bundle.jsx（Babel / python -m http.server 用） */
-import fs from "node:fs";
+/** src/bundle-entry.jsx → bundle.jsx（Babel / python -m http.server 用） */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import * as esbuild from "esbuild";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const srcPath = path.join(root, "src", "main.jsx");
+const entry = path.join(root, "src", "bundle-entry.jsx");
 const outPath = path.join(root, "bundle.jsx");
 
-let code = fs.readFileSync(srcPath, "utf8");
+const HOOKS =
+  "const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragment } = React;\n";
 
-code = code.replace(/^import\s+.*?;\s*\n/gm, "");
-code = code.replace(
-  /if \(import\.meta\.env\?\.DEV\) \{\s*Object\.assign\(window,[\s\S]*?\}\s*\n/,
-  ""
-);
-code = code.replace(
-  /createRoot\(document\.getElementById\("root"\)\)\.render/,
-  'ReactDOM.createRoot(document.getElementById("root")).render'
-);
+await esbuild.build({
+  entryPoints: [entry],
+  bundle: true,
+  outfile: outPath,
+  format: "iife",
+  platform: "browser",
+  jsx: "transform",
+  jsxFactory: "React.createElement",
+  jsxFragment: "React.Fragment",
+  external: ["react", "react-dom", "react-dom/client"],
+  banner: { js: HOOKS },
+  define: {
+    "import.meta.env.DEV": "false",
+  },
+  loader: { ".js": "jsx" },
+  legalComments: "none",
+});
 
-const hookLine = "const { useState, useEffect, useRef, useMemo, useCallback } = React;\n\n";
-if (!code.includes(hookLine.trim())) {
-  code = code.replace(
-    /\/\/ Components\n/,
-    `${hookLine}// Components\n`
-  );
-}
-
-fs.writeFileSync(outPath, code, "utf8");
-console.log("synced bundle.jsx ← src/main.jsx");
+console.log("synced bundle.jsx ← src/bundle-entry.jsx");

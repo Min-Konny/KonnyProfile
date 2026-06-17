@@ -23,7 +23,7 @@
   // ---- spawn stardust nodes (slow falling glints across the page) ----
   const sd = document.getElementById("bg-stardust");
   if (sd && !reducedMotion) {
-    const N = isMobile ? 14 : 28;
+    const N = isMobile ? 10 : 18;
     for (let i = 0; i < N; i++) {
       const s = document.createElement("span");
       s.style.left = (Math.random() * 100) + "%";
@@ -46,8 +46,8 @@
     let mouseDirty = false;
     const dust = [];
     const bokeh = [];
-    const DUST_COUNT = isMobile ? 40 : 85;
-    const BOKEH_COUNT = isMobile ? 5 : 9;
+    const DUST_COUNT = isMobile ? 28 : 55;
+    const BOKEH_COUNT = isMobile ? 4 : 6;
 
     const PALETTE = [
       { h: 38,  s: 70, l: 78 },
