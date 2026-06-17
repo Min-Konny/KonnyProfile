@@ -1,0 +1,22 @@
+{
+  "name": "konny-profile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-bundle.mjs",
+    "dev": "vite",
+    "build": "npm run sync && vite build",
+    "preview": "vite preview",
+    "start": "npm run build && vite preview --port 8080",
+    "local": "npm run start"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.3",
+    "vite-plugin-static-copy": "^2.2.0"
+  }
+}

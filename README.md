@@ -1,44 +1,100 @@
 # こにー / Konny — VRChat Profile
 
-ファイル構成:
-- index.html   … エントリポイント
-- style.css    … スタイル
-- bundle.jsx   … React コンポーネント（Babel でブラウザ実行）
-- effects.js   … 背景パーティクル等
-- image-slot.js… 画像ドロップスロット
-- assets/      … 画像
-- 写真/        … ギャラリー用（直下に **11 フォルダ** で分類）
-- gallery-manifest.json … 全枚リスト（`写真/` の JPG 等を列挙。`generate_gallery_manifest.py` で生成）
+## ローカルで開く URL（重要）
+
+| やり方 | コマンド | URL |
+|--------|----------|-----|
+| **開発（推奨）** | `npm install` → `npm run dev` | **http://localhost:5173** |
+| **本番ビルド確認** | `npm start` | **http://localhost:8080** |
+| Python 配信 | `python serve.py` | **http://localhost:8080** |
+
+> 以前お伝えした `python -m http.server 8080`（プロジェクト直下）も動きますが、**最新版は上の 5173 か `npm start` の 8080** を使ってください。
+
+## ファイル構成
+
+- `index.html` … エントリ（Vite）
+- `src/main.jsx` … React アプリ本体
+- `style.css` … スタイル
+- `effects.js` … 背景パーティクル等
+- `image-slot.js` … 画像スロット
+- `assets/` … アバター・favicon・OGP 画像
+- `写真/` … ギャラリー（11 フォルダ + `_thumbs` / `_web`）
+- `gallery-manifest.json` … 全枚リスト
+- `featured.json` … お気に入りピン留め（パス配列）
+- `site.config.json` … OGP 用サイト URL（デプロイ前に編集）
+
+## 開発
+
+```bash
+npm install
+npm run dev
+```
+
+**http://localhost:5173** を開きます（ポート **5173** です。8080 ではありません）。
+
+## ローカル確認（ポート 8080）
+
+```bash
+npm start
+# または
+python serve.py
+```
+
+**http://localhost:8080** — `npm run build` 済みの `dist/` を配信します。
+
+ルート直下の `python -m http.server 8080` は Babel フォールバック用です。`npm run sync` で `bundle.jsx` が `src/main.jsx` と同期されます。
+
+## 本番ビルド
+
+```bash
+npm run build
+npm run preview   # dist/ をローカル確認
+```
+
+Vercel は `vercel.json` により `npm run build` → `dist/` を自動デプロイします。
 
 ## 写真を増やしたあと
 
-ブラウザで一覧に反映するには、ルートで次を実行して `gallery-manifest.json` を更新します。
+```bash
+python update_gallery.py
+```
+
+個別に実行する場合:
 
 ```bash
+python generate_thumbnails.py
 python generate_gallery_manifest.py
 ```
 
-HEIC などを JPG にまとめて書き出す場合は `convert_photos_to_jpg.py` を使います（元ファイルは残ります）。
+VR の PNG を JPG にする場合:
 
 ```bash
-python convert_photos_to_jpg.py
+python convert_photos_to_jpg.py --folder VR
+python update_gallery.py
 ```
 
-## ローカルで開く
-
-`file://` で直接開くと一部ブラウザで Babel/JSX が CORS で弾かれます。
-プロジェクトのフォルダで以下のいずれかを実行してください:
+趣味タブ用の中間解像度:
 
 ```bash
-# Python
-python3 -m http.server 8080
-
-# Node (npx)
-npx serve .
+python optimize_hobby_web.py
 ```
 
-その後 http://localhost:8080/ をブラウザで開きます。
+アバター・favicon・OGP:
 
-## Vercel にデプロイ
+```bash
+python optimize_assets.py
+```
 
-ビルド不要の静的サイトです。Vercel で GitHub リポジトリをインポートし、**Framework Preset: Other**、**Root Directory: `.`**、**Build Command: 空**、**Output Directory: 空（または `.`）** のままデプロイすれば動きます。ルートの `index.html` がそのまま配信されます。
+## お気に入り写真
+
+`featured.json` の `paths` に `gallery-manifest.json` と同じパス形式で追加します。
+
+## デプロイ前チェック
+
+1. `site.config.json` の `url` を本番ドメインに更新
+2. `npm run build` が通ること
+3. 写真フォルダがリポジトリ／ホスティングに含まれること（容量に注意）
+
+## レガシー
+
+`bundle.jsx` は旧 Babel 実行用の残骸です。新規開発は `src/main.jsx` を編集してください。

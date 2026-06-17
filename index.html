@@ -4,15 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>こにー / Konny — VRChat Profile</title>
+<meta name="description" content="VRChat こにーのプロフィール。シーシャ・ゲーム・写真・趣味の棚。" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="こにー / Konny — VRChat Profile" />
+<meta property="og:description" content="VRChat こにーのプロフィール。シーシャ・ゲーム・写真・趣味の棚。" />
+<meta property="og:image" content="/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://konny-profile.vercel.app/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Konny0329s_VRC" />
+<meta name="twitter:title" content="こにー / Konny — VRChat Profile" />
+<meta name="twitter:description" content="VRChat こにーのプロフィール。シーシャ・ゲーム・写真・趣味の棚。" />
+<meta name="twitter:image" content="/assets/og-image.jpg" />
+<link rel="icon" href="/assets/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Shippori+Mincho:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@400;500&family=DM+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="style.css" />
-<template id="__bundler_thumbnail">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-    <rect width="200" height="200" fill="#08040d"/>
-  </svg>
-</template>
 </head>
 <body>
 <div class="intro" id="intro">
@@ -29,10 +39,10 @@
           <circle cx="20" cy="200" r="1.5"/>
         </g>
         <g stroke="#d4af7a" stroke-width="0.5" opacity="0.6" fill="none">
-          <path d="M 200 38 q 6 -10, 14 -4 q -8 8, -14 4 Z"/>
-          <path d="M 362 200 q 10 6, 4 14 q -8 -8, -4 -14 Z"/>
-          <path d="M 200 362 q 6 10, 14 4 q -8 -8, -14 -4 Z"/>
-          <path d="M 38 200 q -10 6, -4 14 q 8 -8, 4 -14 Z"/>
+          <path d="M 0 30 Q 8 12, 30 8 M 0 50 Q 20 22, 50 18 M 0 70 Q 30 32, 70 30"/>
+          <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+          <path d="M 6 6 L 22 22 M 14 6 L 6 14" stroke-width="0.4"/>
+          <path d="M 30 8 q 4 -8, 12 -2 q -6 6, -12 2 Z" fill="currentColor" fill-opacity="0.4"/>
         </g>
       </svg>
     </div>
@@ -98,12 +108,46 @@
 
 <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
+<!-- KONNY_STATIC_BEGIN — python -m http.server 用（Vite dev/build では除去） -->
 <script src="image-slot.js"></script>
 <script src="effects.js"></script>
-<script type="text/babel" src="bundle.jsx"></script>
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+<script type="text/babel" data-presets="react" src="bundle.jsx"></script>
+<!-- KONNY_STATIC_END -->
+<script>
+(function () {
+  setTimeout(function () {
+    var root = document.getElementById("root");
+    if (!root || root.children.length) return;
+    var box = document.createElement("div");
+    box.id = "static-fallback-hint";
+    box.setAttribute("role", "alert");
+    box.innerHTML =
+      "<strong>ページが読み込めませんでした</strong><br>" +
+      "開発: <code>npm run dev</code> → <a href=\"http://localhost:5173/\">localhost:5173</a><br>" +
+      "本番確認: <code>npm start</code> → <a href=\"http://localhost:8080/\">localhost:8080</a>";
+    Object.assign(box.style, {
+      position: "fixed",
+      left: "50%",
+      top: "50%",
+      transform: "translate(-50%,-50%)",
+      zIndex: "9999",
+      maxWidth: "92vw",
+      padding: "20px 24px",
+      borderRadius: "12px",
+      border: "1px solid rgba(212,175,122,0.45)",
+      background: "rgba(15,10,20,0.95)",
+      color: "#f3ead6",
+      fontFamily: "system-ui,sans-serif",
+      fontSize: "14px",
+      lineHeight: "1.6",
+      textAlign: "center",
+    });
+    document.body.appendChild(box);
+  }, 5000);
+})();
+</script>
 </body>
 </html>

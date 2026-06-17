@@ -224,7 +224,7 @@
 
   class ImageSlot extends HTMLElement {
     static get observedAttributes() {
-      return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'src', 'id'];
+      return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'src', 'thumb', 'id'];
     }
 
     constructor() {
@@ -235,7 +235,7 @@
       root.innerHTML =
         '<style>' + stylesheet + '</style>' +
         '<div class="frame" part="frame">' +
-        '  <img part="image" alt="" draggable="false" style="display:none">' +
+        '  <img part="image" alt="" draggable="false" loading="lazy" decoding="async" style="display:none">' +
         '  <div class="empty" part="empty">' + icon +
         '    <div class="cap"></div>' +
         '    <div class="sub">or <u>browse files</u></div></div>' +
@@ -262,6 +262,9 @@
       this._depth = 0;
       this._gen = 0;
       this._view = { s: 1, x: 0, y: 0 };
+      this._pendingUrl = '';
+      this._inView = false;
+      this._srcIo = null;
       this._subFn = () => this._render();
       // Shadow-DOM listeners live with the shadow DOM — bound once here so
       // disconnect/reconnect (e.g. React remount) doesn't stack handlers.
@@ -396,6 +399,14 @@
       // frame's clamp range.
       this._ro = new ResizeObserver(() => this._render());
       this._ro.observe(this);
+      this._srcIo = new IntersectionObserver(
+        ([e]) => {
+          this._inView = e.isIntersecting;
+          if (e.isIntersecting) this._commitImageSrc();
+        },
+        { rootMargin: '280px 0px', threshold: 0.01 }
+      );
+      this._srcIo.observe(this);
       load();
       this._render();
     }
@@ -407,6 +418,7 @@
       this.removeEventListener('dragleave', this);
       this.removeEventListener('drop', this);
       if (this._ro) { this._ro.disconnect(); this._ro = null; }
+      if (this._srcIo) { this._srcIo.disconnect(); this._srcIo = null; }
       this._exitReframe(false);
     }
 
@@ -571,6 +583,16 @@
       else { this._local = v; }
     }
 
+    _commitImageSrc() {
+      const url = this._pendingUrl;
+      if (!url) return;
+      if (!this._userUrl && !this._inView) return;
+      if (this._img.getAttribute('src') !== url) {
+        this._img.src = url;
+        this._ghost.src = url;
+      }
+    }
+
     _render() {
       // Shape / mask. Presets use border-radius so the dashed ring can
       // follow the rounded outline; clip-path is only applied for an
@@ -602,8 +624,11 @@
       let stored = this.id ? getSlot(this.id) : this._local;
       if (stored && stored.u && !/^data:image\//i.test(stored.u)) stored = null;
       const srcAttr = this.getAttribute('src') || '';
+      const thumbAttr = this.getAttribute('thumb') || '';
       this._userUrl = (stored && stored.u) || null;
-      const url = this._userUrl || srcAttr;
+      const fullUrl = this._userUrl || srcAttr;
+      const url = this._userUrl || thumbAttr || fullUrl;
+      this._pendingUrl = url;
       // Don't clobber an in-flight reframe with a store-triggered re-render.
       if (!this.hasAttribute('data-reframe')) {
         this._view = {
@@ -616,15 +641,12 @@
       // Toggle via style.display — the [hidden] attribute alone loses to
       // the display:flex / display:block rules in the stylesheet above.
       if (url) {
-        if (this._img.getAttribute('src') !== url) {
-          this._img.src = url;
-          this._ghost.src = url;
-        }
         this._img.style.display = 'block';
         this._empty.style.display = 'none';
         this.setAttribute('data-filled', '');
         this._clampView();
         this._applyView();
+        this._commitImageSrc();
       } else {
         this._img.style.display = 'none';
         this._img.removeAttribute('src');

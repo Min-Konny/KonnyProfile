@@ -10,11 +10,12 @@ const PROFILE = {
   twitter: "Konny0329s_VRC",
   discord: "Konny0329s",
   vrcUrl: "https://vrchat.com/home/user/usr_0ce3df70-b629-4444-83ce-9425840255e1",
-  status: "online",
+  status: "online — カラオケ・謎解きワールド / EN-JP",
   intro: [
     "はじめまして、こにーです。",
-    "綺麗なワールドでシーシャを吸うのが好き。",
-    "多趣味なので、たぶんどこかで話が合います。お気軽にどうぞ。",
+    "多趣味＆新しいこと大好きなのでなんでも誘ってください！",
+    "仕事はフルリモなので平日19:00-26:00",
+    "土日祝休みなのでいつでも遊べます！！",
   ],
 };
 
@@ -56,20 +57,11 @@ const GAMES = [
     a1: PAL.goldHi, a2: PAL.rose, tag: "VARIETY" },
 ];
 
-const RANKS = [
-  { game: "LEAGUE OF LEGENDS", tier: "CHALLENGER", meta: "Solo / Duo — Peak",
-    glyph: "challenger", c1: PAL.goldHi, c2: PAL.lilac },
-  { game: "TEAMFIGHT TACTICS", tier: "GRANDMASTER", meta: "Ranked — Peak",
-    glyph: "grandmaster", c1: PAL.rose, c2: PAL.amber },
-  { game: "LEFT 4 DEAD 2", tier: "3,000 HRS", meta: "Playtime / Veteran",
-    glyph: "skull", c1: PAL.amber, c2: PAL.goldHi },
-];
-
 const COACH_TIMELINE = [
   { title: "SCARZ — LoL / Wild Rift コーチ", alt: false,
     desc: "ヘッドコーチとして4年。LoL部門・Wild Rift部門を担当しました。" },
   { title: "LJL 出場", alt: true,
-    desc: "LJLCSから勝ち上がってLJLに出場しました" },
+    desc: "LJLCSから勝ち上がってLJLに出場しました。" },
   { title: "Wild Rift 日本 2位", alt: false },
   { title: "テレ東 e-sports high 出演", alt: true,
     desc: "テレ東「e-sports high」に30分×8回出演。" },
@@ -101,28 +93,22 @@ const PROJECTS = [
 const HOBBIES = [
   { id: "shisha", label: "シーシャ", title: "Shisha · 水煙草", sub: "// 3台所持・フレーバーで使い分け",
     photo: "写真/シーシャ/IMG_4477.jpg",
-    body: "ハリルマムーン150周年モデル、SHISHA BUCKS、PATISAの木製台持ってます！\nおすすめのフレーバーとかミックス教えてください。",
-    stats: [{ l: "OWN", v: "×3台" }, { l: "今ハマってる", v: "Peach" }, { l: "シーシャ歴", v: "2 yrs" }] },
+    body: "ハリルマムーン150周年モデル、SHISHA BUCKS、PATISAの木製台持ってます！\nおすすめのフレーバーとかミックス教えてください。" },
   { id: "snow", label: "スノボ", title: "Snowboarding", sub: "// 新幹線で行けるから新潟率90%",
     photo: "写真/スノボ/IMG_3997.jpg",
-    body: "シーズンは月1〜2で雪山。新幹線一本で行ける気軽さで新潟が圧倒的に多い。\nS字カーブで普通に滑れるくらい。",
-    stats: [{ l: "新潟率", v: "90%" }, { l: "シーズン", v: "10+" }, { l: "レベル", v: "S字" }] },
+    body: "シーズンは月1〜2で雪山。新幹線一本で行ける気軽さで新潟が圧倒的に多い。\nS字カーブで普通に滑れるくらい。" },
   { id: "poker", label: "ポーカー", title: "Poker", sub: "// JOPTや戦国などの大型トナメにも参加",
     photo: "写真/ポーカー/IMG_0762.jpg",
-    body: "NLHメイン。\nJOPTとか戦国とか、大型トナメもたまに出ます。\nライブでもオンラインでも遊ぶ。",
-    stats: [{ l: "メイン", v: "NLH" }, { l: "プレイ歴", v: "3 yrs" }, { l: "トナメ", v: "JOPT / 戦国" }] },
+    body: "NLHメイン。\nJOPTとか戦国とか、大型トナメもたまに出ます。\nライブでもオンラインでも遊ぶ。" },
   { id: "escape", label: "リアル脱出", title: "Real Escape Game", sub: "// SCRAP全般が好き",
     photo: "写真/脱出ゲーム/IMG_0496.JPG",
-    body: "SCRAP系の謎解き・リアル脱出ゲームが好き。「豪華客船からの脱出」が過去一。\n是非一緒に行きましょう。",
-    stats: [{ l: "主催", v: "SCRAP全般" }, { l: "ベスト", v: "豪華客船" }, { l: "頻度", v: "新公演ごと" }] },
+    body: "SCRAP系の謎解き・リアル脱出ゲームが好き。「豪華客船からの脱出」が過去一。\n是非一緒に行きましょう。" },
   { id: "futsal", label: "フットサル", title: "Futsal", sub: "// 部活・友人と定期",
     photo: "写真/フットサル/IMG_3424.jpg",
-    body: "会社の部活や友達と定期的にフットサルしてます。こっちも参加者募集中。\n歴は3年",
-    stats: [{ l: "頻度", v: "定期" }, { l: "歴", v: "3年" }, { l: "状態", v: "募集中" }] },
+    body: "会社の部活や友達と定期的にフットサルしてます。こっちも参加者募集中。\n歴は3年" },
   { id: "art", label: "美術館", title: "Art Museum", sub: "// 美術館 · teamLab · 希須林",
     photo: "写真/アート/IMG_4528.jpg",
-    body: "月１くらいで美術館だったり、チームラボだったり行ってます。\n行った後に麻布台ヒルズの希須林で中華食うのが鉄板ルート。",
-    stats: [{ l: "月", v: "1くらい" }, { l: "定番", v: "teamLab" }, { l: "〆", v: "希須林" }] },
+    body: "月１くらいで美術館だったり、チームラボだったり行ってます。\n行った後に麻布台ヒルズの希須林で中華食うのが鉄板ルート。" },
 ];
 
 const NAV = [
@@ -135,12 +121,12 @@ const NAV = [
   { id: "contact", label: "Friend" },
 ];
 
-Object.assign(window, { PROFILE, STATS, GAMES, RANKS, COACH_TIMELINE, PROJECTS, HOBBIES, NAV, PAL });
-
 // ============================================================
-// Components
 // ============================================================
 const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+// Components
+// ============================================================
 
 // ---- SVG ornament: corner filigree ----
 function CornerOrnament({ className }) {
@@ -236,6 +222,15 @@ function useTyping(lines, speed = 32, lineDelay = 700) {
 
 // ---- Nav ----
 function Nav({ active, onOpenCmd }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function close() { setMenuOpen(false); }
+    window.addEventListener("hashchange", close);
+    return () => window.removeEventListener("hashchange", close);
+  }, [menuOpen]);
+
   return (
     <nav className="nav">
       <div className="nav-brand">
@@ -243,23 +238,73 @@ function Nav({ active, onOpenCmd }) {
         <span>Konny</span>
         <span className="mono">· 0329 ·</span>
       </div>
-      <div className="nav-links">
+      <div className={`nav-links ${menuOpen ? "is-open" : ""}`}>
         {NAV.map((n) => (
-          <a key={n.id} href={`#${n.id}`} className={active === n.id ? "active" : ""}>{n.label}</a>
+          <a
+            key={n.id}
+            href={`#${n.id}`}
+            className={active === n.id ? "active" : ""}
+            onClick={() => setMenuOpen(false)}
+          >
+            {n.label}
+          </a>
         ))}
       </div>
-      <button className="nav-cmdk" onClick={onOpenCmd}>
-        <span>SEARCH</span>
-        <kbd>⌘K</kbd>
-      </button>
+      <div className="nav-actions">
+        <button
+          type="button"
+          className="nav-menu-btn"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          {menuOpen ? "×" : "☰"}
+        </button>
+        <button type="button" className="nav-cmdk" onClick={onOpenCmd}>
+          <span>SEARCH</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+      </div>
+      {menuOpen && (
+        <button
+          type="button"
+          className="nav-backdrop"
+          aria-label="メニューを閉じる"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
     </nav>
   );
 }
 
 // ---- Hero ----
+function HeroSnsLink({ platform, sub, value, href, external, action, onClick }) {
+  const Tag = onClick ? "button" : "a";
+  const props = onClick
+    ? { type: "button", onClick }
+    : { href, ...(external ? { target: "_blank", rel: "noopener noreferrer" } : {}) };
+  return (
+    <Tag className={`sns-card sns-${platform.toLowerCase()}`} {...props}>
+      <span className="sns-card-top">
+        <span className="sns-card-platform">{platform}</span>
+        {sub && <span className="sns-card-sub">{sub}</span>}
+      </span>
+      <span className="sns-card-value">{value}</span>
+      <span className="sns-card-action">{action}</span>
+    </Tag>
+  );
+}
+
 function Hero() {
   const { out, done } = useTyping(PROFILE.intro, 30, 500);
   const wrapRef = useRef(null);
+  const [discordCopied, setDiscordCopied] = useState(false);
+
+  function copyDiscord() {
+    navigator.clipboard?.writeText(PROFILE.discord);
+    setDiscordCopied(true);
+    setTimeout(() => setDiscordCopied(false), 1800);
+  }
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -304,8 +349,7 @@ function Hero() {
             @{PROFILE.twitter} <span className="arrow">·</span> <span className="en">{PROFILE.nameEn}</span>
           </div>
           <div className="hero-meta">
-            <div className="line"><span className="key">status</span><span>online — シーシャワールド徘徊中</span></div>
-            <div className="line"><span className="key">gender</span><span>男</span></div>
+            <div className="line"><span className="key">status</span><span>{PROFILE.status}</span></div>
           </div>
           <p className="hero-intro">
             {out.split("\n").map((l, i) => <span key={i}>{l}<br/></span>)}
@@ -320,15 +364,30 @@ function Hero() {
             ))}
           </div>
           <div className="hero-sns">
-            <a className="sns-pill" href={`https://twitter.com/${PROFILE.twitter}`} target="_blank" rel="noopener">
-              <span className="icon">𝕏</span> @{PROFILE.twitter}
-            </a>
-            <a className="sns-pill" href="#contact">
-              <span className="icon">✦</span> Discord · {PROFILE.discord}
-            </a>
-            <a className="sns-pill" href={PROFILE.vrcUrl} target="_blank" rel="noopener">
-              <span className="icon">◈</span> VRChat Profile
-            </a>
+            <p className="hero-sns-label">連絡先 · Contact</p>
+            <div className="hero-sns-grid">
+              <HeroSnsLink
+                platform="X"
+                sub="Twitter"
+                value={`@${PROFILE.twitter}`}
+                href={`https://twitter.com/${PROFILE.twitter}`}
+                external
+                action="プロフィールを開く →"
+              />
+              <HeroSnsLink
+                platform="Discord"
+                value={PROFILE.discord}
+                action={discordCopied ? "コピーしました ✓" : "IDをコピー"}
+                onClick={copyDiscord}
+              />
+              <HeroSnsLink
+                platform="VRChat"
+                value={PROFILE.vrcId}
+                href={PROFILE.vrcUrl}
+                external
+                action="VRCプロフィール →"
+              />
+            </div>
           </div>
         </div>
 
@@ -336,7 +395,10 @@ function Hero() {
           <div className="avatar-ring-2"><AvatarFiligree2/></div>
           <div className="avatar-ring"><AvatarFiligree/></div>
           <div className="avatar-wrap" ref={wrapRef}>
-            <div className="avatar-img"></div>
+            <div className="avatar-img">
+              <div className="avatar-img-layer primary" aria-hidden="true" />
+              <div className="avatar-img-layer alt" aria-hidden="true" />
+            </div>
             <div className="avatar-frame"></div>
             <CornerOrnament className="avatar-corner tl"/>
             <CornerOrnament className="avatar-corner tr"/>
@@ -397,7 +459,7 @@ function GamesSection() {
   return (
     <section id="games">
       <div className="reveal">
-        <div className="section-label">04 / Games — 一緒に遊びませんか</div>
+        <div className="section-label">05 / Games — 一緒に遊びませんか</div>
         <h2 className="section-title">よく遊ぶ <em>ゲーム</em></h2>
         <div className="section-subtitle">
           初心者歓迎・一緒にやれる人募集中！！<br/>
@@ -408,83 +470,6 @@ function GamesSection() {
         {GAMES.map((g) => <GameCard key={g.code} g={g} />)}
       </div>
     </section>
-  );
-}
-
-// ---- Rank badges (ornate) ----
-function Badge({ glyph, c1, c2 }) {
-  return (
-    <svg viewBox="0 0 200 200">
-      <defs>
-        <linearGradient id={`gr-${glyph}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor={c1}/>
-          <stop offset="100%" stopColor={c2}/>
-        </linearGradient>
-        <radialGradient id={`gl-${glyph}`} cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0%" stopColor={c1} stopOpacity="0.3"/>
-          <stop offset="100%" stopColor={c1} stopOpacity="0"/>
-        </radialGradient>
-      </defs>
-      {/* outer wreath */}
-      <circle cx="100" cy="100" r="92" fill="none" stroke={`url(#gr-${glyph})`} strokeWidth="0.8"/>
-      <circle cx="100" cy="100" r="86" fill={`url(#gl-${glyph})`}/>
-      <circle cx="100" cy="100" r="82" fill="none" stroke={`url(#gr-${glyph})`} strokeWidth="0.4" strokeDasharray="2 3"/>
-      {/* laurel leaves */}
-      {Array.from({ length: 36 }).map((_, i) => {
-        const a = (i / 36) * Math.PI * 2;
-        const r1 = 78, r2 = i % 3 === 0 ? 70 : 74;
-        const x1 = 100 + Math.cos(a) * r1, y1 = 100 + Math.sin(a) * r1;
-        const x2 = 100 + Math.cos(a) * r2, y2 = 100 + Math.sin(a) * r2;
-        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={`url(#gr-${glyph})`} strokeWidth={i % 9 === 0 ? 1.4 : 0.5} opacity={i % 3 === 0 ? 0.9 : 0.5}/>;
-      })}
-      {/* inner medallion */}
-      <circle cx="100" cy="100" r="56" fill="none" stroke={`url(#gr-${glyph})`} strokeWidth="0.6"/>
-      <circle cx="100" cy="100" r="50" fill={c1} opacity="0.05"/>
-
-      {/* inner glyph */}
-      {glyph === "challenger" && (
-        <g>
-          {/* crown */}
-          <path d="M 70 116 L 76 92 L 84 110 L 100 84 L 116 110 L 124 92 L 130 116 Z" fill={`url(#gr-${glyph})`} opacity="0.5"/>
-          <path d="M 70 116 L 76 92 L 84 110 L 100 84 L 116 110 L 124 92 L 130 116 Z" fill="none" stroke={c1} strokeWidth="1"/>
-          <line x1="68" y1="120" x2="132" y2="120" stroke={c1} strokeWidth="1.2"/>
-          <circle cx="76" cy="90" r="2.5" fill={c2}/>
-          <circle cx="100" cy="82" r="3" fill={c2}/>
-          <circle cx="124" cy="90" r="2.5" fill={c2}/>
-        </g>
-      )}
-      {glyph === "grandmaster" && (
-        <g>
-          {/* fleur-de-lis style */}
-          <circle cx="100" cy="100" r="20" fill="none" stroke={c1} strokeWidth="0.8"/>
-          <circle cx="100" cy="100" r="14" fill={`url(#gr-${glyph})`} opacity="0.4"/>
-          <path d="M 100 82 L 104 96 L 118 96 L 107 105 L 112 119 L 100 110 L 88 119 L 93 105 L 82 96 L 96 96 Z" fill={c2}/>
-          <circle cx="100" cy="100" r="3" fill={c1}/>
-        </g>
-      )}
-      {glyph === "skull" && (
-        <g>
-          {/* hourglass / shield */}
-          <path d="M 80 80 L 120 80 L 100 100 L 120 120 L 80 120 L 100 100 Z" fill={`url(#gr-${glyph})`} opacity="0.5" stroke={c1} strokeWidth="0.8"/>
-          <circle cx="100" cy="100" r="3" fill={c2}/>
-          <line x1="100" y1="74" x2="100" y2="78" stroke={c1} strokeWidth="1"/>
-          <line x1="100" y1="122" x2="100" y2="126" stroke={c1} strokeWidth="1"/>
-        </g>
-      )}
-
-      {/* ribbon */}
-      <path d="M 76 150 L 100 144 L 124 150 L 118 168 L 100 158 L 82 168 Z" fill={`url(#gr-${glyph})`} opacity="0.4"/>
-      <path d="M 76 150 L 100 144 L 124 150 L 118 168 L 100 158 L 82 168 Z" fill="none" stroke={c1} strokeWidth="0.5"/>
-
-      {/* sparkles */}
-      {[[50, 60], [148, 70], [60, 140], [150, 138]].map(([x, y], i) => (
-        <g key={i} transform={`translate(${x}, ${y})`}>
-          <path d="M0 -3 L0.6 -0.6 L3 0 L0.6 0.6 L0 3 L-0.6 0.6 L-3 0 L-0.6 -0.6 Z" fill={c2}>
-            <animate attributeName="opacity" values="0.3;1;0.3" dur={`${3 + i * 0.5}s`} repeatCount="indefinite"/>
-          </path>
-        </g>
-      ))}
-    </svg>
   );
 }
 
@@ -506,14 +491,12 @@ function Marquee({ items }) {
   );
 }
 
-function RanksSection() { return null; }
-
 // ---- Coach timeline ----
 function CareerSection() {
   return (
     <section id="career">
       <div className="reveal">
-        <div className="section-label" style={{ marginTop: 64 }}>05.b / Coaching — おまけ</div>
+        <div className="section-label">06 / Coaching — 経歴</div>
         <h2 className="section-title" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>e-sports <em>コーチ</em> 経歴</h2>
       </div>
       <div className="timeline reveal">
@@ -572,7 +555,7 @@ function DevSection() {
   return (
     <section id="dev">
       <div className="reveal">
-        <div className="section-label">06 / Studio · 個人開発</div>
+        <div className="section-label">07 / Studio · 個人開発</div>
         <h2 className="section-title">作ったやつ <em>いろいろ</em></h2>
         <div className="section-subtitle">こんな感じのサイトなら作れます、なんかあったら相談してね。</div>
       </div>
@@ -620,14 +603,6 @@ function HobbiesSection() {
               <p className="h-body">
                 {h.body.split("\n").map((l, i) => <span key={i}>{l}<br/></span>)}
               </p>
-              <div className="h-stats">
-                {h.stats.map((s, i) => (
-                  <div className={`s ${i % 2 ? "alt" : ""}`} key={s.l}>
-                    <div className="l">{s.l}</div>
-                    <div className="v">{s.v}</div>
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="h-photo">
               <image-slot
@@ -635,9 +610,11 @@ function HobbiesSection() {
                 shape="rounded"
                 radius="14"
                 placeholder={`${h.label}の写真をドロップ`}
-                {...(h.photo ? { src: encPhotoPath(h.photo) } : {})}
+                {...(h.photo ? {
+                  src: encPhotoPath(webPhotoPath(h.photo)),
+                  thumb: encPhotoPath(thumbPhotoPath(h.photo)),
+                } : {})}
               />
-              <div className="h-photo-cap">// drop a photo</div>
             </div>
           </div>
         </div>
@@ -656,11 +633,12 @@ const GALLERY_FOLDER_ORDER = [
   "フットサル",
   "ポーカー",
   "旅",
-  "本人",
+  "こにー",
   "犬",
   "脱出ゲーム",
 ];
-const GALLERY_PAGE_SIZES = [12, 18, 24, 30, 36, 48];
+const GALLERY_PAGE_SIZES = [12, 24];
+const EDITORIAL_CYCLE = 12;
 
 function shuffleArrayInPlace(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -672,23 +650,68 @@ function shuffleArrayInPlace(arr) {
   return arr;
 }
 
-/** 写真 id から安定したバリエーション（ページをまたいでも同じ写真は同じ形） */
-function bentoVariantFromId(id) {
-  let h = 0;
-  for (let i = 0; i < id.length; i++) {
-    h = Math.imul(31, h) + id.charCodeAt(i) | 0;
-  }
-  const u = Math.abs(h) % 100;
-  if (u < 10) return "hero";
-  if (u < 26) return "wide";
-  if (u < 46) return "tall";
-  if (u < 64) return "sq";
-  if (u < 78) return "sm";
-  return "xs";
+/** 12枚セット: 5列 → 1列 → 2列 → 4列 */
+function editorialRole(index) {
+  const pos = index % EDITORIAL_CYCLE;
+  if (pos < 5) return "quint";
+  if (pos === 5) return "solo";
+  if (pos < 8) return "duo";
+  return "quad";
 }
 
 function encPhotoPath(p) {
   return p.split("/").map((seg) => encodeURIComponent(seg)).join("/");
+}
+
+function thumbPhotoPath(p) {
+  if (!p || !p.startsWith("写真/")) return "";
+  const parts = p.split("/");
+  const file = parts[parts.length - 1].replace(/\.[^.]+$/i, ".jpg");
+  return `写真/_thumbs/${parts.slice(1, -1).join("/")}/${file}`;
+}
+
+function webPhotoPath(p) {
+  if (!p || !p.startsWith("写真/")) return p;
+  const parts = p.split("/");
+  const file = parts[parts.length - 1].replace(/\.[^.]+$/i, ".jpg");
+  return `写真/_web/${parts.slice(1, -1).join("/")}/${file}`;
+}
+
+function galleryThumbSrc(it) {
+  const t = it.thumb || thumbPhotoPath(it.path);
+  return encPhotoPath(t || it.path);
+}
+
+function galleryLightboxSrc(path) {
+  const web = webPhotoPath(path);
+  return encPhotoPath(web || path);
+}
+
+function prefetchThumbs(items, limit = 12) {
+  if (!items?.length) return;
+  items.slice(0, limit).forEach((it) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.src = galleryThumbSrc(it);
+  });
+}
+
+function GalleryThumb({ item, priority = false }) {
+  const [loaded, setLoaded] = useState(false);
+  const src = galleryThumbSrc(item);
+  return (
+    <div className={`gallery-thumb ${loaded ? "is-loaded" : ""}`}>
+      {!loaded && <div className="gallery-thumb-skel" aria-hidden="true" />}
+      <img
+        src={src}
+        alt=""
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
 }
 
 function GalleryPager({ page, totalPages, total, pageSize, onPage }) {
@@ -747,8 +770,9 @@ function GallerySection() {
   const [loadErr, setLoadErr] = useState(null);
   const [folder, setFolder] = useState("ALL");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(18);
+  const [pageSize, setPageSize] = useState(12);
   const [shuffleNonce, setShuffleNonce] = useState(0);
+  const [lightboxIdx, setLightboxIdx] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -793,14 +817,24 @@ function GallerySection() {
     return c;
   }, [manifest]);
 
+  const itemsByCategory = useMemo(() => {
+    const m = {};
+    if (!manifest?.items) return m;
+    for (const it of manifest.items) {
+      if (!m[it.category]) m[it.category] = [];
+      m[it.category].push(it);
+    }
+    for (const k of Object.keys(m)) {
+      m[k].sort((a, b) => a.path.localeCompare(b.path, "ja"));
+    }
+    return m;
+  }, [manifest]);
+
   const filtered = useMemo(() => {
     if (!manifest?.items) return [];
     if (folder === "ALL") return shuffledAllItems;
-    return manifest.items
-      .filter((it) => it.category === folder)
-      .slice()
-      .sort((a, b) => a.path.localeCompare(b.path, "ja"));
-  }, [manifest, folder, shuffledAllItems]);
+    return itemsByCategory[folder] || [];
+  }, [manifest, folder, shuffledAllItems, itemsByCategory]);
 
   const totalPages = filtered.length === 0 ? 0 : Math.ceil(filtered.length / pageSize);
   const safePage = totalPages === 0 ? 1 : Math.min(Math.max(1, page), totalPages);
@@ -809,6 +843,38 @@ function GallerySection() {
     const start = (safePage - 1) * pageSize;
     return filtered.slice(start, start + pageSize);
   }, [filtered, safePage, pageSize, totalPages]);
+
+  const lightboxItem = lightboxIdx != null ? filtered[lightboxIdx] : null;
+
+  function openLightbox(it) {
+    const idx = filtered.findIndex((x) => x.id === it.id);
+    if (idx >= 0) setLightboxIdx(idx);
+  }
+
+  useEffect(() => {
+    if (lightboxIdx == null) return;
+    function onKey(e) {
+      if (e.key === "Escape") setLightboxIdx(null);
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        setLightboxIdx((i) => (i > 0 ? i - 1 : filtered.length - 1));
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        setLightboxIdx((i) => (i < filtered.length - 1 ? i + 1 : 0));
+      }
+    }
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightboxIdx, filtered.length]);
+
+  useEffect(() => {
+    if (pageItems.length) prefetchThumbs(pageItems, pageItems.length);
+  }, [folder, safePage, pageItems]);
 
   useEffect(() => {
     setPage(1);
@@ -824,8 +890,8 @@ function GallerySection() {
         <div className="section-label">03 / Gallery — 写真でも遊ぶ</div>
         <h2 className="section-title">スナップの <em>棚</em></h2>
         <div className="section-subtitle">
-          リアルの一枚と仮想のスクショを、気分でトレイ分けしています。<strong>すべて</strong> はジャンルが混ざったランダムで、カードの大きさも揃いません。<br/>
-          タブでトレイを一つ選べば、その系統だけを順にめくれます。並びを入れ替えたいときは <strong>↻ 並び替え</strong>。下のページ番号から続きへどうぞ。
+          リアルの一枚と仮想のスクショを、気分でトレイ分けしています。<strong>すべて</strong> は1ページ12枚・5列→1列→2列→4列のリズムでめくれます。タブでジャンルを絞れば、その系統だけをゆっくり見られます。<br/>
+          写真をクリックすると原寸プレビュー。並びを変えたいときは <strong>↻ 並び替え</strong>。
         </div>
       </div>
 
@@ -866,6 +932,8 @@ function GallerySection() {
                   aria-selected={folder === name}
                   className={`gallery-folder-tab ${folder === name ? "is-on" : ""}`}
                   onClick={() => setFolder(name)}
+                  onMouseEnter={() => prefetchThumbs(itemsByCategory[name], pageSize)}
+                  onFocus={() => prefetchThumbs(itemsByCategory[name], pageSize)}
                 >
                   <span className="gft-label">{name}</span>
                   <span className="gft-count">{counts[name] ?? 0}</span>
@@ -915,30 +983,36 @@ function GallerySection() {
             <p className="gallery-empty reveal">このフォルダにはまだ写真がありません。ほかのタブも見てみてください。</p>
           ) : (
             <div
-              className={folder === "ALL" ? "gallery-bento reveal" : "gallery-page-grid reveal"}
+              className={folder === "ALL" ? "gallery-editorial reveal" : "gallery-page-grid reveal"}
             >
-              {pageItems.map((it) => (
+              {pageItems.map((it, i) => {
+                const globalIdx = (safePage - 1) * pageSize + i + 1;
+                return (
                 <figure
                   key={it.id}
                   className={
                     folder === "ALL"
-                      ? `g-card g-card-bento gb-${bentoVariantFromId(it.id)}`
+                      ? `g-card g-card-editorial ge-${editorialRole(i)}`
                       : "g-card g-card-compact"
                   }
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openLightbox(it)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openLightbox(it);
+                    }
+                  }}
                 >
-                  <image-slot
-                    id={`gallery-${it.id}`}
-                    shape="rounded"
-                    radius="10"
-                    placeholder={it.file}
-                    src={encPhotoPath(it.path)}
-                  />
+                  <span className="g-index" aria-hidden="true">{String(globalIdx).padStart(2, "0")}</span>
+                  <GalleryThumb item={it} priority={i < 5} />
                   <figcaption>
                     <span className="g-label">{it.category}</span>
                     <span className="g-file">{it.file}</span>
                   </figcaption>
                 </figure>
-              ))}
+              );})}
             </div>
           )}
 
@@ -953,7 +1027,64 @@ function GallerySection() {
           )}
         </>
       )}
+      {lightboxItem && (
+        <div
+          className="gallery-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="写真プレビュー"
+          onClick={() => setLightboxIdx(null)}
+        >
+          <button type="button" className="gallery-lightbox-close" aria-label="閉じる">×</button>
+          <button
+            type="button"
+            className="gallery-lightbox-nav prev"
+            aria-label="前の写真"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((i) => (i > 0 ? i - 1 : filtered.length - 1));
+            }}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="gallery-lightbox-nav next"
+            aria-label="次の写真"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIdx((i) => (i < filtered.length - 1 ? i + 1 : 0));
+            }}
+          >
+            ›
+          </button>
+          <img
+            className="gallery-lightbox-img"
+            src={galleryLightboxSrc(lightboxItem.path)}
+            alt={lightboxItem.file}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <div className="gallery-lightbox-cap" onClick={(e) => e.stopPropagation()}>
+            <span className="g-label">{lightboxItem.category}</span>
+            <span className="g-file">{lightboxItem.file}</span>
+            <span className="gallery-lightbox-pos">
+              {lightboxIdx + 1} / {filtered.length}
+            </span>
+          </div>
+        </div>
+      )}
     </section>
+  );
+}
+
+// ---- Section divider ----
+function SectionDivider() {
+  return (
+    <div className="section-divider reveal" aria-hidden>
+      <span className="bar" />
+      <span className="star">✦</span>
+      <span className="bar" />
+    </div>
   );
 }
 
@@ -971,7 +1102,7 @@ function FriendCTA() {
         <CornerOrnament className="corner-deco tl"/>
         <CornerOrnament className="corner-deco br"/>
         <div>
-          <div className="section-label" style={{ marginBottom: 14 }}>03 / Say Hi</div>
+          <div className="section-label" style={{ marginBottom: 14 }}>04 / Say Hi</div>
           <h3>気軽に <em>声かけて</em> ください</h3>
           <p>
             共通の趣味があったりPCゲームしてる人は是非一緒に遊びましょう！！<br/>
@@ -1010,6 +1141,7 @@ function ContactSection() {
           {" · "}<span>Discord: {PROFILE.discord}</span>{" · "}<span>VRChat: {PROFILE.vrcId}</span>
         </div>
         <div style={{ marginTop: 18, color: "var(--text-mute)", fontStyle: "italic" }}>
+          <span className="section-label" style={{ display: "inline-block", marginBottom: 8 }}>08 / Footer</span><br/>
           built with caffeine, peach shisha & friends · こにー 2026
         </div>
       </footer>
@@ -1075,8 +1207,9 @@ function CommandPalette({ open, onClose }) {
         <div className="cmdk-list">
           {items.length === 0 && <div className="cmdk-item">// no results</div>}
           {items.map((it, i) => (
-            <div
+            <button
               key={i}
+              type="button"
               className={`cmdk-item ${i === sel ? "active" : ""}`}
               onMouseEnter={() => setSel(i)}
               onClick={() => execute(it)}
@@ -1084,7 +1217,7 @@ function CommandPalette({ open, onClose }) {
               <span className="glyph">{it.glyph}</span>
               <span>{it.label}</span>
               <span className="meta">{it.kind}</span>
-            </div>
+            </button>
           ))}
         </div>
         <div className="cmdk-foot">
@@ -1152,8 +1285,10 @@ function App() {
         ]} />
         <HobbiesSection />
         <GallerySection />
+        <SectionDivider />
         <FriendCTA />
         <GamesSection />
+        <SectionDivider />
         <DevSection />
         <CareerSection />
         <ContactSection />

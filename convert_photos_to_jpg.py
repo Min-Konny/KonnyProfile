@@ -2,6 +2,7 @@
 """写真/ 以下の HEIC・PNG・WebP・TIFF・BMP を同じ場所に .jpg として書き出す（元ファイルは残す）。"""
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -28,6 +29,10 @@ def to_rgb(im: Image.Image) -> Image.Image:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--folder", help="写真/ 直下のフォルダ名だけ変換（例: VR）")
+    args = parser.parse_args()
+    sub = args.folder
     if not ROOT.is_dir():
         print("not found:", ROOT, file=sys.stderr)
         return 1
@@ -37,6 +42,13 @@ def main() -> int:
     for path in sorted(ROOT.rglob("*")):
         if not path.is_file():
             continue
+        if sub:
+            try:
+                rel = path.relative_to(ROOT)
+            except ValueError:
+                continue
+            if not rel.parts or rel.parts[0] != sub:
+                continue
         ext = path.suffix.lower()
         if ext in (".jpg", ".jpeg"):
             continue

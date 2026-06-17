@@ -9,6 +9,9 @@ __pycache__/
 *.log
 .image-slots.state.json
 
+node_modules/
+dist/
+
 # ブラウザで img 直リンクしにくい／ギャラリー対象外の拡張子（誤コミット防止）
 *.heic
 *.HEIC
