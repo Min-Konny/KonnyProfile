@@ -51,6 +51,35 @@ export const GAMES = [
     a1: PAL.goldHi, a2: PAL.rose, tag: "VARIETY" },
 ];
 
+export const KONKATSU_PROFILE = [
+  { label: "年収", value: "650万円", lines: [
+    "正社員フルリモフルフレックス",
+    "社会人6年目、プロゲーマーはカウントしてないので3年遅れ",
+  ]},
+  { label: "学歴", value: "MARCH卒", lines: ["経済学部"] },
+  { label: "運動神経", value: "かなり良い", lines: [
+    "小中野球部、ずっとレギュラー",
+    "フットサル、経験者って言われるくらいには",
+    "スノボ、S字で普通に滑れる",
+  ]},
+  { label: "ゲーム", value: "超絶上手い", lines: [
+    "プロゲーマー経験あり、LoLは最高上位0.02%！！",
+    "他のゲームも大体どのゲームでも5%くらいまでは行ける",
+  ]},
+  { label: "歌", value: "まぁまぁ得意", lines: [
+    "カラオケ行くと大体上手いとは言ってもらえるくらいには！",
+  ]},
+  { label: "お砂糖", value: "累計０人", alt: true },
+  { label: "彼女", value: "累計５人", alt: true },
+  { label: "料理掃除", value: "ニガテ" },
+  { label: "連絡", value: "遅い", lines: [
+    "こまめに欲しい人だったら努力はする",
+  ]},
+  { label: "同棲", value: "経験有" },
+  { label: "一人暮らし", value: "経験有" },
+  { label: "その他", value: "聞かれたら答える！！", lines: [] },
+];
+
 export const COACH_TIMELINE = [
   { title: "SCARZ — LoL / Wild Rift コーチ", alt: false,
     desc: "ヘッドコーチとして4年。LoL部門・Wild Rift部門を担当しました。" },

@@ -19,6 +19,9 @@ const DevSection = lazy(() =>
 const CareerSection = lazy(() =>
   import("./components/CareerSection.jsx").then((m) => ({ default: m.CareerSection }))
 );
+const KonkatsuSection = lazy(() =>
+  import("./components/KonkatsuSection.jsx").then((m) => ({ default: m.KonkatsuSection }))
+);
 
 function SectionFallback() {
   return <div className="section-lazy-placeholder" aria-hidden="true" />;
@@ -97,6 +100,7 @@ export function App() {
         <Suspense fallback={<SectionFallback />}>
           <RevealOnMount><DevSection /></RevealOnMount>
           <RevealOnMount><CareerSection /></RevealOnMount>
+          <RevealOnMount><KonkatsuSection /></RevealOnMount>
         </Suspense>
         <ContactSection />
       </main>

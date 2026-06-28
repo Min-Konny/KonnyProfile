@@ -38,7 +38,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   ));
 
   // src/data/content.js
-  var PROFILE, STATS, PAL, GAMES, COACH_TIMELINE, PROJECTS, HOBBIES, NAV;
+  var PROFILE, STATS, PAL, GAMES, KONKATSU_PROFILE, COACH_TIMELINE, PROJECTS, HOBBIES, NAV;
   var init_content = __esm({
     "src/data/content.js"() {
       PROFILE = {
@@ -137,6 +137,34 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           a2: PAL.rose,
           tag: "VARIETY"
         }
+      ];
+      KONKATSU_PROFILE = [
+        { label: "\u5E74\u53CE", value: "650\u4E07\u5186", lines: [
+          "\u6B63\u793E\u54E1\u30D5\u30EB\u30EA\u30E2\u30D5\u30EB\u30D5\u30EC\u30C3\u30AF\u30B9",
+          "\u793E\u4F1A\u4EBA6\u5E74\u76EE\u3001\u30D7\u30ED\u30B2\u30FC\u30DE\u30FC\u306F\u30AB\u30A6\u30F3\u30C8\u3057\u3066\u306A\u3044\u306E\u30673\u5E74\u9045\u308C"
+        ] },
+        { label: "\u5B66\u6B74", value: "MARCH\u5352", lines: ["\u7D4C\u6E08\u5B66\u90E8"] },
+        { label: "\u904B\u52D5\u795E\u7D4C", value: "\u304B\u306A\u308A\u826F\u3044", lines: [
+          "\u5C0F\u4E2D\u91CE\u7403\u90E8\u3001\u305A\u3063\u3068\u30EC\u30AE\u30E5\u30E9\u30FC",
+          "\u30D5\u30C3\u30C8\u30B5\u30EB\u3001\u7D4C\u9A13\u8005\u3063\u3066\u8A00\u308F\u308C\u308B\u304F\u3089\u3044\u306B\u306F",
+          "\u30B9\u30CE\u30DC\u3001S\u5B57\u3067\u666E\u901A\u306B\u6ED1\u308C\u308B"
+        ] },
+        { label: "\u30B2\u30FC\u30E0", value: "\u8D85\u7D76\u4E0A\u624B\u3044", lines: [
+          "\u30D7\u30ED\u30B2\u30FC\u30DE\u30FC\u7D4C\u9A13\u3042\u308A\u3001LoL\u306F\u6700\u9AD8\u4E0A\u4F4D0.02%\uFF01\uFF01",
+          "\u4ED6\u306E\u30B2\u30FC\u30E0\u3082\u5927\u4F53\u3069\u306E\u30B2\u30FC\u30E0\u3067\u30825%\u304F\u3089\u3044\u307E\u3067\u306F\u884C\u3051\u308B"
+        ] },
+        { label: "\u6B4C", value: "\u307E\u3041\u307E\u3041\u5F97\u610F", lines: [
+          "\u30AB\u30E9\u30AA\u30B1\u884C\u304F\u3068\u5927\u4F53\u4E0A\u624B\u3044\u3068\u306F\u8A00\u3063\u3066\u3082\u3089\u3048\u308B\u304F\u3089\u3044\u306B\u306F\uFF01"
+        ] },
+        { label: "\u304A\u7802\u7CD6", value: "\u7D2F\u8A08\uFF10\u4EBA", alt: true },
+        { label: "\u5F7C\u5973", value: "\u7D2F\u8A08\uFF15\u4EBA", alt: true },
+        { label: "\u6599\u7406\u6383\u9664", value: "\u30CB\u30AC\u30C6" },
+        { label: "\u9023\u7D61", value: "\u9045\u3044", lines: [
+          "\u3053\u307E\u3081\u306B\u6B32\u3057\u3044\u4EBA\u3060\u3063\u305F\u3089\u52AA\u529B\u306F\u3059\u308B"
+        ] },
+        { label: "\u540C\u68F2", value: "\u7D4C\u9A13\u6709" },
+        { label: "\u4E00\u4EBA\u66AE\u3089\u3057", value: "\u7D4C\u9A13\u6709" },
+        { label: "\u305D\u306E\u4ED6", value: "\u805E\u304B\u308C\u305F\u3089\u7B54\u3048\u308B\uFF01\uFF01", lines: [] }
       ];
       COACH_TIMELINE = [
         {
@@ -254,6 +282,37 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       if (false) {
         Object.assign(window, { PROFILE, STATS, GAMES, COACH_TIMELINE, PROJECTS, HOBBIES, NAV, PAL });
       }
+    }
+  });
+
+  // src/components/Ornaments.jsx
+  function CornerOrnament({ className }) {
+    return /* @__PURE__ */ React.createElement("svg", { className, viewBox: "0 0 64 64", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 2 L26 2 M2 2 L2 26", stroke: "currentColor", strokeWidth: "0.8", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M8 2 Q8 8 14 8 M2 8 Q8 8 8 14", stroke: "currentColor", strokeWidth: "0.8", fill: "none", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "14", cy: "14", r: "1.5", fill: "currentColor" }), /* @__PURE__ */ React.createElement("path", { d: "M14 14 Q24 14 24 24", stroke: "currentColor", strokeWidth: "0.6", fill: "none", opacity: "0.7" }), /* @__PURE__ */ React.createElement("circle", { cx: "24", cy: "24", r: "1", fill: "currentColor", opacity: "0.7" }), /* @__PURE__ */ React.createElement("path", { d: "M4 18 Q4 24 10 24", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }), /* @__PURE__ */ React.createElement("path", { d: "M18 4 Q24 4 24 10", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }));
+  }
+  function AvatarFiligree() {
+    return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 200", fill: "none" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "ringG", x1: "0", y1: "0", x2: "1", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#d4af7a" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#a47e4a" }))), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "96", stroke: "url(#ringG)", strokeWidth: "0.6", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "92", stroke: "url(#ringG)", strokeWidth: "0.3", fill: "none", strokeDasharray: "1 4" }), Array.from({ length: 24 }).map((_, i) => {
+      const a = i / 24 * Math.PI * 2;
+      const r1 = 88, r2 = i % 2 === 0 ? 82 : 85;
+      const x1 = 100 + Math.cos(a) * r1, y1 = 100 + Math.sin(a) * r1;
+      const x2 = 100 + Math.cos(a) * r2, y2 = 100 + Math.sin(a) * r2;
+      return /* @__PURE__ */ React.createElement("line", { key: i, x1, y1, x2, y2, stroke: "url(#ringG)", strokeWidth: i % 6 === 0 ? 1.2 : 0.5 });
+    }), [0, 90, 180, 270].map((deg) => {
+      const a = deg / 360 * Math.PI * 2;
+      const x = 100 + Math.cos(a) * 96;
+      const y = 100 + Math.sin(a) * 96;
+      return /* @__PURE__ */ React.createElement("g", { key: deg, transform: `translate(${x}, ${y}) rotate(${deg + 90} 0 0)` }, /* @__PURE__ */ React.createElement("path", { d: "M-4 0 L0 -6 L4 0 Z", fill: "url(#ringG)", opacity: "0.9" }));
+    }));
+  }
+  function AvatarFiligree2() {
+    return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 200", fill: "none" }, /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "98", stroke: "#d4af7a", strokeWidth: "0.3", fill: "none", opacity: "0.4" }), Array.from({ length: 60 }).map((_, i) => {
+      const a = i / 60 * Math.PI * 2;
+      const x = 100 + Math.cos(a) * 98;
+      const y = 100 + Math.sin(a) * 98;
+      return /* @__PURE__ */ React.createElement("circle", { key: i, cx: x, cy: y, r: "0.5", fill: "#f1d9a8", opacity: i % 5 === 0 ? 1 : 0.4 });
+    }));
+  }
+  var init_Ornaments = __esm({
+    "src/components/Ornaments.jsx"() {
     }
   });
 
@@ -705,8 +764,41 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     }
   });
 
+  // src/components/KonkatsuSection.jsx
+  var KonkatsuSection_exports = {};
+  __export(KonkatsuSection_exports, {
+    KonkatsuSection: () => KonkatsuSection
+  });
+  function KonkatsuSection() {
+    const [unlocked, setUnlocked] = (0, import_react10.useState)(false);
+    (0, import_react10.useEffect)(() => {
+      if (!unlocked) return;
+      window.observeReveal?.();
+      const id = setTimeout(() => window.observeReveal?.(), 120);
+      return () => clearTimeout(id);
+    }, [unlocked]);
+    return /* @__PURE__ */ React.createElement("section", { id: "konkatsu" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "09 / VRC\u5A5A\u6D3B \u2014 Bonus"), /* @__PURE__ */ React.createElement("h2", { className: "section-title", style: { fontSize: "clamp(28px, 4vw, 48px)" } }, "VRC", /* @__PURE__ */ React.createElement("em", null, "\u5A5A\u6D3B"), "\u30B3\u30FC\u30CA\u30FC"), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle konkatsu-teaser" }, "\u3053\u3093\u306A\u3068\u3053\u308D\u307E\u3067\u8AAD\u3093\u3067\u304F\u308C\u305F\u3063\u3066\u3053\u3068\u306F\u3082\u3057\u304B\u3057\u3066\u8208\u5473\u304C\u2026\uFF1F\uFF1F", /* @__PURE__ */ React.createElement("br", null), "\u3088\u308A\u8A73\u7D30\u306A\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3060\u3051\u3069\u8208\u5473\u306A\u3044\u4EBA\u306F\u898B\u306A\u304F\u3066\u3044\u3044\u3088\uFF01\uFF01")), !unlocked ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-gate reveal" }, /* @__PURE__ */ React.createElement(
+      "button",
+      {
+        type: "button",
+        className: "konkatsu-unlock-btn",
+        onClick: () => setUnlocked(true)
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-label" }, "\u8208\u5473\u3042\u308B\u2026\uFF1F \u8A73\u7D30\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u898B\u308B"),
+      /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-arrow" }, "\u2192")
+    ), /* @__PURE__ */ React.createElement("p", { className: "konkatsu-gate-note" }, "\u30BF\u30C3\u30D7\u3059\u308B\u3068\u8A73\u7D30\u304C\u8868\u793A\u3055\u308C\u307E\u3059")) : /* @__PURE__ */ React.createElement("div", { className: "konkatsu-panel reveal in-view" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tr" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco bl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-grid" }, KONKATSU_PROFILE.map((item) => /* @__PURE__ */ React.createElement("div", { className: `konkatsu-item ${item.alt ? "alt" : ""}`, key: item.label }, /* @__PURE__ */ React.createElement("div", { className: "konkatsu-label" }, item.label), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-value" }, item.value), item.lines?.length ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-lines" }, item.lines.map((line, i) => /* @__PURE__ */ React.createElement("span", { key: i }, line, i < item.lines.length - 1 ? /* @__PURE__ */ React.createElement("br", null) : null))) : null)))));
+  }
+  var import_react10;
+  var init_KonkatsuSection = __esm({
+    "src/components/KonkatsuSection.jsx"() {
+      import_react10 = __require("react");
+      init_content();
+      init_Ornaments();
+    }
+  });
+
   // src/App.jsx
-  var import_react10 = __require("react");
+  var import_react11 = __require("react");
   init_content();
 
   // src/components/Nav.jsx
@@ -791,34 +883,8 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     return { out, done };
   }
 
-  // src/components/Ornaments.jsx
-  function CornerOrnament({ className }) {
-    return /* @__PURE__ */ React.createElement("svg", { className, viewBox: "0 0 64 64", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 2 L26 2 M2 2 L2 26", stroke: "currentColor", strokeWidth: "0.8", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M8 2 Q8 8 14 8 M2 8 Q8 8 8 14", stroke: "currentColor", strokeWidth: "0.8", fill: "none", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "14", cy: "14", r: "1.5", fill: "currentColor" }), /* @__PURE__ */ React.createElement("path", { d: "M14 14 Q24 14 24 24", stroke: "currentColor", strokeWidth: "0.6", fill: "none", opacity: "0.7" }), /* @__PURE__ */ React.createElement("circle", { cx: "24", cy: "24", r: "1", fill: "currentColor", opacity: "0.7" }), /* @__PURE__ */ React.createElement("path", { d: "M4 18 Q4 24 10 24", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }), /* @__PURE__ */ React.createElement("path", { d: "M18 4 Q24 4 24 10", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }));
-  }
-  function AvatarFiligree() {
-    return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 200", fill: "none" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "ringG", x1: "0", y1: "0", x2: "1", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#d4af7a" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#a47e4a" }))), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "96", stroke: "url(#ringG)", strokeWidth: "0.6", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "92", stroke: "url(#ringG)", strokeWidth: "0.3", fill: "none", strokeDasharray: "1 4" }), Array.from({ length: 24 }).map((_, i) => {
-      const a = i / 24 * Math.PI * 2;
-      const r1 = 88, r2 = i % 2 === 0 ? 82 : 85;
-      const x1 = 100 + Math.cos(a) * r1, y1 = 100 + Math.sin(a) * r1;
-      const x2 = 100 + Math.cos(a) * r2, y2 = 100 + Math.sin(a) * r2;
-      return /* @__PURE__ */ React.createElement("line", { key: i, x1, y1, x2, y2, stroke: "url(#ringG)", strokeWidth: i % 6 === 0 ? 1.2 : 0.5 });
-    }), [0, 90, 180, 270].map((deg) => {
-      const a = deg / 360 * Math.PI * 2;
-      const x = 100 + Math.cos(a) * 96;
-      const y = 100 + Math.sin(a) * 96;
-      return /* @__PURE__ */ React.createElement("g", { key: deg, transform: `translate(${x}, ${y}) rotate(${deg + 90} 0 0)` }, /* @__PURE__ */ React.createElement("path", { d: "M-4 0 L0 -6 L4 0 Z", fill: "url(#ringG)", opacity: "0.9" }));
-    }));
-  }
-  function AvatarFiligree2() {
-    return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 200", fill: "none" }, /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "98", stroke: "#d4af7a", strokeWidth: "0.3", fill: "none", opacity: "0.4" }), Array.from({ length: 60 }).map((_, i) => {
-      const a = i / 60 * Math.PI * 2;
-      const x = 100 + Math.cos(a) * 98;
-      const y = 100 + Math.sin(a) * 98;
-      return /* @__PURE__ */ React.createElement("circle", { key: i, cx: x, cy: y, r: "0.5", fill: "#f1d9a8", opacity: i % 5 === 0 ? 1 : 0.4 });
-    }));
-  }
-
   // src/components/Hero.jsx
+  init_Ornaments();
   function HeroSnsLink({ platform, sub, value, href, external, action, onClick }) {
     const Tag = onClick ? "button" : "a";
     const props = onClick ? { type: "button", onClick } : { href, ...external ? { target: "_blank", rel: "noopener noreferrer" } : {} };
@@ -893,6 +959,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   var import_react5 = __require("react");
   init_content();
   init_gallery();
+  init_Ornaments();
   function HobbiesSection() {
     const [active, setActive] = (0, import_react5.useState)(0);
     const h = HOBBIES[active];
@@ -923,6 +990,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   // src/components/Contact.jsx
   var import_react6 = __require("react");
   init_content();
+  init_Ornaments();
   function SectionDivider() {
     return /* @__PURE__ */ React.createElement("div", { className: "section-divider reveal", "aria-hidden": true }, /* @__PURE__ */ React.createElement("span", { className: "bar" }), /* @__PURE__ */ React.createElement("span", { className: "star" }, "\u2726"), /* @__PURE__ */ React.createElement("span", { className: "bar" }));
   }
@@ -1018,23 +1086,26 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   }
 
   // src/App.jsx
-  var GallerySection2 = (0, import_react10.lazy)(
+  var GallerySection2 = (0, import_react11.lazy)(
     () => Promise.resolve().then(() => (init_GallerySection(), GallerySection_exports)).then((m) => ({ default: m.GallerySection }))
   );
-  var GamesSection2 = (0, import_react10.lazy)(
+  var GamesSection2 = (0, import_react11.lazy)(
     () => Promise.resolve().then(() => (init_GamesSection(), GamesSection_exports)).then((m) => ({ default: m.GamesSection }))
   );
-  var DevSection2 = (0, import_react10.lazy)(
+  var DevSection2 = (0, import_react11.lazy)(
     () => Promise.resolve().then(() => (init_DevSection(), DevSection_exports)).then((m) => ({ default: m.DevSection }))
   );
-  var CareerSection2 = (0, import_react10.lazy)(
+  var CareerSection2 = (0, import_react11.lazy)(
     () => Promise.resolve().then(() => (init_CareerSection(), CareerSection_exports)).then((m) => ({ default: m.CareerSection }))
+  );
+  var KonkatsuSection2 = (0, import_react11.lazy)(
+    () => Promise.resolve().then(() => (init_KonkatsuSection(), KonkatsuSection_exports)).then((m) => ({ default: m.KonkatsuSection }))
   );
   function SectionFallback() {
     return /* @__PURE__ */ React.createElement("div", { className: "section-lazy-placeholder", "aria-hidden": "true" });
   }
   function RevealOnMount({ children }) {
-    (0, import_react10.useEffect)(() => {
+    (0, import_react11.useEffect)(() => {
       window.observeReveal?.();
       const id = setTimeout(() => window.observeReveal?.(), 250);
       return () => clearTimeout(id);
@@ -1042,9 +1113,9 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     return children;
   }
   function App() {
-    const [active, setActive] = (0, import_react10.useState)("hero");
-    const [cmdOpen, setCmdOpen] = (0, import_react10.useState)(false);
-    (0, import_react10.useEffect)(() => {
+    const [active, setActive] = (0, import_react11.useState)("hero");
+    const [cmdOpen, setCmdOpen] = (0, import_react11.useState)(false);
+    (0, import_react11.useEffect)(() => {
       const ids = NAV.map((n) => n.id);
       const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
       const io = new IntersectionObserver(
@@ -1060,7 +1131,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       sections.forEach((s) => io.observe(s));
       return () => io.disconnect();
     }, []);
-    (0, import_react10.useEffect)(() => {
+    (0, import_react11.useEffect)(() => {
       function onKey(e) {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
           e.preventDefault();
@@ -1070,7 +1141,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       window.addEventListener("keydown", onKey);
       return () => window.removeEventListener("keydown", onKey);
     }, []);
-    (0, import_react10.useEffect)(() => {
+    (0, import_react11.useEffect)(() => {
       if (window.observeReveal) {
         window.observeReveal();
         setTimeout(() => window.observeReveal(), 300);
@@ -1086,7 +1157,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       { kind: "muted", text: "Est. 2024 \u2014 PCVR / Desktop" },
       { text: "Tarkov Raids" },
       { text: "Coaching" }
-    ] }), /* @__PURE__ */ React.createElement(HobbiesSection, null), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GallerySection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(FriendCTA, null), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GamesSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(DevSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(CareerSection2, null))), /* @__PURE__ */ React.createElement(ContactSection, null)), /* @__PURE__ */ React.createElement(CommandPalette, { open: cmdOpen, onClose: () => setCmdOpen(false) }));
+    ] }), /* @__PURE__ */ React.createElement(HobbiesSection, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GallerySection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(FriendCTA, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GamesSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(DevSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(CareerSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(KonkatsuSection2, null))), /* @__PURE__ */ React.createElement(ContactSection, null)), /* @__PURE__ */ React.createElement(CommandPalette, { open: cmdOpen, onClose: () => setCmdOpen(false) }));
   }
 
   // src/bundle-entry.jsx
