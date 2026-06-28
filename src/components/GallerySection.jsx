@@ -89,7 +89,6 @@ function GalleryPager({ page, totalPages, total, pageSize, onPage }) {
 
 export function GallerySection() {
   const [manifest, setManifest] = useState(null);
-  const [featuredPaths, setFeaturedPaths] = useState([]);
   const [loadErr, setLoadErr] = useState(null);
   const [folder, setFolder] = useState("ALL");
   const [page, setPage] = useState(1);
@@ -118,29 +117,6 @@ export function GallerySection() {
       });
     return () => { cancelled = true; };
   }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch("featured.json")
-      .then((r) => (r.ok ? r.json() : { paths: [] }))
-      .then((j) => {
-        if (!cancelled && Array.isArray(j?.paths)) setFeaturedPaths(j.paths);
-      })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
-
-  const featuredItems = useMemo(() => {
-    return featuredPaths.map((path, i) => {
-      const parts = path.split("/");
-      return {
-        id: `featured-${i}`,
-        path,
-        category: parts[1] || "",
-        file: parts[parts.length - 1],
-      };
-    });
-  }, [featuredPaths]);
 
   const shuffledAllItems = useMemo(() => {
     if (!manifest?.items) return [];
@@ -267,34 +243,6 @@ export function GallerySection() {
 
       {!loadErr && manifest && (
         <>
-          {featuredItems.length > 0 && (
-            <div className="gallery-featured reveal">
-              <p className="gallery-featured-label">ピックアップ</p>
-              <div className="gallery-featured-grid">
-                {featuredItems.map((it, i) => (
-                  <figure
-                    key={it.id}
-                    className="gallery-featured-card"
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => openLightbox(featuredItems, it)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        openLightbox(featuredItems, it);
-                      }
-                    }}
-                  >
-                    <GalleryThumb item={it} priority={i < 3} />
-                    <figcaption>
-                      <span className="g-label">{it.category}</span>
-                    </figcaption>
-                  </figure>
-                ))}
-              </div>
-            </div>
-          )}
-
           <div className="gallery-toolbar gallery-toolbar-stack">
             <div className="gallery-folder-tabs" role="tablist" aria-label="フォルダ">
               <button

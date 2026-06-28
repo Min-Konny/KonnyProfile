@@ -466,7 +466,6 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   }
   function GallerySection() {
     const [manifest, setManifest] = (0, import_react8.useState)(null);
-    const [featuredPaths, setFeaturedPaths] = (0, import_react8.useState)([]);
     const [loadErr, setLoadErr] = (0, import_react8.useState)(null);
     const [folder, setFolder] = (0, import_react8.useState)("ALL");
     const [page, setPage] = (0, import_react8.useState)(1);
@@ -493,27 +492,6 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         cancelled = true;
       };
     }, []);
-    (0, import_react8.useEffect)(() => {
-      let cancelled = false;
-      fetch("featured.json").then((r) => r.ok ? r.json() : { paths: [] }).then((j) => {
-        if (!cancelled && Array.isArray(j?.paths)) setFeaturedPaths(j.paths);
-      }).catch(() => {
-      });
-      return () => {
-        cancelled = true;
-      };
-    }, []);
-    const featuredItems = (0, import_react8.useMemo)(() => {
-      return featuredPaths.map((path, i) => {
-        const parts = path.split("/");
-        return {
-          id: `featured-${i}`,
-          path,
-          category: parts[1] || "",
-          file: parts[parts.length - 1]
-        };
-      });
-    }, [featuredPaths]);
     const shuffledAllItems = (0, import_react8.useMemo)(() => {
       if (!manifest?.items) return [];
       const a = manifest.items.slice();
@@ -603,24 +581,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       const id = setTimeout(() => window.observeReveal?.(), 100);
       return () => clearTimeout(id);
     }, [manifest, folder, safePage]);
-    return /* @__PURE__ */ React.createElement("section", { id: "gallery" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "03 / Gallery \u2014 \u5199\u771F\u3067\u3082\u904A\u3076"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u30B9\u30CA\u30C3\u30D7\u306E ", /* @__PURE__ */ React.createElement("em", null, "\u68DA")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u30EA\u30A2\u30EB\u3068VRC\u306E\u5199\u771F\u3092\u30B8\u30E3\u30F3\u30EB\u5225\u306B\u3002", /* @__PURE__ */ React.createElement("strong", null, "\u3059\u3079\u3066"), " \u306F11\u679A\u305A\u3064\u3081\u304F\u308C\u307E\u3059\u3002\u30AF\u30EA\u30C3\u30AF\u3067\u62E1\u5927\u3001", /* @__PURE__ */ React.createElement("strong", null, "\u21BB \u4E26\u3073\u66FF\u3048"), " \u3067\u9806\u756A\u5909\u66F4\u3002")), !loadErr && !manifest && /* @__PURE__ */ React.createElement("p", { className: "gallery-loading reveal" }, "\u30AE\u30E3\u30E9\u30EA\u30FC\u4E00\u89A7\u3092\u8AAD\u307F\u8FBC\u307F\u4E2D\u2026"), loadErr && /* @__PURE__ */ React.createElement("div", { className: "gallery-load-error reveal" }, /* @__PURE__ */ React.createElement("strong", null, "\u30AE\u30E3\u30E9\u30EA\u30FC\u3092\u8868\u793A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"), /* @__PURE__ */ React.createElement("br", null), "\u901A\u4FE1\u3084\u8868\u793A\u306E\u90FD\u5408\u306E\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u3057\u3070\u3089\u304F\u3057\u3066\u304B\u3089\u30DA\u30FC\u30B8\u3092\u66F4\u65B0\u3059\u308B\u304B\u3001\u3082\u3046\u4E00\u5EA6\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"), !loadErr && manifest && /* @__PURE__ */ React.createElement(React.Fragment, null, featuredItems.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "gallery-featured reveal" }, /* @__PURE__ */ React.createElement("p", { className: "gallery-featured-label" }, "\u30D4\u30C3\u30AF\u30A2\u30C3\u30D7"), /* @__PURE__ */ React.createElement("div", { className: "gallery-featured-grid" }, featuredItems.map((it, i) => /* @__PURE__ */ React.createElement(
-      "figure",
-      {
-        key: it.id,
-        className: "gallery-featured-card",
-        role: "button",
-        tabIndex: 0,
-        onClick: () => openLightbox(featuredItems, it),
-        onKeyDown: (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openLightbox(featuredItems, it);
-          }
-        }
-      },
-      /* @__PURE__ */ React.createElement(GalleryThumb, { item: it, priority: i < 3 }),
-      /* @__PURE__ */ React.createElement("figcaption", null, /* @__PURE__ */ React.createElement("span", { className: "g-label" }, it.category))
-    )))), /* @__PURE__ */ React.createElement("div", { className: "gallery-toolbar gallery-toolbar-stack" }, /* @__PURE__ */ React.createElement("div", { className: "gallery-folder-tabs", role: "tablist", "aria-label": "\u30D5\u30A9\u30EB\u30C0" }, /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("section", { id: "gallery" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "03 / Gallery \u2014 \u5199\u771F\u3067\u3082\u904A\u3076"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u30B9\u30CA\u30C3\u30D7\u306E ", /* @__PURE__ */ React.createElement("em", null, "\u68DA")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u30EA\u30A2\u30EB\u3068VRC\u306E\u5199\u771F\u3092\u30B8\u30E3\u30F3\u30EB\u5225\u306B\u3002", /* @__PURE__ */ React.createElement("strong", null, "\u3059\u3079\u3066"), " \u306F11\u679A\u305A\u3064\u3081\u304F\u308C\u307E\u3059\u3002\u30AF\u30EA\u30C3\u30AF\u3067\u62E1\u5927\u3001", /* @__PURE__ */ React.createElement("strong", null, "\u21BB \u4E26\u3073\u66FF\u3048"), " \u3067\u9806\u756A\u5909\u66F4\u3002")), !loadErr && !manifest && /* @__PURE__ */ React.createElement("p", { className: "gallery-loading reveal" }, "\u30AE\u30E3\u30E9\u30EA\u30FC\u4E00\u89A7\u3092\u8AAD\u307F\u8FBC\u307F\u4E2D\u2026"), loadErr && /* @__PURE__ */ React.createElement("div", { className: "gallery-load-error reveal" }, /* @__PURE__ */ React.createElement("strong", null, "\u30AE\u30E3\u30E9\u30EA\u30FC\u3092\u8868\u793A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"), /* @__PURE__ */ React.createElement("br", null), "\u901A\u4FE1\u3084\u8868\u793A\u306E\u90FD\u5408\u306E\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u3057\u3070\u3089\u304F\u3057\u3066\u304B\u3089\u30DA\u30FC\u30B8\u3092\u66F4\u65B0\u3059\u308B\u304B\u3001\u3082\u3046\u4E00\u5EA6\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"), !loadErr && manifest && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "gallery-toolbar gallery-toolbar-stack" }, /* @__PURE__ */ React.createElement("div", { className: "gallery-folder-tabs", role: "tablist", "aria-label": "\u30D5\u30A9\u30EB\u30C0" }, /* @__PURE__ */ React.createElement(
       "button",
       {
         type: "button",

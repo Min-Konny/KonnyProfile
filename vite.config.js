@@ -154,7 +154,6 @@ export default defineConfig(({ command }) => ({
       targets: [
         { src: "assets", dest: "assets" },
         { src: "gallery-manifest.json", dest: "." },
-        { src: "featured.json", dest: "." },
         { src: "site.config.json", dest: "." },
         { src: "image-slot.js", dest: "." },
         { src: "effects.js", dest: "." },
