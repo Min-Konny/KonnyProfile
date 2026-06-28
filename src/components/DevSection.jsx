@@ -43,9 +43,9 @@ export function DevSection() {
   return (
     <section id="dev">
       <div className="reveal">
-        <div className="section-label">07 / Studio · 個人開発</div>
-        <h2 className="section-title">作ったやつ <em>いろいろ</em></h2>
-        <div className="section-subtitle">こんな感じのサイトなら作れます、なんかあったら相談してね。</div>
+        <div className="section-label">05 / Studio · 個人開発</div>
+        <h2 className="section-title">作ってる <em>もの</em></h2>
+        <div className="section-subtitle">こんな感じのサイトなら作れます。何かあれば気軽に相談してね。</div>
       </div>
       <div className="portfolio-grid">
         {PROJECTS.map((p) => <ProjectCard p={p} key={p.name}/>)}

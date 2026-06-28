@@ -38,7 +38,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   ));
 
   // src/data/content.js
-  var PROFILE, STATS, PAL, GAMES, KONKATSU_PROFILE, COACH_TIMELINE, PROJECTS, HOBBIES, NAV;
+  var PROFILE, STATS, HERO_KONKATSU, PAL, GAMES, KONKATSU_PROFILE, COACH_TIMELINE, PROJECTS, HOBBIES, NAV;
   var init_content = __esm({
     "src/data/content.js"() {
       PROFILE = {
@@ -51,15 +51,20 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         status: "online \u2014 \u30AB\u30E9\u30AA\u30B1\u30FB\u8B0E\u89E3\u304D\u30EF\u30FC\u30EB\u30C9 / EN-JP",
         intro: [
           "\u306F\u3058\u3081\u307E\u3057\u3066\u3001\u3053\u306B\u30FC\u3067\u3059\u3002",
-          "\u591A\u8DA3\u5473\uFF06\u65B0\u3057\u3044\u3053\u3068\u5927\u597D\u304D\u306A\u306E\u3067\u306A\u3093\u3067\u3082\u8A98\u3063\u3066\u304F\u3060\u3055\u3044\uFF01",
-          "\u4ED5\u4E8B\u306F\u30D5\u30EB\u30EA\u30E2\u306A\u306E\u3067\u5E73\u65E519:00-26:00",
-          "\u571F\u65E5\u795D\u4F11\u307F\u306A\u306E\u3067\u3044\u3064\u3067\u3082\u904A\u3079\u307E\u3059\uFF01\uFF01"
+          "\u8DA3\u5473\u304C\u5E83\u304F\u3066\u3001\u65B0\u3057\u3044\u3053\u3068\u3082\u5927\u597D\u304D\u306A\u306E\u3067\u3001\u306A\u3093\u3067\u3082\u8A98\u3063\u3066\u304F\u3060\u3055\u3044\uFF01",
+          "\u5E73\u65E5\u306F19:00\u301C26:00\u304F\u3089\u3044\u306B\u30AA\u30F3\u30E9\u30A4\u30F3\uFF08\u30D5\u30EB\u30EA\u30E2\uFF09",
+          "\u571F\u65E5\u795D\u306F\u4F11\u307F\u306A\u306E\u3067\u3001\u3060\u3044\u305F\u3044\u3044\u3064\u3067\u3082\u904A\u3079\u307E\u3059\uFF01"
         ]
       };
       STATS = [
         { label: "LANGUAGES", value: "\u65E5\u672C\u8A9E", unit: "/ENG" },
         { label: "PLATFORM", value: "PCVR", unit: "" }
       ];
+      HERO_KONKATSU = {
+        tag: "Bonus",
+        title: "VRC\u5A5A\u6D3B\u30B3\u30FC\u30CA\u30FC",
+        note: "\u3082\u3046\u3061\u3087\u3063\u3068\u8A73\u3057\u3044\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB"
+      };
       PAL = {
         gold: "#d4af7a",
         goldHi: "#f1d9a8",
@@ -88,7 +93,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           rank: "Grandmaster",
           years: "5",
           pct: 92,
-          note: "\u30AA\u30FC\u30C8\u30C1\u30A7\u30B9\u306F\u3084\u3081\u3089\u308C\u306A\u3044\u3002\nTFT\u3082\u30C1\u30E3\u30EC\u30F3\u30B8\u30E3\u30FC\u884C\u304D\u305F\u3044\u3002",
+          note: "\u30AA\u30FC\u30C8\u30C1\u30A7\u30B9\u306F\u3084\u3081\u3089\u308C\u306A\u3044\u3002\nTFT\u3082\u30C1\u30E3\u30EC\u30F3\u30B8\u30E3\u30FC\u3092\u76EE\u6307\u3057\u3066\u307E\u3059\u3002",
           a1: PAL.rose,
           a2: PAL.lilac,
           tag: "AUTO-CHESS"
@@ -107,10 +112,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         {
           code: "EFT",
           name: "Escape from Tarkov",
-          rank: "60\u30EC\u30D9",
+          rank: "Lv.60",
           years: "4",
           pct: 80,
-          note: "\u3057\u3087\u3063\u3061\u3085\u3046\u751F\u9084\u3001\u305F\u307E\u306B\u5168\u30ED\u30B9\u3002\n\u30EC\u30A4\u30C9\u7D44\u3081\u308B\u4EBA\u52DF\u96C6\u4E2D\u3002",
+          note: "\u3060\u3044\u305F\u3044\u751F\u9084\u3001\u305F\u307E\u306B\u5168\u30ED\u30B9\u3002\n\u4E00\u7DD2\u306B\u30EC\u30A4\u30C9\u3067\u304D\u308B\u4EBA\u52DF\u96C6\u4E2D\u3002",
           a1: PAL.gold,
           a2: PAL.amber,
           tag: "EXTRACTION"
@@ -121,7 +126,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           rank: "\u5EC3\u4EBA",
           years: "\u221E",
           pct: 100,
-          note: "\u6570\u5B57\u304C\u5897\u3048\u308B\u3060\u3051\u3067\u5B09\u3057\u3044\u75C5\u3002\n\u30AA\u30B9\u30B9\u30E1\u306E\u30A4\u30F3\u30AF\u30EA\u7CFB\u3042\u3063\u305F\u3089\u6559\u3048\u3066\u3002",
+          note: "\u6570\u5B57\u304C\u5897\u3048\u308B\u3060\u3051\u3067\u5E78\u305B\u306B\u306A\u308C\u308B\u30BF\u30A4\u30D7\u3002\n\u304A\u3059\u3059\u3081\u306E\u30A4\u30F3\u30AF\u30EA\u7CFB\u304C\u3042\u308C\u3070\u6559\u3048\u3066\u3002",
           a1: PAL.lilac,
           a2: PAL.rose,
           tag: "IDLE"
@@ -132,7 +137,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           rank: "500+ titles",
           years: "12",
           pct: 85,
-          note: "\u30BB\u30FC\u30EB\u3067\u3064\u3044\u8CB7\u3046\u3001\u7A4D\u3080\u3001\u305F\u307E\u306B\u6398\u308A\u51FA\u3057\u7269\u3002\n\u30DE\u30EB\u30C1\u3067\u904A\u3079\u308B\u3084\u3064\u52DF\u96C6\u4E2D\u3002",
+          note: "\u30BB\u30FC\u30EB\u3067\u3064\u3044\u8CB7\u3046\u3001\u7A4D\u3080\u3001\u305F\u307E\u306B\u6398\u308A\u51FA\u3057\u7269\u3002\n\u4E00\u7DD2\u306B\u30DE\u30EB\u30C1\u3067\u304D\u308B\u30B2\u30FC\u30E0\u52DF\u96C6\u4E2D\u3002",
           a1: PAL.goldHi,
           a2: PAL.rose,
           tag: "VARIETY"
@@ -140,31 +145,31 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       ];
       KONKATSU_PROFILE = [
         { label: "\u5E74\u53CE", value: "650\u4E07\u5186", lines: [
-          "\u6B63\u793E\u54E1\u30D5\u30EB\u30EA\u30E2\u30D5\u30EB\u30D5\u30EC\u30C3\u30AF\u30B9",
-          "\u793E\u4F1A\u4EBA6\u5E74\u76EE\u3001\u30D7\u30ED\u30B2\u30FC\u30DE\u30FC\u306F\u30AB\u30A6\u30F3\u30C8\u3057\u3066\u306A\u3044\u306E\u30673\u5E74\u9045\u308C"
+          "\u6B63\u793E\u54E1\u30FB\u30D5\u30EB\u30EA\u30E2\u30FB\u30D5\u30EB\u30D5\u30EC\u30C3\u30AF\u30B9",
+          "\u793E\u4F1A\u4EBA6\u5E74\u76EE\uFF08\u30D7\u30ED\u6642\u4EE3\u306F\u30AB\u30A6\u30F3\u30C8\u3057\u3066\u306A\u3044\u306E\u3067\u3001\u3060\u3044\u305F\u30443\u5E74\u9045\u308C\uFF09"
         ] },
         { label: "\u5B66\u6B74", value: "MARCH\u5352", lines: ["\u7D4C\u6E08\u5B66\u90E8"] },
         { label: "\u904B\u52D5\u795E\u7D4C", value: "\u304B\u306A\u308A\u826F\u3044", lines: [
-          "\u5C0F\u4E2D\u91CE\u7403\u90E8\u3001\u305A\u3063\u3068\u30EC\u30AE\u30E5\u30E9\u30FC",
-          "\u30D5\u30C3\u30C8\u30B5\u30EB\u3001\u7D4C\u9A13\u8005\u3063\u3066\u8A00\u308F\u308C\u308B\u304F\u3089\u3044\u306B\u306F",
-          "\u30B9\u30CE\u30DC\u3001S\u5B57\u3067\u666E\u901A\u306B\u6ED1\u308C\u308B"
+          "\u5C0F\u4E2D\u306F\u91CE\u7403\u90E8\u3001\u305A\u3063\u3068\u30EC\u30AE\u30E5\u30E9\u30FC",
+          "\u30D5\u30C3\u30C8\u30B5\u30EB\u306F\u7D4C\u9A13\u8005\u3068\u8A00\u308F\u308C\u308B\u304F\u3089\u3044",
+          "\u30B9\u30CE\u30DC\u306FS\u5B57\u30AB\u30FC\u30D6\u3067\u666E\u901A\u306B\u6ED1\u308C\u308B"
         ] },
-        { label: "\u30B2\u30FC\u30E0", value: "\u8D85\u7D76\u4E0A\u624B\u3044", lines: [
-          "\u30D7\u30ED\u30B2\u30FC\u30DE\u30FC\u7D4C\u9A13\u3042\u308A\u3001LoL\u306F\u6700\u9AD8\u4E0A\u4F4D0.02%\uFF01\uFF01",
-          "\u4ED6\u306E\u30B2\u30FC\u30E0\u3082\u5927\u4F53\u3069\u306E\u30B2\u30FC\u30E0\u3067\u30825%\u304F\u3089\u3044\u307E\u3067\u306F\u884C\u3051\u308B"
+        { label: "\u30B2\u30FC\u30E0", value: "\u304B\u306A\u308A\u4E0A\u624B\u3044", lines: [
+          "\u30D7\u30ED\u30B2\u30FC\u30DE\u30FC\u7D4C\u9A13\u3042\u308A\u3002LoL\u306F\u6700\u9AD8\u4E0A\u4F4D0.02%",
+          "\u4ED6\u306E\u30B2\u30FC\u30E0\u3082\u3060\u3044\u305F\u3044\u4E0A\u4F4D5%\u304F\u3089\u3044\u307E\u3067\u306F\u884C\u3051\u308B"
         ] },
-        { label: "\u6B4C", value: "\u307E\u3041\u307E\u3041\u5F97\u610F", lines: [
-          "\u30AB\u30E9\u30AA\u30B1\u884C\u304F\u3068\u5927\u4F53\u4E0A\u624B\u3044\u3068\u306F\u8A00\u3063\u3066\u3082\u3089\u3048\u308B\u304F\u3089\u3044\u306B\u306F\uFF01"
+        { label: "\u6B4C", value: "\u307E\u3042\u307E\u3042\u5F97\u610F", lines: [
+          "\u30AB\u30E9\u30AA\u30B1\u3060\u3068\u300C\u4E0A\u624B\u3044\u306D\u300D\u3063\u3066\u8A00\u3063\u3066\u3082\u3089\u3048\u308B\u304F\u3089\u3044"
         ] },
-        { label: "\u304A\u7802\u7CD6", value: "\u7D2F\u8A08\uFF10\u4EBA", alt: true },
-        { label: "\u5F7C\u5973", value: "\u7D2F\u8A08\uFF15\u4EBA", alt: true },
-        { label: "\u6599\u7406\u6383\u9664", value: "\u30CB\u30AC\u30C6" },
-        { label: "\u9023\u7D61", value: "\u9045\u3044", lines: [
-          "\u3053\u307E\u3081\u306B\u6B32\u3057\u3044\u4EBA\u3060\u3063\u305F\u3089\u52AA\u529B\u306F\u3059\u308B"
+        { label: "\u304A\u7802\u7CD6", value: "\u7D2F\u8A080\u4EBA", alt: true },
+        { label: "\u5F7C\u5973", value: "\u7D2F\u8A085\u4EBA", alt: true },
+        { label: "\u6599\u7406\u30FB\u6383\u9664", value: "\u82E6\u624B" },
+        { label: "\u9023\u7D61", value: "\u8FD4\u4FE1\u306F\u9045\u3081", lines: [
+          "\u3053\u307E\u3081\u306A\u9023\u7D61\u304C\u6B32\u3057\u3044\u4EBA\u306A\u3089\u3001\u52AA\u529B\u3057\u307E\u3059"
         ] },
-        { label: "\u540C\u68F2", value: "\u7D4C\u9A13\u6709" },
-        { label: "\u4E00\u4EBA\u66AE\u3089\u3057", value: "\u7D4C\u9A13\u6709" },
-        { label: "\u305D\u306E\u4ED6", value: "\u805E\u304B\u308C\u305F\u3089\u7B54\u3048\u308B\uFF01\uFF01", lines: [] }
+        { label: "\u540C\u68F2", value: "\u7D4C\u9A13\u3042\u308A" },
+        { label: "\u4E00\u4EBA\u66AE\u3089\u3057", value: "\u7D4C\u9A13\u3042\u308A" },
+        { label: "\u305D\u306E\u4ED6", value: "\u805E\u3044\u3066\u304F\u308C\u305F\u3089\u7B54\u3048\u307E\u3059", lines: [] }
       ];
       COACH_TIMELINE = [
         {
@@ -208,12 +213,12 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           role: "PLAN + DEV",
           year: "2024",
           status: "LIVE",
-          desc: "VRC\u3084\u30B2\u30FC\u30E0\u306E\u96C6\u307E\u308A\u3067\u4F7F\u3046\u30C1\u30FC\u30E0\u81EA\u52D5\u5206\u3051\u3002\u30EC\u30FC\u30C8\u30FB\u4EBA\u6570\u6307\u5B9A\u3067\u516C\u5E73\u306B\u30B7\u30E3\u30C3\u30D5\u30EB\u3002",
+          desc: "VRC\u3084\u30B2\u30FC\u30E0\u306E\u96C6\u307E\u308A\u5411\u3051\u306E\u30C1\u30FC\u30E0\u81EA\u52D5\u5206\u3051\u30C4\u30FC\u30EB\u3002\u30EC\u30FC\u30C8\u3068\u4EBA\u6570\u3092\u6307\u5B9A\u3057\u3066\u516C\u5E73\u306B\u30B7\u30E3\u30C3\u30D5\u30EB\u3002",
           features: [
-            "\u30EC\u30FC\u30C8\u5165\u529B\u3067\u516C\u5E73\u5206\u3051",
-            "\u4EFB\u610F\u4EBA\u6570\u30C1\u30FC\u30E0\u751F\u6210",
-            "\u518D\u30B7\u30E3\u30C3\u30D5\u30EB\u5373\u6642\u53CD\u6620",
-            "URL\u5171\u6709\u3067\u6301\u3061\u56DE\u308A"
+            "\u30EC\u30FC\u30C8\u5165\u529B\u3067\u516C\u5E73\u306B\u5206\u3051",
+            "\u4EFB\u610F\u4EBA\u6570\u306E\u30C1\u30FC\u30E0\u751F\u6210",
+            "\u518D\u30B7\u30E3\u30C3\u30D5\u30EB\u3092\u5373\u53CD\u6620",
+            "URL\u5171\u6709\u3067\u305D\u306E\u5834\u3067\u4F7F\u3048\u308B"
           ],
           ph1: "#2a2032",
           ph2: "#3a3050",
@@ -227,23 +232,47 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           title: "Shisha \xB7 \u6C34\u7159\u8349",
           sub: "// 3\u53F0\u6240\u6301\u30FB\u30D5\u30EC\u30FC\u30D0\u30FC\u3067\u4F7F\u3044\u5206\u3051",
           photo: "\u5199\u771F/\u30B7\u30FC\u30B7\u30E3/IMG_4477.jpg",
-          body: "\u30CF\u30EA\u30EB\u30DE\u30E0\u30FC\u30F3150\u5468\u5E74\u30E2\u30C7\u30EB\u3001SHISHA BUCKS\u3001PATISA\u306E\u6728\u88FD\u53F0\u6301\u3063\u3066\u307E\u3059\uFF01\n\u304A\u3059\u3059\u3081\u306E\u30D5\u30EC\u30FC\u30D0\u30FC\u3068\u304B\u30DF\u30C3\u30AF\u30B9\u6559\u3048\u3066\u304F\u3060\u3055\u3044\u3002"
+          body: "\u30CF\u30EA\u30EB\u30DE\u30E0\u30FC\u30F3150\u5468\u5E74\u30E2\u30C7\u30EB\u3001SHISHA BUCKS\u3001PATISA\u306E\u6728\u88FD\u53F0\u3092\u6301\u3063\u3066\u307E\u3059\u3002\n\u304A\u3059\u3059\u3081\u306E\u30D5\u30EC\u30FC\u30D0\u30FC\u3084\u30DF\u30C3\u30AF\u30B9\u304C\u3042\u308C\u3070\u6559\u3048\u3066\u304F\u3060\u3055\u3044\u3002"
+        },
+        {
+          id: "yakiniku",
+          label: "\u713C\u8089",
+          title: "Yakiniku \xB7 \u713C\u8089",
+          sub: "// \u5DDD\u5D0E\u30FB\u7ACB\u5DDD\u3042\u305F\u308A\u304C\u884C\u304D\u3064\u3051",
+          photo: "\u5199\u771F/\u3054\u98EF/IMG_0252.jpg",
+          body: "\u713C\u8089\u304C\u5927\u597D\u304D\u3002\n\u597D\u304D\u306A\u713C\u8089\u5C4B\u306F\u5DDD\u5D0E\u306E\u4E43\u52A9\u3001\u7ACB\u5DDD\u306E\u548C\u3042\u305F\u308A\u3002\n\u304A\u3059\u3059\u3081\u306E\u5E97\u304C\u3042\u3063\u305F\u3089\u6559\u3048\u3066\u304F\u3060\u3055\u3044\u3002"
+        },
+        {
+          id: "karaoke",
+          label: "\u30AB\u30E9\u30AA\u30B1",
+          title: "Karaoke \xB7 \u30AB\u30E9\u30AA\u30B1",
+          sub: "// VRC\u3067\u3082\u30EA\u30A2\u30EB\u3067\u3082",
+          photo: "\u5199\u771F/\u72AC/IMG_1028.jpg",
+          body: "\u30AB\u30E9\u30AA\u30B1\u304C\u597D\u304D\u3002VRC\u306E\u30AB\u30E9\u30AA\u30B1\u30EF\u30FC\u30EB\u30C9\u3082\u3088\u304F\u884C\u304D\u307E\u3059\u3002\n\u7DF4\u7FD2\u4E2D\uFF1A\u9769\u547D\u9053\u4E2D\u3001\u30D9\u30C6\u30EB\u30AE\u30A6\u30B9"
+        },
+        {
+          id: "outing",
+          label: "\u304A\u51FA\u304B\u3051",
+          title: "Outing \xB7 \u304A\u51FA\u304B\u3051",
+          sub: "// \u571F\u65E5\u306F\u5916\u306B\u51FA\u305F\u3044\u6D3E",
+          photo: "\u5199\u771F/\u65C5/IMG_3933.jpg",
+          body: "\u571F\u65E5\u306E\u7247\u65B9\u306F\u3069\u3063\u304B\u884C\u304D\u305F\u3044\uFF01\uFF01\n\u65C5\u884C\u3068\u304B\u30B0\u30E9\u30F3\u30D4\u30F3\u30B0\u3082\u3042\u308A\u3002"
         },
         {
           id: "snow",
           label: "\u30B9\u30CE\u30DC",
           title: "Snowboarding",
-          sub: "// \u65B0\u5E79\u7DDA\u3067\u884C\u3051\u308B\u304B\u3089\u65B0\u6F5F\u738790%",
+          sub: "// \u65B0\u5E79\u7DDA\u3067\u884C\u3051\u308B\u304B\u3089\u65B0\u6F5F\u30E1\u30A4\u30F3",
           photo: "\u5199\u771F/\u30B9\u30CE\u30DC/IMG_3997.jpg",
-          body: "\u30B7\u30FC\u30BA\u30F3\u306F\u67081\u301C2\u3067\u96EA\u5C71\u3002\u65B0\u5E79\u7DDA\u4E00\u672C\u3067\u884C\u3051\u308B\u6C17\u8EFD\u3055\u3067\u65B0\u6F5F\u304C\u5727\u5012\u7684\u306B\u591A\u3044\u3002\nS\u5B57\u30AB\u30FC\u30D6\u3067\u666E\u901A\u306B\u6ED1\u308C\u308B\u304F\u3089\u3044\u3002"
+          body: "\u30B7\u30FC\u30BA\u30F3\u4E2D\u306F\u67081\u301C2\u56DE\u306F\u96EA\u5C71\u3002\u65B0\u5E79\u7DDA\u3067\u884C\u3051\u308B\u306E\u3067\u65B0\u6F5F\u304C\u30E1\u30A4\u30F3\u3002\nS\u5B57\u30AB\u30FC\u30D6\u306F\u666E\u901A\u306B\u6ED1\u308C\u308B\u304F\u3089\u3044\u3002"
         },
         {
           id: "poker",
           label: "\u30DD\u30FC\u30AB\u30FC",
           title: "Poker",
-          sub: "// JOPT\u3084\u6226\u56FD\u306A\u3069\u306E\u5927\u578B\u30C8\u30CA\u30E1\u306B\u3082\u53C2\u52A0",
+          sub: "// JOPT\u3084\u6226\u56FD\u30DD\u30FC\u30AB\u30FC\u306A\u3069\u306B\u3082\u53C2\u52A0",
           photo: "\u5199\u771F/\u30DD\u30FC\u30AB\u30FC/IMG_0762.jpg",
-          body: "NLH\u30E1\u30A4\u30F3\u3002\nJOPT\u3068\u304B\u6226\u56FD\u3068\u304B\u3001\u5927\u578B\u30C8\u30CA\u30E1\u3082\u305F\u307E\u306B\u51FA\u307E\u3059\u3002\n\u30E9\u30A4\u30D6\u3067\u3082\u30AA\u30F3\u30E9\u30A4\u30F3\u3067\u3082\u904A\u3076\u3002"
+          body: "NLH\u30E1\u30A4\u30F3\u3002\nJOPT\u3084\u6226\u56FD\u30DD\u30FC\u30AB\u30FC\u306A\u3069\u3001\u5927\u578B\u30C8\u30CA\u30E1\u306B\u3082\u305F\u307E\u306B\u51FA\u307E\u3059\u3002\n\u30E9\u30A4\u30D6\u3082\u30AA\u30F3\u30E9\u30A4\u30F3\u3082\u3002"
         },
         {
           id: "escape",
@@ -251,15 +280,15 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           title: "Real Escape Game",
           sub: "// SCRAP\u5168\u822C\u304C\u597D\u304D",
           photo: "\u5199\u771F/\u8131\u51FA\u30B2\u30FC\u30E0/IMG_0496.JPG",
-          body: "SCRAP\u7CFB\u306E\u8B0E\u89E3\u304D\u30FB\u30EA\u30A2\u30EB\u8131\u51FA\u30B2\u30FC\u30E0\u304C\u597D\u304D\u3002\u300C\u8C6A\u83EF\u5BA2\u8239\u304B\u3089\u306E\u8131\u51FA\u300D\u304C\u904E\u53BB\u4E00\u3002\n\u662F\u975E\u4E00\u7DD2\u306B\u884C\u304D\u307E\u3057\u3087\u3046\u3002"
+          body: "SCRAP\u7CFB\u306E\u8B0E\u89E3\u304D\u30FB\u30EA\u30A2\u30EB\u8131\u51FA\u304C\u597D\u304D\u3002\n\u300C\u8C6A\u83EF\u5BA2\u8239\u304B\u3089\u306E\u8131\u51FA\u300D\u304C\u4ECA\u306E\u3068\u3053\u308D\u30D9\u30B9\u30C8\u3002\n\u305C\u3072\u4E00\u7DD2\u306B\u884C\u304D\u307E\u3057\u3087\u3046\u3002"
         },
         {
           id: "futsal",
           label: "\u30D5\u30C3\u30C8\u30B5\u30EB",
           title: "Futsal",
-          sub: "// \u90E8\u6D3B\u30FB\u53CB\u4EBA\u3068\u5B9A\u671F",
+          sub: "// \u90E8\u6D3B\u30FB\u53CB\u4EBA\u3068\u5B9A\u671F\u958B\u50AC",
           photo: "\u5199\u771F/\u30D5\u30C3\u30C8\u30B5\u30EB/IMG_3424.jpg",
-          body: "\u4F1A\u793E\u306E\u90E8\u6D3B\u3084\u53CB\u9054\u3068\u5B9A\u671F\u7684\u306B\u30D5\u30C3\u30C8\u30B5\u30EB\u3057\u3066\u307E\u3059\u3002\u3053\u3063\u3061\u3082\u53C2\u52A0\u8005\u52DF\u96C6\u4E2D\u3002\n\u6B74\u306F3\u5E74"
+          body: "\u4F1A\u793E\u306E\u90E8\u6D3B\u3084\u53CB\u9054\u3068\u5B9A\u671F\u7684\u306B\u30D7\u30EC\u30FC\u3057\u3066\u307E\u3059\u3002\u30E1\u30F3\u30D0\u30FC\u52DF\u96C6\u4E2D\u3002\n\u7D4C\u9A133\u5E74\u304F\u3089\u3044\u3002"
         },
         {
           id: "art",
@@ -267,7 +296,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           title: "Art Museum",
           sub: "// \u7F8E\u8853\u9928 \xB7 teamLab \xB7 \u5E0C\u9808\u6797",
           photo: "\u5199\u771F/\u30A2\u30FC\u30C8/IMG_4528.jpg",
-          body: "\u6708\uFF11\u304F\u3089\u3044\u3067\u7F8E\u8853\u9928\u3060\u3063\u305F\u308A\u3001\u30C1\u30FC\u30E0\u30E9\u30DC\u3060\u3063\u305F\u308A\u884C\u3063\u3066\u307E\u3059\u3002\n\u884C\u3063\u305F\u5F8C\u306B\u9EBB\u5E03\u53F0\u30D2\u30EB\u30BA\u306E\u5E0C\u9808\u6797\u3067\u4E2D\u83EF\u98DF\u3046\u306E\u304C\u9244\u677F\u30EB\u30FC\u30C8\u3002"
+          body: "\u67081\u56DE\u304F\u3089\u3044\u3001\u7F8E\u8853\u9928\u3084 teamLab \u306B\u884C\u3063\u3066\u307E\u3059\u3002\n\u305D\u306E\u3042\u3068\u9EBB\u5E03\u53F0\u30D2\u30EB\u30BA\u306E\u5E0C\u9808\u6797\u3067\u4E2D\u83EF\u3092\u98DF\u3079\u308B\u306E\u304C\u5B9A\u756A\u30B3\u30FC\u30B9\u3002"
         }
       ];
       NAV = [
@@ -275,8 +304,8 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         { id: "hobbies", label: "Hobbies" },
         { id: "gallery", label: "Gallery" },
         { id: "games", label: "Games" },
-        { id: "career", label: "Career" },
         { id: "dev", label: "Studio" },
+        { id: "career", label: "Career" },
         { id: "contact", label: "Friend" }
       ];
       if (false) {
@@ -352,7 +381,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     return encPhotoPath(t || it.path);
   }
   function galleryLightboxSrc(path) {
-    return encPhotoPath(thumbPhotoPath(path));
+    return encPhotoPath(webPhotoPath(path) || path);
   }
   function prefetchThumbs(items, limit = 12) {
     if (!items?.length) return;
@@ -437,12 +466,13 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   }
   function GallerySection() {
     const [manifest, setManifest] = (0, import_react8.useState)(null);
+    const [featuredPaths, setFeaturedPaths] = (0, import_react8.useState)([]);
     const [loadErr, setLoadErr] = (0, import_react8.useState)(null);
     const [folder, setFolder] = (0, import_react8.useState)("ALL");
     const [page, setPage] = (0, import_react8.useState)(1);
     const [pageSize, setPageSize] = (0, import_react8.useState)(11);
     const [shuffleNonce, setShuffleNonce] = (0, import_react8.useState)(0);
-    const [lightboxIdx, setLightboxIdx] = (0, import_react8.useState)(null);
+    const [lightbox, setLightbox] = (0, import_react8.useState)(null);
     (0, import_react8.useEffect)(() => {
       let cancelled = false;
       fetch("gallery-manifest.json").then((r) => {
@@ -463,6 +493,27 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         cancelled = true;
       };
     }, []);
+    (0, import_react8.useEffect)(() => {
+      let cancelled = false;
+      fetch("featured.json").then((r) => r.ok ? r.json() : { paths: [] }).then((j) => {
+        if (!cancelled && Array.isArray(j?.paths)) setFeaturedPaths(j.paths);
+      }).catch(() => {
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, []);
+    const featuredItems = (0, import_react8.useMemo)(() => {
+      return featuredPaths.map((path, i) => {
+        const parts = path.split("/");
+        return {
+          id: `featured-${i}`,
+          path,
+          category: parts[1] || "",
+          file: parts[parts.length - 1]
+        };
+      });
+    }, [featuredPaths]);
     const shuffledAllItems = (0, import_react8.useMemo)(() => {
       if (!manifest?.items) return [];
       const a = manifest.items.slice();
@@ -505,22 +556,29 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       const start = (safePage - 1) * pageSize;
       return filtered.slice(start, start + pageSize);
     }, [filtered, safePage, pageSize, totalPages]);
-    const lightboxItem = lightboxIdx != null ? filtered[lightboxIdx] : null;
-    function openLightbox(it) {
-      const idx = filtered.findIndex((x) => x.id === it.id);
-      if (idx >= 0) setLightboxIdx(idx);
+    const lightboxItem = lightbox ? lightbox.list[lightbox.idx] : null;
+    const lightboxList = lightbox?.list ?? [];
+    function openLightbox(list, item) {
+      const idx = list.findIndex((x) => x.id === item.id);
+      if (idx >= 0) setLightbox({ list, idx });
     }
     (0, import_react8.useEffect)(() => {
-      if (lightboxIdx == null) return;
+      if (!lightbox) return;
       function onKey(e) {
-        if (e.key === "Escape") setLightboxIdx(null);
+        if (e.key === "Escape") setLightbox(null);
         if (e.key === "ArrowLeft") {
           e.preventDefault();
-          setLightboxIdx((i) => i > 0 ? i - 1 : filtered.length - 1);
+          setLightbox((lb) => ({
+            ...lb,
+            idx: lb.idx > 0 ? lb.idx - 1 : lb.list.length - 1
+          }));
         }
         if (e.key === "ArrowRight") {
           e.preventDefault();
-          setLightboxIdx((i) => i < filtered.length - 1 ? i + 1 : 0);
+          setLightbox((lb) => ({
+            ...lb,
+            idx: lb.idx < lb.list.length - 1 ? lb.idx + 1 : 0
+          }));
         }
       }
       document.body.style.overflow = "hidden";
@@ -529,7 +587,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         document.body.style.overflow = "";
         window.removeEventListener("keydown", onKey);
       };
-    }, [lightboxIdx, filtered.length]);
+    }, [lightbox]);
     (0, import_react8.useEffect)(() => {
       if (pageItems.length) prefetchThumbs(pageItems, pageItems.length);
     }, [folder, safePage, pageItems]);
@@ -545,7 +603,24 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       const id = setTimeout(() => window.observeReveal?.(), 100);
       return () => clearTimeout(id);
     }, [manifest, folder, safePage]);
-    return /* @__PURE__ */ React.createElement("section", { id: "gallery" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "03 / Gallery \u2014 \u5199\u771F\u3067\u3082\u904A\u3076"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u30B9\u30CA\u30C3\u30D7\u306E ", /* @__PURE__ */ React.createElement("em", null, "\u68DA")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u30EA\u30A2\u30EB\u3068VRC\u306E\u5199\u771F\u3092\u30B8\u30E3\u30F3\u30EB\u5225\u306B\u3002", /* @__PURE__ */ React.createElement("strong", null, "\u3059\u3079\u3066"), " \u306F11\u679A\u305A\u3064\u3081\u304F\u308C\u307E\u3059\u3002\u30AF\u30EA\u30C3\u30AF\u3067\u62E1\u5927\u3001", /* @__PURE__ */ React.createElement("strong", null, "\u21BB \u4E26\u3073\u66FF\u3048"), " \u3067\u9806\u756A\u5909\u66F4\u3002")), !loadErr && !manifest && /* @__PURE__ */ React.createElement("p", { className: "gallery-loading reveal" }, "\u30AE\u30E3\u30E9\u30EA\u30FC\u4E00\u89A7\u3092\u8AAD\u307F\u8FBC\u307F\u4E2D\u2026"), loadErr && /* @__PURE__ */ React.createElement("div", { className: "gallery-load-error reveal" }, /* @__PURE__ */ React.createElement("strong", null, "\u30AE\u30E3\u30E9\u30EA\u30FC\u3092\u8868\u793A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"), /* @__PURE__ */ React.createElement("br", null), "\u901A\u4FE1\u3084\u8868\u793A\u306E\u90FD\u5408\u306E\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u3057\u3070\u3089\u304F\u3057\u3066\u304B\u3089\u30DA\u30FC\u30B8\u3092\u66F4\u65B0\u3059\u308B\u304B\u3001\u3082\u3046\u4E00\u5EA6\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"), !loadErr && manifest && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "gallery-toolbar gallery-toolbar-stack" }, /* @__PURE__ */ React.createElement("div", { className: "gallery-folder-tabs", role: "tablist", "aria-label": "\u30D5\u30A9\u30EB\u30C0" }, /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("section", { id: "gallery" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "03 / Gallery \u2014 \u5199\u771F\u3067\u3082\u904A\u3076"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u30B9\u30CA\u30C3\u30D7\u306E ", /* @__PURE__ */ React.createElement("em", null, "\u68DA")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u30EA\u30A2\u30EB\u3068VRC\u306E\u5199\u771F\u3092\u30B8\u30E3\u30F3\u30EB\u5225\u306B\u3002", /* @__PURE__ */ React.createElement("strong", null, "\u3059\u3079\u3066"), " \u306F11\u679A\u305A\u3064\u3081\u304F\u308C\u307E\u3059\u3002\u30AF\u30EA\u30C3\u30AF\u3067\u62E1\u5927\u3001", /* @__PURE__ */ React.createElement("strong", null, "\u21BB \u4E26\u3073\u66FF\u3048"), " \u3067\u9806\u756A\u5909\u66F4\u3002")), !loadErr && !manifest && /* @__PURE__ */ React.createElement("p", { className: "gallery-loading reveal" }, "\u30AE\u30E3\u30E9\u30EA\u30FC\u4E00\u89A7\u3092\u8AAD\u307F\u8FBC\u307F\u4E2D\u2026"), loadErr && /* @__PURE__ */ React.createElement("div", { className: "gallery-load-error reveal" }, /* @__PURE__ */ React.createElement("strong", null, "\u30AE\u30E3\u30E9\u30EA\u30FC\u3092\u8868\u793A\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002"), /* @__PURE__ */ React.createElement("br", null), "\u901A\u4FE1\u3084\u8868\u793A\u306E\u90FD\u5408\u306E\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u3057\u3070\u3089\u304F\u3057\u3066\u304B\u3089\u30DA\u30FC\u30B8\u3092\u66F4\u65B0\u3059\u308B\u304B\u3001\u3082\u3046\u4E00\u5EA6\u30A2\u30AF\u30BB\u30B9\u3057\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002"), !loadErr && manifest && /* @__PURE__ */ React.createElement(React.Fragment, null, featuredItems.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "gallery-featured reveal" }, /* @__PURE__ */ React.createElement("p", { className: "gallery-featured-label" }, "\u30D4\u30C3\u30AF\u30A2\u30C3\u30D7"), /* @__PURE__ */ React.createElement("div", { className: "gallery-featured-grid" }, featuredItems.map((it, i) => /* @__PURE__ */ React.createElement(
+      "figure",
+      {
+        key: it.id,
+        className: "gallery-featured-card",
+        role: "button",
+        tabIndex: 0,
+        onClick: () => openLightbox(featuredItems, it),
+        onKeyDown: (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(featuredItems, it);
+          }
+        }
+      },
+      /* @__PURE__ */ React.createElement(GalleryThumb, { item: it, priority: i < 3 }),
+      /* @__PURE__ */ React.createElement("figcaption", null, /* @__PURE__ */ React.createElement("span", { className: "g-label" }, it.category))
+    )))), /* @__PURE__ */ React.createElement("div", { className: "gallery-toolbar gallery-toolbar-stack" }, /* @__PURE__ */ React.createElement("div", { className: "gallery-folder-tabs", role: "tablist", "aria-label": "\u30D5\u30A9\u30EB\u30C0" }, /* @__PURE__ */ React.createElement(
       "button",
       {
         type: "button",
@@ -605,7 +680,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         pageSize,
         onPage: setPage
       }
-    ), filtered.length === 0 ? /* @__PURE__ */ React.createElement("p", { className: "gallery-empty reveal" }, "\u3053\u306E\u30D5\u30A9\u30EB\u30C0\u306B\u306F\u307E\u3060\u5199\u771F\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u307B\u304B\u306E\u30BF\u30D6\u3082\u898B\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002") : /* @__PURE__ */ React.createElement(
+    ), filtered.length === 0 ? /* @__PURE__ */ React.createElement("p", { className: "gallery-empty reveal" }, "\u3053\u306E\u30D5\u30A9\u30EB\u30C0\u306B\u306F\u307E\u3060\u5199\u771F\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u307B\u304B\u306E\u30BF\u30D6\u3082\u306E\u305E\u3044\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002") : /* @__PURE__ */ React.createElement(
       "div",
       {
         className: folder === "ALL" ? "gallery-editorial" : "gallery-page-grid"
@@ -619,11 +694,11 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
             className: folder === "ALL" ? `g-card g-card-editorial ge-${editorialRole(i)}` : "g-card g-card-compact",
             role: "button",
             tabIndex: 0,
-            onClick: () => openLightbox(it),
+            onClick: () => openLightbox(filtered, it),
             onKeyDown: (e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                openLightbox(it);
+                openLightbox(filtered, it);
               }
             }
           },
@@ -648,7 +723,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         role: "dialog",
         "aria-modal": "true",
         "aria-label": "\u5199\u771F\u30D7\u30EC\u30D3\u30E5\u30FC",
-        onClick: () => setLightboxIdx(null)
+        onClick: () => setLightbox(null)
       },
       /* @__PURE__ */ React.createElement("button", { type: "button", className: "gallery-lightbox-close", "aria-label": "\u9589\u3058\u308B" }, "\xD7"),
       /* @__PURE__ */ React.createElement(
@@ -659,7 +734,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           "aria-label": "\u524D\u306E\u5199\u771F",
           onClick: (e) => {
             e.stopPropagation();
-            setLightboxIdx((i) => i > 0 ? i - 1 : filtered.length - 1);
+            setLightbox((lb) => ({
+              ...lb,
+              idx: lb.idx > 0 ? lb.idx - 1 : lb.list.length - 1
+            }));
           }
         },
         "\u2039"
@@ -672,7 +750,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           "aria-label": "\u6B21\u306E\u5199\u771F",
           onClick: (e) => {
             e.stopPropagation();
-            setLightboxIdx((i) => i < filtered.length - 1 ? i + 1 : 0);
+            setLightbox((lb) => ({
+              ...lb,
+              idx: lb.idx < lb.list.length - 1 ? lb.idx + 1 : 0
+            }));
           }
         },
         "\u203A"
@@ -686,7 +767,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           onClick: (e) => e.stopPropagation()
         }
       ),
-      /* @__PURE__ */ React.createElement("div", { className: "gallery-lightbox-cap", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement("span", { className: "g-label" }, lightboxItem.category), /* @__PURE__ */ React.createElement("span", { className: "g-file" }, lightboxItem.file), /* @__PURE__ */ React.createElement("span", { className: "gallery-lightbox-pos" }, lightboxIdx + 1, " / ", filtered.length))
+      /* @__PURE__ */ React.createElement("div", { className: "gallery-lightbox-cap", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement("span", { className: "g-label" }, lightboxItem.category), /* @__PURE__ */ React.createElement("span", { className: "g-file" }, lightboxItem.file), /* @__PURE__ */ React.createElement("span", { className: "gallery-lightbox-pos" }, lightbox.idx + 1, " / ", lightboxList.length))
     ));
   }
   var import_react8;
@@ -723,7 +804,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     );
   }
   function GamesSection() {
-    return /* @__PURE__ */ React.createElement("section", { id: "games" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "05 / Games \u2014 \u4E00\u7DD2\u306B\u904A\u3073\u307E\u305B\u3093\u304B"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u3088\u304F\u904A\u3076 ", /* @__PURE__ */ React.createElement("em", null, "\u30B2\u30FC\u30E0")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u521D\u5FC3\u8005\u6B53\u8FCE\u30FB\u4E00\u7DD2\u306B\u3084\u308C\u308B\u4EBA\u52DF\u96C6\u4E2D\uFF01\uFF01", /* @__PURE__ */ React.createElement("br", null), "VALORANT \u3068\u304B Overwatch\uFF08OW\uFF09\u3082\u3084\u3063\u3066\u308B\u3088\u3002")), /* @__PURE__ */ React.createElement("div", { className: "game-grid" }, GAMES.map((g) => /* @__PURE__ */ React.createElement(GameCard, { key: g.code, g }))));
+    return /* @__PURE__ */ React.createElement("section", { id: "games" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "04 / Games \u2014 \u4E00\u7DD2\u306B\u30D7\u30EC\u30A4"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u3088\u304F\u904A\u3076 ", /* @__PURE__ */ React.createElement("em", null, "\u30B2\u30FC\u30E0")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u521D\u5FC3\u8005\u6B53\u8FCE\u30FB\u4E00\u7DD2\u306B\u3084\u308C\u308B\u4EBA\u52DF\u96C6\u4E2D\uFF01\uFF01", /* @__PURE__ */ React.createElement("br", null), "VALORANT \u3068\u304B Overwatch\uFF08OW\uFF09\u3082\u3084\u3063\u3066\u308B\u3088\u3002")), /* @__PURE__ */ React.createElement("div", { className: "game-grid" }, GAMES.map((g) => /* @__PURE__ */ React.createElement(GameCard, { key: g.code, g }))));
   }
   var import_react9;
   var init_GamesSection = __esm({
@@ -742,7 +823,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     return /* @__PURE__ */ React.createElement("a", { href: p.url, target: "_blank", rel: "noopener", className: "proj-card reveal" }, /* @__PURE__ */ React.createElement("div", { className: "proj-preview", style: { "--ph-1": p.ph1, "--ph-2": p.ph2 } }, /* @__PURE__ */ React.createElement("div", { className: "browser-bar" }, /* @__PURE__ */ React.createElement("span", { className: "dot" }), /* @__PURE__ */ React.createElement("span", { className: "dot" }), /* @__PURE__ */ React.createElement("span", { className: "dot" }), /* @__PURE__ */ React.createElement("span", { className: "url" }, p.url.replace(/^https?:\/\//, "")), /* @__PURE__ */ React.createElement("span", { className: "status" }, "\u25CF ", p.status)), /* @__PURE__ */ React.createElement("div", { className: "ph" }, /* @__PURE__ */ React.createElement("div", { className: "proj-glyph" }, p.glyph), /* @__PURE__ */ React.createElement("div", { className: "proj-preview-name" }, p.name), /* @__PURE__ */ React.createElement("div", { className: "proj-preview-meta" }, "// site preview"))), /* @__PURE__ */ React.createElement("div", { className: "proj-body" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "proj-meta-row" }, /* @__PURE__ */ React.createElement("span", { className: "proj-role" }, p.role), /* @__PURE__ */ React.createElement("span", { className: "proj-year" }, "\u2014 ", p.year)), /* @__PURE__ */ React.createElement("div", { className: "proj-name" }, p.name)), /* @__PURE__ */ React.createElement("p", { className: "proj-desc" }, p.desc), /* @__PURE__ */ React.createElement("div", { className: "proj-features" }, p.features.map((f) => /* @__PURE__ */ React.createElement("div", { className: "proj-feature", key: f }, /* @__PURE__ */ React.createElement("span", { className: "icn" }, "\u2726"), f))), /* @__PURE__ */ React.createElement("div", { className: "proj-foot" }, /* @__PURE__ */ React.createElement("span", { className: "proj-link" }, "Visit site \u2192"))));
   }
   function DevSection() {
-    return /* @__PURE__ */ React.createElement("section", { id: "dev" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "07 / Studio \xB7 \u500B\u4EBA\u958B\u767A"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u4F5C\u3063\u305F\u3084\u3064 ", /* @__PURE__ */ React.createElement("em", null, "\u3044\u308D\u3044\u308D")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u3053\u3093\u306A\u611F\u3058\u306E\u30B5\u30A4\u30C8\u306A\u3089\u4F5C\u308C\u307E\u3059\u3001\u306A\u3093\u304B\u3042\u3063\u305F\u3089\u76F8\u8AC7\u3057\u3066\u306D\u3002")), /* @__PURE__ */ React.createElement("div", { className: "portfolio-grid" }, PROJECTS.map((p) => /* @__PURE__ */ React.createElement(ProjectCard, { p, key: p.name }))));
+    return /* @__PURE__ */ React.createElement("section", { id: "dev" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "05 / Studio \xB7 \u500B\u4EBA\u958B\u767A"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u4F5C\u3063\u3066\u308B ", /* @__PURE__ */ React.createElement("em", null, "\u3082\u306E")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u3053\u3093\u306A\u611F\u3058\u306E\u30B5\u30A4\u30C8\u306A\u3089\u4F5C\u308C\u307E\u3059\u3002\u4F55\u304B\u3042\u308C\u3070\u6C17\u8EFD\u306B\u76F8\u8AC7\u3057\u3066\u306D\u3002")), /* @__PURE__ */ React.createElement("div", { className: "portfolio-grid" }, PROJECTS.map((p) => /* @__PURE__ */ React.createElement(ProjectCard, { p, key: p.name }))));
   }
   var init_DevSection = __esm({
     "src/components/DevSection.jsx"() {
@@ -777,16 +858,16 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       const id = setTimeout(() => window.observeReveal?.(), 120);
       return () => clearTimeout(id);
     }, [unlocked]);
-    return /* @__PURE__ */ React.createElement("section", { id: "konkatsu" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "09 / VRC\u5A5A\u6D3B \u2014 Bonus"), /* @__PURE__ */ React.createElement("h2", { className: "section-title", style: { fontSize: "clamp(28px, 4vw, 48px)" } }, "VRC", /* @__PURE__ */ React.createElement("em", null, "\u5A5A\u6D3B"), "\u30B3\u30FC\u30CA\u30FC"), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle konkatsu-teaser" }, "\u3053\u3093\u306A\u3068\u3053\u308D\u307E\u3067\u8AAD\u3093\u3067\u304F\u308C\u305F\u3063\u3066\u3053\u3068\u306F\u3082\u3057\u304B\u3057\u3066\u8208\u5473\u304C\u2026\uFF1F\uFF1F", /* @__PURE__ */ React.createElement("br", null), "\u3088\u308A\u8A73\u7D30\u306A\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3060\u3051\u3069\u8208\u5473\u306A\u3044\u4EBA\u306F\u898B\u306A\u304F\u3066\u3044\u3044\u3088\uFF01\uFF01")), !unlocked ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-gate reveal" }, /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("section", { id: "konkatsu" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "07 / VRC\u5A5A\u6D3B \u2014 Bonus"), /* @__PURE__ */ React.createElement("h2", { className: "section-title", style: { fontSize: "clamp(28px, 4vw, 48px)" } }, "VRC", /* @__PURE__ */ React.createElement("em", null, "\u5A5A\u6D3B"), "\u30B3\u30FC\u30CA\u30FC"), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle konkatsu-teaser" }, "\u3053\u3053\u307E\u3067\u8AAD\u3093\u3067\u304F\u308C\u305F\u3063\u3066\u3001\u3082\u3057\u304B\u3057\u3066\u8208\u5473\u3042\u308B\u2026\uFF1F", /* @__PURE__ */ React.createElement("br", null), "\u3082\u3046\u3061\u3087\u3063\u3068\u8E0F\u307F\u8FBC\u3093\u3060\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3002\u898B\u305F\u304F\u306A\u3051\u308C\u3070\u30B9\u30EB\u30FC\u3067OK\uFF01")), !unlocked ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-gate reveal" }, /* @__PURE__ */ React.createElement(
       "button",
       {
         type: "button",
         className: "konkatsu-unlock-btn",
         onClick: () => setUnlocked(true)
       },
-      /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-label" }, "\u8208\u5473\u3042\u308B\u2026\uFF1F \u8A73\u7D30\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u898B\u308B"),
+      /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-label" }, "\u8A73\u3057\u304F\u898B\u3066\u307F\u308B"),
       /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-arrow" }, "\u2192")
-    ), /* @__PURE__ */ React.createElement("p", { className: "konkatsu-gate-note" }, "\u30BF\u30C3\u30D7\u3059\u308B\u3068\u8A73\u7D30\u304C\u8868\u793A\u3055\u308C\u307E\u3059")) : /* @__PURE__ */ React.createElement("div", { className: "konkatsu-panel reveal in-view" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tr" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco bl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-grid" }, KONKATSU_PROFILE.map((item) => /* @__PURE__ */ React.createElement("div", { className: `konkatsu-item ${item.alt ? "alt" : ""}`, key: item.label }, /* @__PURE__ */ React.createElement("div", { className: "konkatsu-label" }, item.label), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-value" }, item.value), item.lines?.length ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-lines" }, item.lines.map((line, i) => /* @__PURE__ */ React.createElement("span", { key: i }, line, i < item.lines.length - 1 ? /* @__PURE__ */ React.createElement("br", null) : null))) : null)))));
+    ), /* @__PURE__ */ React.createElement("p", { className: "konkatsu-gate-note" }, "\u30AF\u30EA\u30C3\u30AF\u3067\u8A73\u7D30\u3092\u8868\u793A")) : /* @__PURE__ */ React.createElement("div", { className: "konkatsu-panel reveal in-view" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tr" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco bl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-grid" }, KONKATSU_PROFILE.map((item) => /* @__PURE__ */ React.createElement("div", { className: `konkatsu-item ${item.alt ? "alt" : ""}`, key: item.label }, /* @__PURE__ */ React.createElement("div", { className: "konkatsu-label" }, item.label), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-value" }, item.value), item.lines?.length ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-lines" }, item.lines.map((line, i) => /* @__PURE__ */ React.createElement("span", { key: i }, line, i < item.lines.length - 1 ? /* @__PURE__ */ React.createElement("br", null) : null))) : null)))));
   }
   var import_react10;
   var init_KonkatsuSection = __esm({
@@ -918,7 +999,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         wrap.removeEventListener("mouseleave", leave);
       };
     }, []);
-    return /* @__PURE__ */ React.createElement("section", { id: "hero", className: "hero" }, /* @__PURE__ */ React.createElement("div", { className: "hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "hero-eyebrow" }, "A VRC Profile \xB7 Est. 2024"), /* @__PURE__ */ React.createElement("h1", { className: "hero-name" }, /* @__PURE__ */ React.createElement("span", { className: "glyph" }, Array.from(PROFILE.name).map((ch, i) => /* @__PURE__ */ React.createElement("span", { className: "ch", key: i }, ch))), /* @__PURE__ */ React.createElement("span", { className: "swash", "aria-hidden": true }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 240 26", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 14 Q40 4, 80 14 T160 14 Q200 18, 232 8", stroke: "url(#swashG)", strokeWidth: "1", strokeLinecap: "round", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "232", cy: "8", r: "2", fill: "#f1d9a8" }), /* @__PURE__ */ React.createElement("circle", { cx: "2", cy: "14", r: "1.5", fill: "#e8b4b8" }), /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "swashG", x1: "0", y1: "0", x2: "1", y2: "0" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#e8b4b8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#d4af7a" })))))), /* @__PURE__ */ React.createElement("div", { className: "hero-handle" }, "@", PROFILE.twitter, " ", /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\xB7"), " ", /* @__PURE__ */ React.createElement("span", { className: "en" }, PROFILE.nameEn)), /* @__PURE__ */ React.createElement("div", { className: "hero-meta" }, /* @__PURE__ */ React.createElement("div", { className: "line" }, /* @__PURE__ */ React.createElement("span", { className: "key" }, "status"), /* @__PURE__ */ React.createElement("span", null, PROFILE.status))), /* @__PURE__ */ React.createElement("p", { className: "hero-intro" }, out.split("\n").map((l, i) => /* @__PURE__ */ React.createElement("span", { key: i }, l, /* @__PURE__ */ React.createElement("br", null))), !done && /* @__PURE__ */ React.createElement("span", { className: "cursor-blink" })), /* @__PURE__ */ React.createElement("div", { className: "hero-stats" }, STATS.map((s) => /* @__PURE__ */ React.createElement("div", { className: "stat", key: s.label }, /* @__PURE__ */ React.createElement("div", { className: "label" }, s.label), /* @__PURE__ */ React.createElement("div", { className: "value" }, s.value, /* @__PURE__ */ React.createElement("span", { className: "unit" }, s.unit))))), /* @__PURE__ */ React.createElement("div", { className: "hero-sns" }, /* @__PURE__ */ React.createElement("p", { className: "hero-sns-label" }, "\u9023\u7D61\u5148 \xB7 Contact"), /* @__PURE__ */ React.createElement("div", { className: "hero-sns-grid" }, /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("section", { id: "hero", className: "hero" }, /* @__PURE__ */ React.createElement("div", { className: "hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "hero-eyebrow" }, "A VRC Profile \xB7 Est. 2024"), /* @__PURE__ */ React.createElement("h1", { className: "hero-name" }, /* @__PURE__ */ React.createElement("span", { className: "glyph" }, Array.from(PROFILE.name).map((ch, i) => /* @__PURE__ */ React.createElement("span", { className: "ch", key: i }, ch))), /* @__PURE__ */ React.createElement("span", { className: "swash", "aria-hidden": true }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 240 26", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 14 Q40 4, 80 14 T160 14 Q200 18, 232 8", stroke: "url(#swashG)", strokeWidth: "1", strokeLinecap: "round", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "232", cy: "8", r: "2", fill: "#f1d9a8" }), /* @__PURE__ */ React.createElement("circle", { cx: "2", cy: "14", r: "1.5", fill: "#e8b4b8" }), /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "swashG", x1: "0", y1: "0", x2: "1", y2: "0" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#e8b4b8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#d4af7a" })))))), /* @__PURE__ */ React.createElement("div", { className: "hero-handle" }, "@", PROFILE.twitter, " ", /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\xB7"), " ", /* @__PURE__ */ React.createElement("span", { className: "en" }, PROFILE.nameEn)), /* @__PURE__ */ React.createElement("div", { className: "hero-meta" }, /* @__PURE__ */ React.createElement("div", { className: "line" }, /* @__PURE__ */ React.createElement("span", { className: "key" }, "status"), /* @__PURE__ */ React.createElement("span", null, PROFILE.status))), /* @__PURE__ */ React.createElement("p", { className: "hero-intro" }, out.split("\n").map((l, i) => /* @__PURE__ */ React.createElement("span", { key: i }, l, /* @__PURE__ */ React.createElement("br", null))), !done && /* @__PURE__ */ React.createElement("span", { className: "cursor-blink" })), /* @__PURE__ */ React.createElement("div", { className: "hero-stats" }, STATS.map((s) => /* @__PURE__ */ React.createElement("div", { className: "stat", key: s.label }, /* @__PURE__ */ React.createElement("div", { className: "label" }, s.label), /* @__PURE__ */ React.createElement("div", { className: "value" }, s.value, /* @__PURE__ */ React.createElement("span", { className: "unit" }, s.unit))))), /* @__PURE__ */ React.createElement("a", { href: "#konkatsu", className: "hero-konkatsu-jump" }, /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-tag" }, HERO_KONKATSU.tag), /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-body" }, /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-title" }, HERO_KONKATSU.title), /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-note" }, HERO_KONKATSU.note)), /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-arrow", "aria-hidden": true }, "\u2192")), /* @__PURE__ */ React.createElement("div", { className: "hero-sns" }, /* @__PURE__ */ React.createElement("p", { className: "hero-sns-label" }, "\u9023\u7D61\u5148 \xB7 Contact"), /* @__PURE__ */ React.createElement("div", { className: "hero-sns-grid" }, /* @__PURE__ */ React.createElement(
       HeroSnsLink,
       {
         platform: "X",
@@ -963,7 +1044,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   function HobbiesSection() {
     const [active, setActive] = (0, import_react5.useState)(0);
     const h = HOBBIES[active];
-    return /* @__PURE__ */ React.createElement("section", { id: "hobbies" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "02 / Hobbies \u2014 \u307E\u305A\u306F\u3053\u3053\u304B\u3089"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u3053\u3093\u306A\u3053\u3068\u304C ", /* @__PURE__ */ React.createElement("em", null, "\u597D\u304D\u3067\u3059")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u6C17\u306B\u306A\u3063\u305F\u3089\u306A\u3093\u3067\u3082\u3084\u308B\u30BF\u30A4\u30D7\u3002\u8A71\u306E\u304D\u3063\u304B\u3051\u306B\u3069\u3046\u305E\u3002")), /* @__PURE__ */ React.createElement("div", { className: "hobby-wrap reveal" }, /* @__PURE__ */ React.createElement("div", { className: "hobby-tabs" }, HOBBIES.map((hb, i) => /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React.createElement("section", { id: "hobbies" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "02 / Hobbies \u2014 \u8DA3\u5473"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u3053\u3093\u306A\u3053\u3068\u304C ", /* @__PURE__ */ React.createElement("em", null, "\u597D\u304D\u3067\u3059")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u6C17\u306B\u306A\u3063\u305F\u3089\u3068\u308A\u3042\u3048\u305A\u3084\u3063\u3066\u307F\u308B\u30BF\u30A4\u30D7\u3002\u8A71\u306E\u304D\u3063\u304B\u3051\u306B\u3069\u3046\u305E\u3002")), /* @__PURE__ */ React.createElement("div", { className: "hobby-wrap reveal" }, /* @__PURE__ */ React.createElement("div", { className: "hobby-tabs" }, HOBBIES.map((hb, i) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: hb.id,
@@ -1001,10 +1082,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     }
-    return /* @__PURE__ */ React.createElement("section", { id: "contact" }, /* @__PURE__ */ React.createElement("div", { className: "contact-card reveal" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "section-label", style: { marginBottom: 14 } }, "04 / Say Hi"), /* @__PURE__ */ React.createElement("h3", null, "\u6C17\u8EFD\u306B ", /* @__PURE__ */ React.createElement("em", null, "\u58F0\u304B\u3051\u3066"), " \u304F\u3060\u3055\u3044"), /* @__PURE__ */ React.createElement("p", null, "\u5171\u901A\u306E\u8DA3\u5473\u304C\u3042\u3063\u305F\u308APC\u30B2\u30FC\u30E0\u3057\u3066\u308B\u4EBA\u306F\u662F\u975E\u4E00\u7DD2\u306B\u904A\u3073\u307E\u3057\u3087\u3046\uFF01\uFF01", /* @__PURE__ */ React.createElement("br", null), "VRC\u3067\u306F\u30EF\u30FC\u30EB\u30C9\u5DE1\u308A\u3001\u30AB\u30E9\u30AA\u30B1\u30EF\u30FC\u30EB\u30C9\u3001\u8B0E\u89E3\u304D\u3042\u305F\u308A\u3092\u4E00\u7DD2\u306B\u3067\u304D\u308B\u4EBA\u52DF\u96C6\u4E2D\uFF01\uFF01", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", color: "var(--text-mute)", fontSize: 12, letterSpacing: "0.1em" } }, "\u30D5\u30EC\u30F3\u30C9\u7533\u8ACB \xB7 \u6C17\u306B\u306A\u3063\u305F\u3089\u8A31\u53EF\u3002Twitter\u76F8\u4E92\u306F\u7533\u8ACBOK\u3002"))), /* @__PURE__ */ React.createElement("div", { className: "contact-actions" }, /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "\u{1D54F} \xB7 @", PROFILE.twitter), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2192")), /* @__PURE__ */ React.createElement("button", { className: "contact-btn", onClick: copy }, /* @__PURE__ */ React.createElement("span", null, "\u2726 Discord \xB7 ", PROFILE.discord), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, copied ? "copied \u2713" : "copy")), /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: PROFILE.vrcUrl, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "VRChat \xB7 ", PROFILE.vrcId), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2197")))));
+    return /* @__PURE__ */ React.createElement("section", { id: "contact" }, /* @__PURE__ */ React.createElement("div", { className: "contact-card reveal" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "section-label", style: { marginBottom: 14 } }, "08 / Say Hi"), /* @__PURE__ */ React.createElement("h3", null, "\u6C17\u8EFD\u306B ", /* @__PURE__ */ React.createElement("em", null, "\u58F0\u304B\u3051\u3066"), " \u304F\u3060\u3055\u3044"), /* @__PURE__ */ React.createElement("p", null, "\u8DA3\u5473\u304C\u5408\u3046\u4EBA\u3084\u3001PC\u30B2\u30FC\u30E0\u3059\u308B\u4EBA\u306F\u305C\u3072\u4E00\u7DD2\u306B\u904A\u3073\u307E\u3057\u3087\u3046\uFF01", /* @__PURE__ */ React.createElement("br", null), "VRC\u3067\u306F\u30EF\u30FC\u30EB\u30C9\u5DE1\u308A\u3001\u30AB\u30E9\u30AA\u30B1\u3001\u8B0E\u89E3\u304D\u30EF\u30FC\u30EB\u30C9\u306A\u3069\u3001\u4E00\u7DD2\u306B\u3067\u304D\u308B\u65B9\u52DF\u96C6\u4E2D\uFF01", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", color: "var(--text-mute)", fontSize: 12, letterSpacing: "0.1em" } }, "\u30D5\u30EC\u30F3\u30C9\u7533\u8ACB \xB7 \u6C17\u306B\u306A\u3063\u305F\u3089\u8A31\u53EF\u3002X\u76F8\u4E92\u306A\u3089\u7533\u8ACB\u6B53\u8FCE\u3002"))), /* @__PURE__ */ React.createElement("div", { className: "contact-actions" }, /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "\u{1D54F} \xB7 @", PROFILE.twitter), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2192")), /* @__PURE__ */ React.createElement("button", { className: "contact-btn", onClick: copy }, /* @__PURE__ */ React.createElement("span", null, "\u2726 Discord \xB7 ", PROFILE.discord), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, copied ? "\u30B3\u30D4\u30FC\u3057\u307E\u3057\u305F \u2713" : "ID\u3092\u30B3\u30D4\u30FC")), /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: PROFILE.vrcUrl, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "VRChat \xB7 ", PROFILE.vrcId), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2197")))));
   }
   function ContactSection() {
-    return /* @__PURE__ */ React.createElement("section", { id: "contact-final", style: { paddingTop: 40 } }, /* @__PURE__ */ React.createElement("footer", null, /* @__PURE__ */ React.createElement("div", { className: "signature" }, "End of Profile"), /* @__PURE__ */ React.createElement("div", { className: "links" }, /* @__PURE__ */ React.createElement("a", { href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, "@", PROFILE.twitter), " \xB7 ", /* @__PURE__ */ React.createElement("span", null, "Discord: ", PROFILE.discord), " \xB7 ", /* @__PURE__ */ React.createElement("span", null, "VRChat: ", PROFILE.vrcId)), /* @__PURE__ */ React.createElement("div", { style: { marginTop: 18, color: "var(--text-mute)", fontStyle: "italic" } }, /* @__PURE__ */ React.createElement("span", { className: "section-label", style: { display: "inline-block", marginBottom: 8 } }, "08 / Footer"), /* @__PURE__ */ React.createElement("br", null), "built with caffeine, peach shisha & friends \xB7 \u3053\u306B\u30FC 2026")));
+    return /* @__PURE__ */ React.createElement("section", { id: "contact-final", style: { paddingTop: 40 } }, /* @__PURE__ */ React.createElement("footer", null, /* @__PURE__ */ React.createElement("div", { className: "signature" }, "End of Profile"), /* @__PURE__ */ React.createElement("div", { className: "links" }, /* @__PURE__ */ React.createElement("a", { href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, "@", PROFILE.twitter), " \xB7 ", /* @__PURE__ */ React.createElement("span", null, "Discord: ", PROFILE.discord), " \xB7 ", /* @__PURE__ */ React.createElement("span", null, "VRChat: ", PROFILE.vrcId)), /* @__PURE__ */ React.createElement("div", { style: { marginTop: 18, color: "var(--text-mute)", fontStyle: "italic" } }, /* @__PURE__ */ React.createElement("span", { className: "section-label", style: { display: "inline-block", marginBottom: 8 } }, "09 / Footer"), /* @__PURE__ */ React.createElement("br", null), "built with caffeine, peach shisha & friends \xB7 \u3053\u306B\u30FC 2026")));
   }
 
   // src/components/CommandPalette.jsx
@@ -1017,6 +1098,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     const items = (0, import_react7.useMemo)(() => {
       const base = [
         ...NAV.map((n) => ({ kind: "nav", label: `Go to \xB7 ${n.label}`, target: `#${n.id}`, glyph: "\u2192" })),
+        { kind: "nav", label: "Go to \xB7 VRC\u5A5A\u6D3B\u30B3\u30FC\u30CA\u30FC", target: "#konkatsu", glyph: "\u2665" },
         { kind: "ext", label: "Open \xB7 Twitter (@Konny0329s_VRC)", target: `https://twitter.com/${PROFILE.twitter}`, glyph: "\u{1D54F}" },
         { kind: "copy", label: "Copy \xB7 Discord ID (Konny0329s)", target: PROFILE.discord, glyph: "\u2726" },
         ...PROJECTS.map((p) => ({ kind: "ext", label: `Project \xB7 ${p.name}`, target: p.url, glyph: "\u25CC" })),
@@ -1157,7 +1239,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       { kind: "muted", text: "Est. 2024 \u2014 PCVR / Desktop" },
       { text: "Tarkov Raids" },
       { text: "Coaching" }
-    ] }), /* @__PURE__ */ React.createElement(HobbiesSection, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GallerySection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(FriendCTA, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GamesSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(DevSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(CareerSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(KonkatsuSection2, null))), /* @__PURE__ */ React.createElement(ContactSection, null)), /* @__PURE__ */ React.createElement(CommandPalette, { open: cmdOpen, onClose: () => setCmdOpen(false) }));
+    ] }), /* @__PURE__ */ React.createElement(HobbiesSection, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GallerySection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GamesSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(DevSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(CareerSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(KonkatsuSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(FriendCTA, null), /* @__PURE__ */ React.createElement(ContactSection, null)), /* @__PURE__ */ React.createElement(CommandPalette, { open: cmdOpen, onClose: () => setCmdOpen(false) }));
   }
 
   // src/bundle-entry.jsx

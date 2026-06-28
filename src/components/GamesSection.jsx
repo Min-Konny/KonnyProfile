@@ -41,7 +41,7 @@ export function GamesSection() {
   return (
     <section id="games">
       <div className="reveal">
-        <div className="section-label">05 / Games — 一緒に遊びませんか</div>
+        <div className="section-label">04 / Games — 一緒にプレイ</div>
         <h2 className="section-title">よく遊ぶ <em>ゲーム</em></h2>
         <div className="section-subtitle">
           初心者歓迎・一緒にやれる人募集中！！<br/>

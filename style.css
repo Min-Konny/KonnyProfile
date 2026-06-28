@@ -561,6 +561,7 @@ section {
   max-width: 1280px;
   margin: 0 auto;
   padding: 140px 36px;
+  scroll-margin-top: 72px;
 }
 @media (max-width: 768px) {
   section { padding: 80px 20px; }
@@ -857,6 +858,63 @@ main > section:not(#hero):not(#contact-final)::before {
   letter-spacing: 0.02em;
 }
 .stat .value .unit { font-size: 12px; color: var(--text-mute); font-family: var(--font-mono); }
+
+.hero-konkatsu-jump {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(100%, 420px);
+  margin: 28px 0 32px;
+  padding: 14px 18px;
+  border: 1px solid rgba(232, 180, 184, 0.4);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(232, 180, 184, 0.1), rgba(212, 175, 122, 0.06));
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+.hero-konkatsu-jump:hover {
+  border-color: var(--rose);
+  transform: translateX(4px);
+  box-shadow: 0 8px 28px rgba(232, 180, 184, 0.14);
+}
+.hero-konkatsu-tag {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  padding: 4px 8px;
+  border: 1px solid rgba(232, 180, 184, 0.35);
+  border-radius: 999px;
+}
+.hero-konkatsu-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.hero-konkatsu-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ivory);
+  letter-spacing: 0.03em;
+}
+.hero-konkatsu-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+.hero-konkatsu-arrow {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--rose);
+  letter-spacing: 0.1em;
+}
 
 .hero-sns {
   margin-top: 4px;
@@ -1382,13 +1440,28 @@ button.sns-card {
   border: 1px solid var(--border);
   border-radius: 10px;
   backdrop-filter: blur(8px);
+  overflow: hidden;
   animation: konkatsuReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+.konkatsu-panel .corner-deco {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  color: var(--gold);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.konkatsu-panel .corner-deco.tl { top: 12px; left: 12px; }
+.konkatsu-panel .corner-deco.tr { top: 12px; right: 12px; transform: scaleX(-1); color: var(--rose); }
+.konkatsu-panel .corner-deco.bl { bottom: 12px; left: 12px; transform: scaleY(-1); color: var(--rose); }
+.konkatsu-panel .corner-deco.br { bottom: 12px; right: 12px; transform: scale(-1, -1); }
 @keyframes konkatsuReveal {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .konkatsu-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 22px 28px;
@@ -1680,6 +1753,61 @@ button.sns-card {
 }
 
 /* ---------- Gallery ---------- */
+.gallery-featured {
+  margin: 24px 0 32px;
+}
+.gallery-featured-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-hi);
+  margin-bottom: 14px;
+}
+.gallery-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) {
+  .gallery-featured-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .gallery-featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.gallery-featured-card {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel);
+  cursor: pointer;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+.gallery-featured-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.gallery-featured-card .gallery-thumb {
+  aspect-ratio: 1;
+  min-height: 0;
+}
+.gallery-featured-card figcaption {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+}
+.gallery-featured-card .g-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
 .gallery-toolbar {
   display: flex; align-items: center; justify-content: space-between;
   gap: 18px; flex-wrap: wrap;

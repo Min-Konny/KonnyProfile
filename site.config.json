@@ -1,6 +1,7 @@
 {
   "url": "https://konny-profile.vercel.app",
   "title": "こにー / Konny — VRChat Profile",
-  "description": "VRChat こにーのプロフィール。シーシャ・ゲーム・写真・趣味の棚。",
-  "twitter": "@Konny0329s_VRC"
+  "description": "VRChat こにーのプロフィール。趣味・ゲーム・写真・開発作品など。",
+  "twitter": "@Konny0329s_VRC",
+  "ogImage": "/assets/og-image.jpg"
 }

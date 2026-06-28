@@ -8,6 +8,7 @@ export function CommandPalette({ open, onClose }) {
   const items = useMemo(() => {
     const base = [
       ...NAV.map((n) => ({ kind: "nav", label: `Go to · ${n.label}`, target: `#${n.id}`, glyph: "→" })),
+      { kind: "nav", label: "Go to · VRC婚活コーナー", target: "#konkatsu", glyph: "♥" },
       { kind: "ext", label: "Open · Twitter (@Konny0329s_VRC)", target: `https://twitter.com/${PROFILE.twitter}`, glyph: "𝕏" },
       { kind: "copy", label: "Copy · Discord ID (Konny0329s)", target: PROFILE.discord, glyph: "✦" },
       ...PROJECTS.map((p) => ({ kind: "ext", label: `Project · ${p.name}`, target: p.url, glyph: "◌" })),

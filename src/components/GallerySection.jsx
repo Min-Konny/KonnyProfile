@@ -89,12 +89,13 @@ function GalleryPager({ page, totalPages, total, pageSize, onPage }) {
 
 export function GallerySection() {
   const [manifest, setManifest] = useState(null);
+  const [featuredPaths, setFeaturedPaths] = useState([]);
   const [loadErr, setLoadErr] = useState(null);
   const [folder, setFolder] = useState("ALL");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(11);
   const [shuffleNonce, setShuffleNonce] = useState(0);
-  const [lightboxIdx, setLightboxIdx] = useState(null);
+  const [lightbox, setLightbox] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -117,6 +118,29 @@ export function GallerySection() {
       });
     return () => { cancelled = true; };
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("featured.json")
+      .then((r) => (r.ok ? r.json() : { paths: [] }))
+      .then((j) => {
+        if (!cancelled && Array.isArray(j?.paths)) setFeaturedPaths(j.paths);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
+  const featuredItems = useMemo(() => {
+    return featuredPaths.map((path, i) => {
+      const parts = path.split("/");
+      return {
+        id: `featured-${i}`,
+        path,
+        category: parts[1] || "",
+        file: parts[parts.length - 1],
+      };
+    });
+  }, [featuredPaths]);
 
   const shuffledAllItems = useMemo(() => {
     if (!manifest?.items) return [];
@@ -166,24 +190,31 @@ export function GallerySection() {
     return filtered.slice(start, start + pageSize);
   }, [filtered, safePage, pageSize, totalPages]);
 
-  const lightboxItem = lightboxIdx != null ? filtered[lightboxIdx] : null;
+  const lightboxItem = lightbox ? lightbox.list[lightbox.idx] : null;
+  const lightboxList = lightbox?.list ?? [];
 
-  function openLightbox(it) {
-    const idx = filtered.findIndex((x) => x.id === it.id);
-    if (idx >= 0) setLightboxIdx(idx);
+  function openLightbox(list, item) {
+    const idx = list.findIndex((x) => x.id === item.id);
+    if (idx >= 0) setLightbox({ list, idx });
   }
 
   useEffect(() => {
-    if (lightboxIdx == null) return;
+    if (!lightbox) return;
     function onKey(e) {
-      if (e.key === "Escape") setLightboxIdx(null);
+      if (e.key === "Escape") setLightbox(null);
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        setLightboxIdx((i) => (i > 0 ? i - 1 : filtered.length - 1));
+        setLightbox((lb) => ({
+          ...lb,
+          idx: lb.idx > 0 ? lb.idx - 1 : lb.list.length - 1,
+        }));
       }
       if (e.key === "ArrowRight") {
         e.preventDefault();
-        setLightboxIdx((i) => (i < filtered.length - 1 ? i + 1 : 0));
+        setLightbox((lb) => ({
+          ...lb,
+          idx: lb.idx < lb.list.length - 1 ? lb.idx + 1 : 0,
+        }));
       }
     }
     document.body.style.overflow = "hidden";
@@ -192,7 +223,7 @@ export function GallerySection() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [lightboxIdx, filtered.length]);
+  }, [lightbox]);
 
   useEffect(() => {
     if (pageItems.length) prefetchThumbs(pageItems, pageItems.length);
@@ -236,6 +267,34 @@ export function GallerySection() {
 
       {!loadErr && manifest && (
         <>
+          {featuredItems.length > 0 && (
+            <div className="gallery-featured reveal">
+              <p className="gallery-featured-label">ピックアップ</p>
+              <div className="gallery-featured-grid">
+                {featuredItems.map((it, i) => (
+                  <figure
+                    key={it.id}
+                    className="gallery-featured-card"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => openLightbox(featuredItems, it)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openLightbox(featuredItems, it);
+                      }
+                    }}
+                  >
+                    <GalleryThumb item={it} priority={i < 3} />
+                    <figcaption>
+                      <span className="g-label">{it.category}</span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="gallery-toolbar gallery-toolbar-stack">
             <div className="gallery-folder-tabs" role="tablist" aria-label="フォルダ">
               <button
@@ -311,7 +370,7 @@ export function GallerySection() {
           />
 
           {filtered.length === 0 ? (
-            <p className="gallery-empty reveal">このフォルダにはまだ写真がありません。ほかのタブも見てみてください。</p>
+            <p className="gallery-empty reveal">このフォルダにはまだ写真がありません。ほかのタブものぞいてみてください。</p>
           ) : (
             <div
               className={folder === "ALL" ? "gallery-editorial" : "gallery-page-grid"}
@@ -328,11 +387,11 @@ export function GallerySection() {
                   }
                   role="button"
                   tabIndex={0}
-                  onClick={() => openLightbox(it)}
+                  onClick={() => openLightbox(filtered, it)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      openLightbox(it);
+                      openLightbox(filtered, it);
                     }
                   }}
                 >
@@ -364,7 +423,7 @@ export function GallerySection() {
           role="dialog"
           aria-modal="true"
           aria-label="写真プレビュー"
-          onClick={() => setLightboxIdx(null)}
+          onClick={() => setLightbox(null)}
         >
           <button type="button" className="gallery-lightbox-close" aria-label="閉じる">×</button>
           <button
@@ -373,7 +432,10 @@ export function GallerySection() {
             aria-label="前の写真"
             onClick={(e) => {
               e.stopPropagation();
-              setLightboxIdx((i) => (i > 0 ? i - 1 : filtered.length - 1));
+              setLightbox((lb) => ({
+                ...lb,
+                idx: lb.idx > 0 ? lb.idx - 1 : lb.list.length - 1,
+              }));
             }}
           >
             ‹
@@ -384,7 +446,10 @@ export function GallerySection() {
             aria-label="次の写真"
             onClick={(e) => {
               e.stopPropagation();
-              setLightboxIdx((i) => (i < filtered.length - 1 ? i + 1 : 0));
+              setLightbox((lb) => ({
+                ...lb,
+                idx: lb.idx < lb.list.length - 1 ? lb.idx + 1 : 0,
+              }));
             }}
           >
             ›
@@ -399,7 +464,7 @@ export function GallerySection() {
             <span className="g-label">{lightboxItem.category}</span>
             <span className="g-file">{lightboxItem.file}</span>
             <span className="gallery-lightbox-pos">
-              {lightboxIdx + 1} / {filtered.length}
+              {lightbox.idx + 1} / {lightboxList.length}
             </span>
           </div>
         </div>

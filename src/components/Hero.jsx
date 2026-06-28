@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { PROFILE, STATS } from "../data/content.js";
+import { PROFILE, STATS, HERO_KONKATSU } from "../data/content.js";
 import { useTyping } from "../hooks/useTyping.js";
 import { CornerOrnament, AvatarFiligree, AvatarFiligree2 } from "./Ornaments.jsx";
 
@@ -88,6 +88,14 @@ export function Hero() {
               </div>
             ))}
           </div>
+          <a href="#konkatsu" className="hero-konkatsu-jump">
+            <span className="hero-konkatsu-tag">{HERO_KONKATSU.tag}</span>
+            <span className="hero-konkatsu-body">
+              <span className="hero-konkatsu-title">{HERO_KONKATSU.title}</span>
+              <span className="hero-konkatsu-note">{HERO_KONKATSU.note}</span>
+            </span>
+            <span className="hero-konkatsu-arrow" aria-hidden>→</span>
+          </a>
           <div className="hero-sns">
             <p className="hero-sns-label">連絡先 · Contact</p>
             <div className="hero-sns-grid">

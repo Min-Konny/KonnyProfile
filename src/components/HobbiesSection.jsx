@@ -9,9 +9,9 @@ export function HobbiesSection() {
   return (
     <section id="hobbies">
       <div className="reveal">
-        <div className="section-label">02 / Hobbies — まずはここから</div>
+        <div className="section-label">02 / Hobbies — 趣味</div>
         <h2 className="section-title">こんなことが <em>好きです</em></h2>
-        <div className="section-subtitle">気になったらなんでもやるタイプ。話のきっかけにどうぞ。</div>
+        <div className="section-subtitle">気になったらとりあえずやってみるタイプ。話のきっかけにどうぞ。</div>
       </div>
       <div className="hobby-wrap reveal">
         <div className="hobby-tabs">

@@ -57,7 +57,7 @@ export function galleryThumbSrc(it) {
 }
 
 export function galleryLightboxSrc(path) {
-  return encPhotoPath(thumbPhotoPath(path));
+  return encPhotoPath(webPhotoPath(path) || path);
 }
 
 export function prefetchThumbs(items, limit = 12) {

@@ -15,14 +15,14 @@ export function KonkatsuSection() {
   return (
     <section id="konkatsu">
       <div className="reveal">
-        <div className="section-label">09 / VRC婚活 — Bonus</div>
+        <div className="section-label">07 / VRC婚活 — Bonus</div>
         <h2 className="section-title" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
           VRC<em>婚活</em>コーナー
         </h2>
         <div className="section-subtitle konkatsu-teaser">
-          こんなところまで読んでくれたってことはもしかして興味が…？？
+          ここまで読んでくれたって、もしかして興味ある…？
           <br />
-          より詳細なプロフィールだけど興味ない人は見なくていいよ！！
+          もうちょっと踏み込んだプロフィール。見たくなければスルーでOK！
         </div>
       </div>
 
@@ -33,10 +33,10 @@ export function KonkatsuSection() {
             className="konkatsu-unlock-btn"
             onClick={() => setUnlocked(true)}
           >
-            <span className="konkatsu-unlock-label">興味ある…？ 詳細プロフィールを見る</span>
+            <span className="konkatsu-unlock-label">詳しく見てみる</span>
             <span className="konkatsu-unlock-arrow">→</span>
           </button>
-          <p className="konkatsu-gate-note">タップすると詳細が表示されます</p>
+          <p className="konkatsu-gate-note">クリックで詳細を表示</p>
         </div>
       ) : (
         <div className="konkatsu-panel reveal in-view">

@@ -25,13 +25,13 @@ export function FriendCTA() {
         <CornerOrnament className="corner-deco tl"/>
         <CornerOrnament className="corner-deco br"/>
         <div>
-          <div className="section-label" style={{ marginBottom: 14 }}>04 / Say Hi</div>
+          <div className="section-label" style={{ marginBottom: 14 }}>08 / Say Hi</div>
           <h3>気軽に <em>声かけて</em> ください</h3>
           <p>
-            共通の趣味があったりPCゲームしてる人は是非一緒に遊びましょう！！<br/>
-            VRCではワールド巡り、カラオケワールド、謎解きあたりを一緒にできる人募集中！！<br/>
+            趣味が合う人や、PCゲームする人はぜひ一緒に遊びましょう！<br/>
+            VRCではワールド巡り、カラオケ、謎解きワールドなど、一緒にできる方募集中！<br/>
             <span style={{ fontFamily: "var(--font-mono)", color: "var(--text-mute)", fontSize: 12, letterSpacing: "0.1em" }}>
-              フレンド申請 · 気になったら許可。Twitter相互は申請OK。
+              フレンド申請 · 気になったら許可。X相互なら申請歓迎。
             </span>
           </p>
         </div>
@@ -42,7 +42,7 @@ export function FriendCTA() {
           </a>
           <button className="contact-btn" onClick={copy}>
             <span>✦ Discord · {PROFILE.discord}</span>
-            <span className="arrow">{copied ? "copied ✓" : "copy"}</span>
+            <span className="arrow">{copied ? "コピーしました ✓" : "IDをコピー"}</span>
           </button>
           <a className="contact-btn" href={PROFILE.vrcUrl} target="_blank" rel="noopener">
             <span>VRChat · {PROFILE.vrcId}</span>
@@ -64,7 +64,7 @@ export function ContactSection() {
           {" · "}<span>Discord: {PROFILE.discord}</span>{" · "}<span>VRChat: {PROFILE.vrcId}</span>
         </div>
         <div style={{ marginTop: 18, color: "var(--text-mute)", fontStyle: "italic" }}>
-          <span className="section-label" style={{ display: "inline-block", marginBottom: 8 }}>08 / Footer</span><br/>
+          <span className="section-label" style={{ display: "inline-block", marginBottom: 8 }}>09 / Footer</span><br/>
           built with caffeine, peach shisha & friends · こにー 2026
         </div>
       </footer>

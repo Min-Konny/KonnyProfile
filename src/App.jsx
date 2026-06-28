@@ -92,7 +92,6 @@ export function App() {
           <RevealOnMount><GallerySection /></RevealOnMount>
         </Suspense>
         <SectionDivider />
-        <FriendCTA />
         <Suspense fallback={<SectionFallback />}>
           <RevealOnMount><GamesSection /></RevealOnMount>
         </Suspense>
@@ -102,6 +101,8 @@ export function App() {
           <RevealOnMount><CareerSection /></RevealOnMount>
           <RevealOnMount><KonkatsuSection /></RevealOnMount>
         </Suspense>
+        <SectionDivider />
+        <FriendCTA />
         <ContactSection />
       </main>
       <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
