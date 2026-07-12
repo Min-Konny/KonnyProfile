@@ -2838,3 +2838,465 @@ footer .links a:hover { color: var(--gold-hi); }
   color: var(--text-mute);
   letter-spacing: 0.15em;
 }
+
+/* ============================================================
+   Scroll FX — scrollfx.js とセット
+   ============================================================ */
+
+/* --- scroll progress bar --- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  z-index: 300;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--rose, #e8b4b8), var(--gold-hi, #f1d9a8), var(--gold, #d4af7a));
+  box-shadow: 0 0 12px rgba(241, 217, 168, 0.55);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* --- hero scrub --- */
+.hero-grid { will-change: transform, opacity; }
+.hero-avatar { will-change: transform; }
+
+/* --- section title: 1文字ずつ出現 + parallax --- */
+.section-title.fx-split {
+  transform: translateY(var(--plx, 0px));
+  will-change: transform;
+}
+.section-title.fx-split .tchar {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.85em) rotate(8deg) scale(0.7);
+  filter: blur(4px);
+  transition:
+    opacity 0.45s ease calc(var(--ci, 0) * 0.035s),
+    filter 0.5s ease calc(var(--ci, 0) * 0.035s),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--ci, 0) * 0.035s);
+}
+.section-title.fx-split .tchar-block {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.6em) scale(0.85);
+  transition:
+    opacity 0.6s ease calc(var(--ci, 0) * 0.035s),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--ci, 0) * 0.035s);
+}
+.in-view .section-title.fx-split .tchar,
+.in-view .section-title.fx-split .tchar-block,
+.section-title.fx-split.in-view .tchar,
+.section-title.fx-split.in-view .tchar-block {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* --- 方向つきリビール (fx-dir は JS が付与、既存 .reveal と併用) --- */
+.reveal.fx-left  { transform: translateX(-56px) rotate(-1deg); }
+.reveal.fx-right { transform: translateX(56px) rotate(1deg); }
+.reveal.fx-zoom  { transform: translateY(24px) scale(0.94); filter: blur(6px);
+                   transition: opacity 0.9s cubic-bezier(.2,.8,.2,1),
+                               transform 0.9s cubic-bezier(.2,.8,.2,1),
+                               filter 0.9s ease; }
+.reveal.fx-left.in-view,
+.reveal.fx-right.in-view { transform: none; }
+.reveal.fx-zoom.in-view  { transform: none; filter: none; }
+
+/* --- gallery items: ふわっとスタガー出現 (fx-item は JS が付与) --- */
+.fx-item {
+  opacity: 0;
+  transform: translateY(36px) scale(0.96);
+  transition:
+    opacity 0.8s cubic-bezier(.2,.8,.2,1),
+    transform 0.8s cubic-bezier(.16, 1, .3, 1);
+}
+.fx-item.in-view { opacity: 1; transform: none; }
+
+/* --- marquee skew --- */
+.marquee { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { display: none; }
+  .section-title.fx-split .tchar,
+  .section-title.fx-split .tchar-block,
+  .fx-item, .reveal.fx-left, .reveal.fx-right, .reveal.fx-zoom {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* --- bg3d: Three.js 背景 --- */
+#bg3d-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #bg3d-canvas { display: none; }
+}
+
+/* ============================================================
+   Chapter sync — bg3d.js が body[data-chapter] を更新し、
+   UI のアクセント色が 3D 世界の章と連動する
+   ============================================================ */
+body { --accent: 212, 175, 122; --accent-hi: 241, 217, 168; }
+body[data-chapter="hero"]     { --accent: 212, 175, 122; --accent-hi: 241, 217, 168; }
+body[data-chapter="hobbies"]  { --accent: 241, 224, 194; --accent-hi: 241, 217, 168; }
+body[data-chapter="gallery"]  { --accent: 241, 217, 168; --accent-hi: 248, 240, 220; }
+body[data-chapter="games"]    { --accent: 201, 184, 227; --accent-hi: 214, 200, 235; }
+body[data-chapter="dev"]      { --accent: 168, 153, 214; --accent-hi: 201, 184, 227; }
+body[data-chapter="career"]   { --accent: 212, 175, 122; --accent-hi: 241, 224, 194; }
+body[data-chapter="konkatsu"] { --accent: 232, 180, 184; --accent-hi: 245, 205, 208; }
+body[data-chapter="contact"],
+body[data-chapter="contact-final"] { --accent: 248, 240, 220; --accent-hi: 248, 240, 220; }
+
+/* アクセントが移ろう場所 */
+.scroll-progress {
+  background: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--accent-hi)));
+  box-shadow: 0 0 12px rgba(var(--accent-hi), 0.55);
+}
+.section-label {
+  color: rgb(var(--accent-hi));
+  transition: color 0.9s ease;
+}
+.nav-links a.active {
+  color: rgb(var(--accent-hi));
+  transition: color 0.9s ease;
+}
+.nav-links a.active::after {
+  background: linear-gradient(90deg, transparent, rgb(var(--accent)), transparent);
+}
+/* 罫線・パネル枠も章の色にほんのり寄せる */
+body[data-chapter] {
+  --border: rgba(var(--accent), 0.22);
+  --border-strong: rgba(var(--accent), 0.45);
+}
+
+/* ---------- Chapter HUD (左下の章表示) ---------- */
+.chapter-hud {
+  position: fixed;
+  left: 22px; bottom: 20px;
+  z-index: 200;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgb(var(--accent-hi));
+  opacity: 0;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+.chapter-hud::before {
+  content: "";
+  display: inline-block;
+  width: 26px; height: 1px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: linear-gradient(90deg, rgb(var(--accent)), transparent);
+}
+.chapter-hud.show {
+  animation: chapterHud 3.2s ease forwards;
+}
+@keyframes chapterHud {
+  0%   { opacity: 0; transform: translateY(8px); }
+  12%  { opacity: 0.95; transform: translateY(0); }
+  75%  { opacity: 0.95; }
+  100% { opacity: 0.25; }
+}
+@media (max-width: 768px) {
+  .chapter-hud { left: 14px; bottom: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter-hud { display: none; }
+}
+
+/* ============================================================
+   Cinematic edition — 前景3D / シネマバー / 自動再生
+   ============================================================ */
+
+/* 前景キャンバス (花びら・ボケ玉がコンテンツの上を横切る) */
+#bg3d-front {
+  position: fixed;
+  inset: 0;
+  z-index: 30;          /* コンテンツより上、nav(50) より下 */
+  pointer-events: none;
+}
+
+/* セクション飛行 (scrollfx.js が transform を毎フレーム書く) */
+main > section {
+  will-change: transform, opacity;
+  transform-origin: 50% 50%;
+}
+
+/* シネマバー */
+.cinema-bar {
+  position: fixed;
+  left: 0; right: 0;
+  height: 7vh;
+  z-index: 46;
+  background: #050309;
+  pointer-events: none;
+  transform: scaleY(0);
+}
+.cinema-bar.top { top: 0; transform-origin: 50% 0; box-shadow: 0 1px 0 rgba(212,175,122,0.25); }
+.cinema-bar.bottom { bottom: 0; transform-origin: 50% 100%; box-shadow: 0 -1px 0 rgba(212,175,122,0.25); }
+
+/* 自動再生ボタン */
+.autoplay-btn {
+  position: fixed;
+  right: 22px; bottom: 20px;
+  z-index: 210;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: rgb(var(--accent-hi, 241, 217, 168));
+  padding: 10px 16px;
+  border: 1px solid rgba(var(--accent, 212, 175, 122), 0.45);
+  border-radius: 999px;
+  background: rgba(15, 10, 20, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+.autoplay-btn:hover {
+  box-shadow: 0 0 18px rgba(var(--accent, 212, 175, 122), 0.35);
+  border-color: rgba(var(--accent, 212, 175, 122), 0.8);
+}
+.autoplay-btn.is-on {
+  box-shadow: 0 0 14px rgba(var(--accent, 212, 175, 122), 0.3);
+}
+@media (max-width: 768px) {
+  .autoplay-btn { right: 14px; bottom: 14px; padding: 8px 13px; }
+  .cinema-bar { height: 5vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #bg3d-front, .cinema-bar, .autoplay-btn { display: none; }
+}
+
+/* ============================================================
+   Interlude — 幕間シーン (全画面の世界 + 巨大タイポ)
+   ============================================================ */
+.interlude {
+  height: 210vh;              /* シーンの尺 (スクロール量) */
+  position: relative;
+  pointer-events: none;
+}
+.interlude-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.interlude-inner {
+  text-align: center;
+  padding: 0 6vw;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.interlude-no {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.5em;
+  color: rgba(var(--accent-hi, 241, 217, 168), 0.75);
+  margin-bottom: 3vh;
+}
+.interlude-no::after {
+  content: "";
+  display: block;
+  width: 1px; height: 34px;
+  margin: 14px auto 0;
+  background: linear-gradient(180deg, rgba(var(--accent, 212, 175, 122), 0.8), transparent);
+}
+.interlude-title {
+  font-family: var(--font-jp);
+  font-weight: 500;
+  font-size: clamp(38px, 8.5vw, 118px);
+  line-height: 1.25;
+  color: var(--ivory);
+  letter-spacing: 0.06em;
+  text-shadow:
+    0 0 34px rgba(var(--accent, 212, 175, 122), 0.35),
+    0 2px 24px rgba(0, 0, 0, 0.65);
+}
+.interlude-title .ich {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em) scale(0.92);
+  filter: blur(6px);
+  transition:
+    opacity 0.6s ease calc(var(--ci, 0) * 0.05s),
+    filter 0.7s ease calc(var(--ci, 0) * 0.05s),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--ci, 0) * 0.05s);
+}
+.interlude.on .interlude-title .ich {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.interlude-sub {
+  margin-top: 3.5vh;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(13px, 1.6vw, 19px);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(var(--accent-hi, 241, 217, 168), 0.85);
+  opacity: 0;
+  transition: opacity 0.9s ease 0.5s;
+}
+.interlude.on .interlude-sub { opacity: 1; }
+
+/* 婚活の幕間はローズに */
+.interlude.tone-rose .interlude-title {
+  color: #f5dfe1;
+  text-shadow:
+    0 0 38px rgba(232, 180, 184, 0.5),
+    0 2px 24px rgba(0, 0, 0, 0.65);
+}
+.interlude.tone-rose .interlude-no,
+.interlude.tone-rose .interlude-sub { color: rgba(232, 180, 184, 0.9); }
+
+@media (max-width: 768px) {
+  .interlude { height: 170vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .interlude { height: auto; }
+  .interlude-inner { opacity: 1 !important; transform: none !important; }
+  .interlude-title .ich { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .interlude-sub { opacity: 1 !important; }
+}
+
+/* ============================================================
+   Cinematic hero — 名前が画面を支配するスケールに
+   ============================================================ */
+.hero-name {
+  font-size: clamp(72px, 12vw, 190px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0.02em;
+}
+.hero-eyebrow {
+  letter-spacing: 0.5em !important;
+}
+
+/* セクションの入退場は scrollfx が opacity/transform を書く */
+main > section { will-change: transform, opacity; }
+
+/* ============================================================
+   Polish pass — 幕間を長く堂々と見せる & 細部調整
+   ============================================================ */
+
+/* 幕間の尺を延長 (完全表示ゾーンが約 1.7 画面分になる) */
+.interlude { height: 300vh; }
+@media (max-width: 768px) { .interlude { height: 230vh; } }
+
+/* タイトル文字は速やかに出揃う (遅延を短く) */
+.interlude-title .ich {
+  transition:
+    opacity 0.5s ease calc(var(--ci, 0) * 0.03s),
+    filter 0.6s ease calc(var(--ci, 0) * 0.03s),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--ci, 0) * 0.03s);
+}
+.interlude-sub { transition: opacity 0.8s ease 0.35s; }
+
+/* タイトルに静かな呼吸 (完全表示の間も生きて見える) */
+.interlude.on .interlude-title {
+  animation: interludeBreath 5s ease-in-out infinite;
+}
+@keyframes interludeBreath {
+  0%, 100% { text-shadow: 0 0 34px rgba(var(--accent, 212, 175, 122), 0.30), 0 2px 24px rgba(0, 0, 0, 0.65); }
+  50%      { text-shadow: 0 0 52px rgba(var(--accent, 212, 175, 122), 0.55), 0 2px 24px rgba(0, 0, 0, 0.65); }
+}
+
+/* 章HUDも少し長く残す */
+.chapter-hud.show { animation: chapterHud 4.6s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .interlude { height: auto; }
+  .interlude.on .interlude-title { animation: none; }
+}
+
+/* ---------- 上映モード (自動再生中は UI を消す) ---------- */
+.nav, .chapter-hud, .scroll-progress {
+  transition: opacity 0.8s ease;
+}
+body.autoplaying .nav {
+  opacity: 0;
+  pointer-events: none;
+}
+body.autoplaying .scroll-progress { opacity: 0.35; }
+body.autoplaying .autoplay-btn { opacity: 0.5; }
+.autoplay-btn { transition: opacity 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease, color 0.4s ease; }
+body.autoplaying .autoplay-btn:hover { opacity: 1; }
+
+/* ---------- 婚活: 年収推移グラフ ---------- */
+.konkatsu-chart {
+  margin: 34px 0 6px;
+  padding: 0;
+}
+.konkatsu-chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.5),
+    0 0 34px rgba(212, 175, 122, 0.07);
+}
+.konkatsu-chart figcaption {
+  margin-top: 12px;
+  text-align: right;
+  font-size: 12.5px;
+  color: var(--text-mute);
+  font-family: var(--font-jp);
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   婚活コーナー演出強化 — ローズの鼓動
+   ============================================================ */
+#konkatsu .konkatsu-unlock-btn {
+  border-color: rgba(232, 180, 184, 0.55);
+  animation: konkatsuPulse 2.6s ease-in-out infinite;
+}
+#konkatsu .konkatsu-unlock-btn:hover {
+  border-color: rgba(232, 180, 184, 0.95);
+  box-shadow: 0 0 30px rgba(232, 180, 184, 0.4);
+  animation-play-state: paused;
+}
+@keyframes konkatsuPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(232, 180, 184, 0.15); }
+  50%      { box-shadow: 0 0 26px rgba(232, 180, 184, 0.42); }
+}
+#konkatsu .konkatsu-panel {
+  border-color: rgba(232, 180, 184, 0.35);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 44px rgba(232, 180, 184, 0.10);
+  animation: konkatsuReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes konkatsuReveal {
+  from { opacity: 0; transform: translateY(26px) scale(0.97); filter: blur(8px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+/* お砂糖募集中カードを主役に */
+#konkatsu .konkatsu-item.alt {
+  border-color: rgba(232, 180, 184, 0.6);
+  background: linear-gradient(160deg, rgba(232, 180, 184, 0.10), rgba(232, 180, 184, 0.03));
+}
+#konkatsu .konkatsu-item.alt .konkatsu-value {
+  color: var(--rose);
+  text-shadow: 0 0 18px rgba(232, 180, 184, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  #konkatsu .konkatsu-unlock-btn { animation: none; }
+  #konkatsu .konkatsu-panel { animation: none; }
+}

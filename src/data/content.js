@@ -21,8 +21,8 @@ export const STATS = [
 
 export const HERO_KONKATSU = {
   tag: "Bonus",
-  title: "VRC婚活コーナー",
-  note: "もうちょっと詳しいプロフィール",
+  title: "お砂糖募集中？？？",
+  note: "一歩踏み込んだプロフィール",
 };
 
 export const PAL = {
@@ -58,32 +58,32 @@ export const GAMES = [
 ];
 
 export const KONKATSU_PROFILE = [
-  { label: "年収", value: "650万円", lines: [
-    "正社員・フルリモ・フルフレックス",
-    "社会人6年目（プロ時代はカウントしてないので、だいたい3年遅れ）",
-  ]},
+  { label: "年収", value: "650万円" },
   { label: "学歴", value: "MARCH卒", lines: ["経済学部"] },
-  { label: "運動神経", value: "かなり良い", lines: [
-    "小中は野球部、ずっとレギュラー",
-    "フットサルは経験者と言われるくらい",
-    "スノボはS字カーブで普通に滑れる",
+  { label: "働き方", value: "フルリモート", lines: [
+    "平日夜も土日祝も、ちゃんと時間が取れます",
   ]},
-  { label: "ゲーム", value: "かなり上手い", lines: [
-    "プロゲーマー経験あり。LoLは最高上位0.02%",
-    "他のゲームもだいたい上位5%くらいまでは行ける",
+  { label: "運動", value: "得意です", lines: [
+    "野球歴6年（ずっとレギュラー）",
+    "フットサル・スノボは今も現役",
   ]},
-  { label: "歌", value: "まあまあ得意", lines: [
-    "カラオケだと「上手いね」って言ってもらえるくらい",
+  { label: "ゲーム", value: "プロ経験あり", lines: [
+    "LoLは最高で上位0.02%",
+    "一緒にゲームしてくれる人だと嬉しい",
   ]},
-  { label: "お砂糖", value: "累計0人", alt: true },
-  { label: "彼女", value: "累計5人", alt: true },
-  { label: "料理・掃除", value: "苦手" },
-  { label: "連絡", value: "返信は遅め", lines: [
-    "こまめな連絡が欲しい人なら、努力します",
+  { label: "歌", value: "カラオケ好き", lines: [
+    "VRCのカラオケワールドによくいます。デュエット歓迎",
   ]},
-  { label: "同棲", value: "経験あり" },
-  { label: "一人暮らし", value: "経験あり" },
-  { label: "その他", value: "聞いてくれたら答えます", lines: [] },
+  { label: "お砂糖", value: "累計０人", alt: true },
+  { label: "彼女", value: "累計5人" },
+  { label: "家事", value: "修行中", lines: [
+    "得意料理を増やしたい。一緒に作ってくれる人歓迎",
+  ]},
+  { label: "連絡", value: "マイペース", lines: [
+    "大事な連絡は早いです。ペースはすり合わせたい派",
+  ]},
+  { label: "生活", value: "一人暮らし、同棲経験あり" },
+  { label: "その他", value: "なんでも聞いてください", lines: [] },
 ];
 
 export const COACH_TIMELINE = [

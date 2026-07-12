@@ -15,14 +15,14 @@ export function KonkatsuSection() {
   return (
     <section id="konkatsu">
       <div className="reveal">
-        <div className="section-label">07 / VRC婚活 — Bonus</div>
+        <div className="section-label">07 / Bonus</div>
         <h2 className="section-title" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
-          VRC<em>婚活</em>コーナー
+          お砂糖<em>募集中？？？</em>
         </h2>
         <div className="section-subtitle konkatsu-teaser">
-          ここまで読んでくれたって、もしかして興味ある…？
+          一歩踏み込んだプロフィール。
           <br />
-          もうちょっと踏み込んだプロフィール。見たくなければスルーでOK！
+          気になった人だけ、覗いてみてください。
         </div>
       </div>
 
@@ -31,7 +31,11 @@ export function KonkatsuSection() {
           <button
             type="button"
             className="konkatsu-unlock-btn"
-            onClick={() => setUnlocked(true)}
+            onClick={() => {
+              setUnlocked(true);
+              // 3D世界に花吹雪バースト
+              window.dispatchEvent(new CustomEvent("konny-burst"));
+            }}
           >
             <span className="konkatsu-unlock-label">詳しく見てみる</span>
             <span className="konkatsu-unlock-arrow">→</span>
@@ -59,6 +63,16 @@ export function KonkatsuSection() {
               </div>
             ))}
           </div>
+          <figure className="konkatsu-chart reveal in-view">
+            <img
+              src="/assets/nenshu-graph.png"
+              alt="年収推移グラフ: 1年目200万から7年目(現在)650万、リーダー昇進で800万、マネージャーで950万の見込み"
+              loading="lazy"
+            />
+            <figcaption>
+              数字は正直に。伸びしろ込みでご検討ください。
+            </figcaption>
+          </figure>
         </div>
       )}
     </section>

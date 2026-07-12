@@ -6,6 +6,7 @@ import { Marquee } from "./components/Marquee.jsx";
 import { HobbiesSection } from "./components/HobbiesSection.jsx";
 import { SectionDivider, FriendCTA, ContactSection } from "./components/Contact.jsx";
 import { CommandPalette } from "./components/CommandPalette.jsx";
+import { Interlude } from "./components/Interlude.jsx";
 
 const GallerySection = lazy(() =>
   import("./components/GallerySection.jsx").then((m) => ({ default: m.GallerySection }))
@@ -87,21 +88,24 @@ export function App() {
           { kind: "muted", text: "Est. 2024 — PCVR / Desktop" },
           { text: "Tarkov Raids" }, { text: "Coaching" },
         ]} />
+        <Interlude no="02" title="好きなものは、多いほうがいい。" sub="Shisha · Snowboard · Poker · Escape Games" scene="hobbies" />
         <HobbiesSection />
+        <Interlude no="03" title="あの夜の光を、集めてある。" sub="VRChat Snapshots · 523 Photos" scene="gallery" />
         <Suspense fallback={<SectionFallback />}>
           <RevealOnMount><GallerySection /></RevealOnMount>
         </Suspense>
-        <SectionDivider />
+        <Interlude no="04" title="ここからは、本気を出す時間。" sub="LoL Challenger · TFT · Tarkov" scene="games" />
         <Suspense fallback={<SectionFallback />}>
           <RevealOnMount><GamesSection /></RevealOnMount>
         </Suspense>
-        <SectionDivider />
+        <Interlude no="05" title="遊びを、仕事にしてきた。" sub="Studio Works · e-sports Coaching" scene="dev" />
         <Suspense fallback={<SectionFallback />}>
           <RevealOnMount><DevSection /></RevealOnMount>
           <RevealOnMount><CareerSection /></RevealOnMount>
+          <Interlude no="06" title="お砂糖募集中？？？" sub="Serious Side · Bonus" tone="rose" scene="konkatsu" />
           <RevealOnMount><KonkatsuSection /></RevealOnMount>
         </Suspense>
-        <SectionDivider />
+        <Interlude no="07" title="夜が明けても、また遊ぼう。" sub="Friend Request Welcome" scene="contact" />
         <FriendCTA />
         <ContactSection />
       </main>

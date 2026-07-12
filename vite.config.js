@@ -155,9 +155,19 @@ export default defineConfig(({ command }) => ({
         { src: "assets", dest: "assets" },
         { src: "gallery-manifest.json", dest: "." },
         { src: "site.config.json", dest: "." },
-        { src: "image-slot.js", dest: "." },
-        { src: "effects.js", dest: "." },
-        { src: "style.css", dest: "." },
+        // JS/CSS は build 時のみコピーする。
+        // dev で含めると static-copy のミドルウェアが Vite の変換より先に
+        // /style.css 等を素の MIME で返してしまい、main.jsx の
+        // `import "../style.css"` が MIME エラーで死んで React が起動しない。
+        ...(command === "build"
+          ? [
+              { src: "image-slot.js", dest: "." },
+              { src: "effects.js", dest: "." },
+              { src: "scrollfx.js", dest: "." },
+              { src: "bg3d.js", dest: "." },
+              { src: "style.css", dest: "." },
+            ]
+          : []),
         { src: "写真/_thumbs/**/*", dest: "写真/_thumbs" },
         { src: "写真/_web/**/*", dest: "写真/_web" },
       ],
