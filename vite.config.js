@@ -152,7 +152,8 @@ export default defineConfig(({ command }) => ({
     konnyHtmlPostPlugin(),
     viteStaticCopy({
       targets: [
-        { src: "assets", dest: "assets" },
+        // 中身だけコピーする（`assets` フォルダごとだと dist/assets/assets/ になる）
+        { src: "assets/*", dest: "assets" },
         { src: "gallery-manifest.json", dest: "." },
         { src: "site.config.json", dest: "." },
         // JS/CSS は build 時のみコピーする。
