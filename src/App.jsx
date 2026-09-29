@@ -20,8 +20,9 @@ const DevSection = lazy(() =>
 const CareerSection = lazy(() =>
   import("./components/CareerSection.jsx").then((m) => ({ default: m.CareerSection }))
 );
-const KonkatsuSection = lazy(() =>
-  import("./components/KonkatsuSection.jsx").then((m) => ({ default: m.KonkatsuSection }))
+
+const DetailedProfile = lazy(() =>
+  import("./components/DetailedProfile.jsx").then(m => ({ default: m.DetailedProfile }))
 );
 
 function SectionFallback() {
@@ -102,11 +103,10 @@ export function App() {
         <Suspense fallback={<SectionFallback />}>
           <RevealOnMount><DevSection /></RevealOnMount>
           <RevealOnMount><CareerSection /></RevealOnMount>
-          <Interlude no="06" title="お砂糖募集中？？？" sub="Serious Side · Bonus" tone="rose" scene="konkatsu" />
-          <RevealOnMount><KonkatsuSection /></RevealOnMount>
         </Suspense>
         <Interlude no="07" title="夜が明けても、また遊ぼう。" sub="Friend Request Welcome" scene="contact" />
         <FriendCTA />
+        <Suspense fallback={<SectionFallback />}><DetailedProfile /></Suspense>
         <ContactSection />
       </main>
       <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />

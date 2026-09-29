@@ -15,7 +15,7 @@ export function KonkatsuSection() {
   return (
     <section id="konkatsu">
       <div className="reveal">
-        <div className="section-label">07 / Bonus</div>
+        <div className="section-label">08 / Bonus</div>
         <h2 className="section-title" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
           お砂糖<em>募集中？？？</em>
         </h2>
@@ -63,16 +63,6 @@ export function KonkatsuSection() {
               </div>
             ))}
           </div>
-          <figure className="konkatsu-chart reveal in-view">
-            <img
-              src="/assets/nenshu-graph.png"
-              alt="年収推移グラフ: 1年目200万から7年目(現在)650万、リーダー昇進で800万、マネージャーで950万の見込み"
-              loading="lazy"
-            />
-            <figcaption>
-              数字は正直に。伸びしろ込みでご検討ください。
-            </figcaption>
-          </figure>
         </div>
       )}
     </section>

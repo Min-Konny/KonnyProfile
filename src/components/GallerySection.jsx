@@ -29,7 +29,7 @@ function GalleryThumb({ item, priority = false }) {
         alt=""
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        fetchPriority={priority ? "high" : "auto"}
+        fetchpriority={priority ? "high" : "auto"}
         onLoad={() => setLoaded(true)}
       />
     </div>

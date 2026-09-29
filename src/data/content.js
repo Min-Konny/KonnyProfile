@@ -58,32 +58,32 @@ export const GAMES = [
 ];
 
 export const KONKATSU_PROFILE = [
-  { label: "年収", value: "650万円" },
-  { label: "学歴", value: "MARCH卒", lines: ["経済学部"] },
-  { label: "働き方", value: "フルリモート", lines: [
-    "平日夜も土日祝も、ちゃんと時間が取れます",
+  { label: "一緒に過ごす時間", value: "平日夜・土日祝", alt: true, lines: [
+    "フルリモート勤務。平日夜も土日祝も時間が取れます",
   ]},
-  { label: "運動", value: "得意です", lines: [
-    "野球歴6年（ずっとレギュラー）",
-    "フットサル・スノボは今も現役",
+  { label: "趣味", value: "お出かけも、おうち時間も", lines: [
+    "美術館・ご飯・旅行から、ゲームやワールド巡りまで",
+    "新しいことも好きなので、気軽に誘ってください",
   ]},
-  { label: "ゲーム", value: "プロ経験あり", lines: [
-    "LoLは最高で上位0.02%",
-    "一緒にゲームしてくれる人だと嬉しい",
+  { label: "運動", value: "体を動かすのが好き", lines: [
+    "野球歴6年。フットサル・スノボは今も楽しんでいます",
   ]},
-  { label: "歌", value: "カラオケ好き", lines: [
+  { label: "ゲーム", value: "プロチームでのコーチ経験", lines: [
+    "LoL・Wild Riftのコーチを4年間担当",
+    "一緒にゲームを楽しめる人だと嬉しいです",
+  ]},
+  { label: "歌", value: "一緒にカラオケ", lines: [
     "VRCのカラオケワールドによくいます。デュエット歓迎",
   ]},
-  { label: "お砂糖", value: "累計０人", alt: true },
-  { label: "彼女", value: "累計5人" },
-  { label: "家事", value: "修行中", lines: [
+  { label: "料理", value: "一緒に楽しみたい", lines: [
     "得意料理を増やしたい。一緒に作ってくれる人歓迎",
   ]},
-  { label: "連絡", value: "マイペース", lines: [
-    "大事な連絡は早いです。ペースはすり合わせたい派",
+  { label: "コミュニケーション", value: "お互いのペースを大切に", lines: [
+    "大事な連絡は早めに。連絡のペースはすり合わせたいです",
   ]},
-  { label: "生活", value: "一人暮らし、同棲経験あり" },
-  { label: "その他", value: "なんでも聞いてください", lines: [] },
+  { label: "暮らし", value: "一人暮らし" },
+  { label: "学歴", value: "MARCH卒", lines: ["経済学部"] },
+  { label: "年収", value: "650万円" },
 ];
 
 export const COACH_TIMELINE = [

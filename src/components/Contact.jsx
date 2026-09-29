@@ -25,7 +25,7 @@ export function FriendCTA() {
         <CornerOrnament className="corner-deco tl"/>
         <CornerOrnament className="corner-deco br"/>
         <div>
-          <div className="section-label" style={{ marginBottom: 14 }}>08 / Say Hi</div>
+          <div className="section-label" style={{ marginBottom: 14 }}>07 / Say Hi</div>
           <h3>気軽に <em>声かけて</em> ください</h3>
           <p>
             趣味が合う人や、PCゲームする人はぜひ一緒に遊びましょう！<br/>

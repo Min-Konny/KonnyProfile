@@ -27,6 +27,17 @@
     });
   }
 
+  function loadScript(url) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = url;
+      s.crossOrigin = "anonymous";
+      s.onload = resolve;
+      s.onerror = () => reject(new Error("load failed: " + url));
+      document.head.appendChild(s);
+    });
+  }
+
   // ---- パレット ----
   const GOLD    = { r: 0.831, g: 0.686, b: 0.478 };
   const GOLD_HI = { r: 0.945, g: 0.851, b: 0.659 };
@@ -174,6 +185,30 @@
     const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, 0.1, 600);
     camera.position.set(0, 6, 0);
 
+    // ============ ブルーム (UnrealBloomPass) — 失敗時は素のレンダリング ============
+    let composer = null, bloomPass = null;
+    if (!isMobile) {
+      const EX = "https://unpkg.com/three@0.128.0/examples/js/";
+      loadScript(EX + "shaders/CopyShader.js")
+        .then(() => loadScript(EX + "shaders/LuminosityHighPassShader.js"))
+        .then(() => loadScript(EX + "postprocessing/EffectComposer.js"))
+        .then(() => loadScript(EX + "postprocessing/RenderPass.js"))
+        .then(() => loadScript(EX + "postprocessing/ShaderPass.js"))
+        .then(() => loadScript(EX + "postprocessing/UnrealBloomPass.js"))
+        .then(() => {
+          renderer.setClearColor(0x0f0a14, 1); // ブルーム時は不透明背景
+          const c = new THREE.EffectComposer(renderer);
+          c.addPass(new THREE.RenderPass(scene, camera));
+          bloomPass = new THREE.UnrealBloomPass(
+            new THREE.Vector2(innerWidth, innerHeight), 0.5, 0.65, 0.6
+          );
+          c.addPass(bloomPass);
+          c.setSize(innerWidth, innerHeight);
+          composer = c;
+        })
+        .catch(() => { composer = null; });
+    }
+
     // ============ 星空 ============
     const starCount = isMobile ? 350 : 800;
     const sgeo = new THREE.BufferGeometry();
@@ -284,6 +319,70 @@
       tiles.push({ mesh, glints, z: z0 });
     }
     for (let i = 0; i < T_N; i++) buildTile(-i * T_D);
+
+    // ============ 湖面 (自作GLSL: 月の道 + 波紋 + きらめき) ============
+    const water = new THREE.Mesh(
+      new THREE.PlaneGeometry(70, SPAN + 120, 1, 1),
+      new THREE.ShaderMaterial({
+        uniforms: THREE.UniformsUtils.merge([
+          THREE.UniformsLib.fog,
+          {
+            uTime: { value: 0 },
+            uMoonX: { value: -30 },
+            uMoonCol: { value: new THREE.Color(1, 0.95, 0.88) },
+            uTint: { value: new THREE.Color(0.83, 0.69, 0.48) },
+          },
+        ]),
+        transparent: true,
+        fog: true,
+        vertexShader: [
+          "varying vec3 vW;",
+          "#include <fog_pars_vertex>",
+          "void main() {",
+          "  vec4 wp = modelMatrix * vec4(position, 1.0);",
+          "  vW = wp.xyz;",
+          "  vec4 mvPosition = viewMatrix * wp;",
+          "  gl_Position = projectionMatrix * mvPosition;",
+          "  #include <fog_vertex>",
+          "}",
+        ].join("\n"),
+        fragmentShader: [
+          "uniform float uTime;",
+          "uniform float uMoonX;",
+          "uniform vec3 uMoonCol;",
+          "uniform vec3 uTint;",
+          "varying vec3 vW;",
+          "#include <fog_pars_fragment>",
+          "float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }",
+          "float vnoise(vec2 p){",
+          "  vec2 i = floor(p), f = fract(p);",
+          "  f = f * f * (3.0 - 2.0 * f);",
+          "  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),",
+          "             mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);",
+          "}",
+          "void main() {",
+          "  vec2 p = vW.xz;",
+          "  float w = vnoise(p * 0.35 + vec2(uTime * 0.24, uTime * 0.18))",
+          "          + vnoise(p * 0.9 - vec2(uTime * 0.30, uTime * 0.22)) * 0.5;",
+          "  float dx = abs(vW.x - uMoonX * 0.35 + (w - 0.75) * 2.2);",
+          "  float road = smoothstep(3.4, 0.1, dx);",
+          "  float dist = cameraPosition.z - vW.z;",
+          "  float zfade = smoothstep(4.0, 70.0, dist);",
+          "  float sparkle = smoothstep(0.74, 0.98, vnoise(p * 2.4 + vec2(uTime * 0.7, -uTime * 0.5)));",
+          "  vec3 col = vec3(0.045, 0.032, 0.070)",
+          "           + uTint * 0.10 * (0.4 + 0.6 * w)",
+          "           + uMoonCol * road * zfade * (0.5 + sparkle * 0.8)",
+          "           + uTint * sparkle * 0.10;",
+          "  gl_FragColor = vec4(col, 0.85);",
+          "  #include <fog_fragment>",
+          "}",
+        ].join("\n"),
+      })
+    );
+    water.rotation.x = -Math.PI / 2;
+    water.position.y = -0.3;
+    scene.add(water);
+    const wu = water.material.uniforms;
 
     // ============ オーロラ (Gallery) ============
     const auroraTex = auroraTexture(THREE);
@@ -451,11 +550,28 @@
         sway: 0.4 + Math.random() * 0.8, ph: Math.random() * Math.PI * 2,
         rx: Math.random() * 0.02 - 0.01, rz: Math.random() * 0.03 - 0.015,
         baseO: 0.35 + Math.random() * 0.4,
+        wk: 1 + Math.random() * 2, // 風の受けやすさ
       };
       if (i % 2 === 0) m.layers.set(1);
       scene.add(m);
       petals.push(m);
     }
+
+    // ============ カーソルの光の軌跡 (前景) ============
+    const trail = [];
+    const TRAIL_N = isMobile ? 0 : 14;
+    for (let i = 0; i < TRAIL_N; i++) {
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: glowTexture(THREE, "rgba(255,240,215,1)", "rgba(241,217,168,0.35)"),
+        transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, fog: false,
+      }));
+      const sc = 0.5 * (1 - i / TRAIL_N) + 0.12;
+      s.scale.set(sc, sc, 1);
+      s.layers.set(1);
+      scene.add(s);
+      trail.push(s);
+    }
+    const trailPos = [];
 
     // ---- 2D パーティクルを置換 ----
     const oldCanvas = document.getElementById("particles-canvas");
@@ -516,6 +632,7 @@
 
     // ---- 入力 ----
     let mx = 0, my = 0;
+    let pmx = 0, pmy = 0, wvx = 0, wvy = 0; // マウスの風
     addEventListener("mousemove", (e) => {
       mx = e.clientX / innerWidth - 0.5;
       my = e.clientY / innerHeight - 0.5;
@@ -525,6 +642,7 @@
       camera.updateProjectionMatrix();
       renderer.setSize(innerWidth, innerHeight);
       renderer2.setSize(innerWidth, innerHeight);
+      if (composer) composer.setSize(innerWidth, innerHeight);
     });
     let running = true;
     document.addEventListener("visibilitychange", () => { running = !document.hidden; });
@@ -568,6 +686,13 @@
       smx += (mx - smx) * 0.04;
       smy += (my - smy) * 0.04;
 
+      // マウスの風 (カーソル速度 → 世界の風)
+      wvx += ((mx - pmx) * 420 - wvx) * 0.1;
+      wvy += ((my - pmy) * 300 - wvy) * 0.1;
+      pmx = mx; pmy = my;
+      const windX = Math.min(8, Math.max(-8, wvx));
+      const windY = Math.min(5, Math.max(-5, -wvy)) * 0.5;
+
       camera.position.z = camZ;
       camera.position.x = Math.sin(camZ * 0.016) * 5 + smx * 2.5;
       camera.position.y = cur.camY + Math.sin(camZ * 0.011) * 1.6 - smy * 1.6;
@@ -597,6 +722,30 @@
       horizon.position.set(0, 4, camZ - 240);
       horizon.material.color.setRGB(cur.glowC.r, cur.glowC.g, cur.glowC.b);
       horizon.material.opacity = 0.32 * cur.glow + Math.sin(t * 0.5) * 0.02;
+
+      // 湖面
+      water.position.z = camZ - SPAN / 2 + 30;
+      water.position.y = -0.3 * cur.amp;
+      wu.uTime.value = t;
+      wu.uMoonX.value = moon.position.x;
+      wu.uMoonCol.value.setRGB(cur.moon.r, cur.moon.g, cur.moon.b);
+      wu.uTint.value.setRGB(cur.tint.r, cur.tint.g, cur.tint.b);
+
+      // カーソルの光の軌跡
+      if (TRAIL_N) {
+        const ndc = new THREE.Vector3(mx * 2, -my * 2, 0.5).unproject(camera);
+        const dir = ndc.sub(camera.position).normalize();
+        trailPos.unshift(camera.position.clone().add(dir.multiplyScalar(9)));
+        if (trailPos.length > TRAIL_N) trailPos.pop();
+        const speed = Math.min(1, Math.hypot(wvx, wvy) * 0.12);
+        for (let i = 0; i < trail.length; i++) {
+          const s = trail[i];
+          const p = trailPos[i];
+          if (p) s.position.copy(p);
+          s.material.opacity = speed * (1 - i / TRAIL_N) * 0.5;
+          s.material.color.setRGB(cur.hi.r, cur.hi.g, cur.hi.b);
+        }
+      }
 
       // 地形: 章ごとに山の高さが変わる + リサイクル
       for (const tl of tiles) {
@@ -684,6 +833,9 @@
         let y = dp.getY(i) + dvel[i] * cur.dust;
         if (y > 26) y = 0;
         dp.setY(i, y);
+        let x = dp.getX(i) + windX * 0.04;
+        if (x > 32) x = -32; else if (x < -32) x = 32;
+        dp.setX(i, x);
         let z = dp.getZ(i);
         if (z > camZ + 6) dp.setZ(i, z - SPAN);
         else if (z < camZ - SPAN + 6) dp.setZ(i, z + SPAN);
@@ -700,7 +852,11 @@
         while (z > camZ + 6) z -= SPAN;
         while (z < camZ - SPAN + 6) z += SPAN;
         u.z = z;
-        p.position.set(u.bx + Math.sin(t * u.sway + u.ph) * 2.2, u.y, z);
+        p.position.set(
+          u.bx + Math.sin(t * u.sway + u.ph) * 2.2 + windX * u.wk * 0.35,
+          u.y + windY * u.wk * 0.2,
+          z
+        );
         p.rotation.x += u.rx;
         p.rotation.z += u.rz;
         p.rotation.y = Math.sin(t * u.sway * 0.7 + u.ph) * 0.8;
@@ -708,9 +864,15 @@
       }
 
       camera.layers.set(0);
-      renderer.render(scene, camera);
+      if (composer) {
+        // 章の光量とキックでブルームが呼吸する
+        bloomPass.strength = 0.32 + cur.glow * 0.22 + kick * 0.5 + burst * 0.4;
+        composer.render();
+      } else {
+        renderer.render(scene, camera); // 背景 (丘・星・月など)
+      }
       camera.layers.set(1);
-      renderer2.render(scene, camera);
+      renderer2.render(scene, camera);  // 前景 (花びら・ボケ玉の一部)
       camera.layers.set(0);
     }
     tick();

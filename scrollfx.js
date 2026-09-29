@@ -147,7 +147,6 @@
   // ---------- rAF ----------
   let lastY = window.scrollY;
   let vel = 0, skew = 0, cine = 0;
-  let heroDone = false;
 
   function frame() {
     const y = window.scrollY;
@@ -183,71 +182,12 @@
     cineTop.style.transform = `scaleY(${cine.toFixed(3)})`;
     cineBot.style.transform = `scaleY(${cine.toFixed(3)})`;
 
-    // hero scrub-out
-    const hero = document.getElementById("hero");
-    if (hero) {
-      const grid = hero.querySelector(".hero-grid");
-      const hint = hero.querySelector(".hero-scroll");
-      const range = Math.max(hero.offsetHeight * 0.85, 1);
-      const p = clamp(y / range, 0, 1);
-      if (p < 1 || !heroDone) {
-        if (grid) {
-          grid.style.transform = `translateY(${(p * 70).toFixed(1)}px) scale(${(1 - p * 0.06).toFixed(3)})`;
-          grid.style.opacity = clamp(1 - p * 1.15, 0, 1).toFixed(3);
-        }
-        if (hint) hint.style.opacity = clamp(1 - p * 3, 0, 1).toFixed(3);
-        const av = hero.querySelector(".hero-avatar");
-        if (av && !isMobile) {
-          av.style.transform = `translateY(${(p * -46).toFixed(1)}px) rotate(${(p * 2.5).toFixed(2)}deg)`;
-        }
-        heroDone = p >= 1;
-      }
-    }
-
-    // 幕間シーン: 巨大タイポが世界の上に現れて消える
-    // 入場 0〜22% / 完全表示 22〜82% / 退場 82〜100% — 長く見せる
-    let interludeHold = false;
-    document.querySelectorAll(".interlude").forEach((w) => {
-      const r = w.getBoundingClientRect();
-      if (r.top > vh || r.bottom < 0) {
-        w.classList.remove("on");
-        return;
-      }
-      const total = Math.max(r.height - vh, 1);
-      const p = clamp(-r.top / total, 0, 1);
-      const inner = w.querySelector(".interlude-inner");
-      if (!inner) return;
-      const aIn = ease(clamp(p / 0.22, 0, 1));
-      const aOut = ease(clamp((p - 0.82) / 0.18, 0, 1));
-      inner.style.opacity = (aIn * (1 - aOut)).toFixed(3);
-      const sc = 0.94 + aIn * 0.06 + aOut * 0.08;
-      const ty = (1 - aIn) * 44 - aOut * 44;
-      inner.style.transform = `translateY(${ty.toFixed(1)}px) scale(${sc.toFixed(3)})`;
-      w.classList.toggle("on", p > 0.03 && p < 0.97);
-      if (p > 0.1 && p < 0.9) interludeHold = true;
+    // Compact interludes remain readable throughout scrolling.
+    document.querySelectorAll(".interlude").forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      element.classList.toggle("on", rect.top < vh && rect.bottom > 0);
     });
-    window.__interludeHold = interludeHold;
-
-    // セクションは静かに入退場 (フェード + 僅かな上下)
-    document.querySelectorAll("main > section").forEach((s) => {
-      if (s.id === "hero") return;
-      const r = s.getBoundingClientRect();
-      if (r.bottom < -120 || r.top > vh + 120) {
-        if (s.dataset.fx) { s.style.opacity = ""; s.style.transform = ""; delete s.dataset.fx; }
-        return;
-      }
-      const eIn = ease(clamp((vh - r.top) / (vh * 0.55), 0, 1));
-      const eOut = ease(clamp(r.bottom / (vh * 0.55), 0, 1));
-      const tIn = 1 - eIn, tOut = 1 - eOut;
-      if (tIn < 0.004 && tOut < 0.004) {
-        if (s.dataset.fx) { s.style.opacity = ""; s.style.transform = ""; delete s.dataset.fx; }
-        return;
-      }
-      s.dataset.fx = "1";
-      const ty = tIn * 40 - tOut * 30;
-      s.style.transform = `translateY(${ty.toFixed(1)}px)`;
-      s.style.opacity = (1 - Math.max(tIn, tOut) * 0.9).toFixed(3);
-    });
+    window.__interludeHold = false;
 
     // section title parallax
     if (!isMobile) {
