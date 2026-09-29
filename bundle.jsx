@@ -38,7 +38,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   ));
 
   // src/data/content.js
-  var PROFILE, STATS, HERO_KONKATSU, PAL, GAMES, KONKATSU_PROFILE, COACH_TIMELINE, PROJECTS, HOBBIES, NAV;
+  var PROFILE, STATS, PAL, GAMES, COACH_TIMELINE, PROJECTS, HOBBIES, NAV;
   var init_content = __esm({
     "src/data/content.js"() {
       PROFILE = {
@@ -60,11 +60,6 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         { label: "LANGUAGES", value: "\u65E5\u672C\u8A9E", unit: "/ENG" },
         { label: "PLATFORM", value: "PCVR", unit: "" }
       ];
-      HERO_KONKATSU = {
-        tag: "Bonus",
-        title: "VRC\u5A5A\u6D3B\u30B3\u30FC\u30CA\u30FC",
-        note: "\u3082\u3046\u3061\u3087\u3063\u3068\u8A73\u3057\u3044\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB"
-      };
       PAL = {
         gold: "#d4af7a",
         goldHi: "#f1d9a8",
@@ -142,34 +137,6 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           a2: PAL.rose,
           tag: "VARIETY"
         }
-      ];
-      KONKATSU_PROFILE = [
-        { label: "\u5E74\u53CE", value: "650\u4E07\u5186", lines: [
-          "\u6B63\u793E\u54E1\u30FB\u30D5\u30EB\u30EA\u30E2\u30FB\u30D5\u30EB\u30D5\u30EC\u30C3\u30AF\u30B9",
-          "\u793E\u4F1A\u4EBA6\u5E74\u76EE\uFF08\u30D7\u30ED\u6642\u4EE3\u306F\u30AB\u30A6\u30F3\u30C8\u3057\u3066\u306A\u3044\u306E\u3067\u3001\u3060\u3044\u305F\u30443\u5E74\u9045\u308C\uFF09"
-        ] },
-        { label: "\u5B66\u6B74", value: "MARCH\u5352", lines: ["\u7D4C\u6E08\u5B66\u90E8"] },
-        { label: "\u904B\u52D5\u795E\u7D4C", value: "\u304B\u306A\u308A\u826F\u3044", lines: [
-          "\u5C0F\u4E2D\u306F\u91CE\u7403\u90E8\u3001\u305A\u3063\u3068\u30EC\u30AE\u30E5\u30E9\u30FC",
-          "\u30D5\u30C3\u30C8\u30B5\u30EB\u306F\u7D4C\u9A13\u8005\u3068\u8A00\u308F\u308C\u308B\u304F\u3089\u3044",
-          "\u30B9\u30CE\u30DC\u306FS\u5B57\u30AB\u30FC\u30D6\u3067\u666E\u901A\u306B\u6ED1\u308C\u308B"
-        ] },
-        { label: "\u30B2\u30FC\u30E0", value: "\u304B\u306A\u308A\u4E0A\u624B\u3044", lines: [
-          "\u30D7\u30ED\u30B2\u30FC\u30DE\u30FC\u7D4C\u9A13\u3042\u308A\u3002LoL\u306F\u6700\u9AD8\u4E0A\u4F4D0.02%",
-          "\u4ED6\u306E\u30B2\u30FC\u30E0\u3082\u3060\u3044\u305F\u3044\u4E0A\u4F4D5%\u304F\u3089\u3044\u307E\u3067\u306F\u884C\u3051\u308B"
-        ] },
-        { label: "\u6B4C", value: "\u307E\u3042\u307E\u3042\u5F97\u610F", lines: [
-          "\u30AB\u30E9\u30AA\u30B1\u3060\u3068\u300C\u4E0A\u624B\u3044\u306D\u300D\u3063\u3066\u8A00\u3063\u3066\u3082\u3089\u3048\u308B\u304F\u3089\u3044"
-        ] },
-        { label: "\u304A\u7802\u7CD6", value: "\u7D2F\u8A080\u4EBA", alt: true },
-        { label: "\u5F7C\u5973", value: "\u7D2F\u8A085\u4EBA", alt: true },
-        { label: "\u6599\u7406\u30FB\u6383\u9664", value: "\u82E6\u624B" },
-        { label: "\u9023\u7D61", value: "\u8FD4\u4FE1\u306F\u9045\u3081", lines: [
-          "\u3053\u307E\u3081\u306A\u9023\u7D61\u304C\u6B32\u3057\u3044\u4EBA\u306A\u3089\u3001\u52AA\u529B\u3057\u307E\u3059"
-        ] },
-        { label: "\u540C\u68F2", value: "\u7D4C\u9A13\u3042\u308A" },
-        { label: "\u4E00\u4EBA\u66AE\u3089\u3057", value: "\u7D4C\u9A13\u3042\u308A" },
-        { label: "\u305D\u306E\u4ED6", value: "\u805E\u3044\u3066\u304F\u308C\u305F\u3089\u7B54\u3048\u307E\u3059", lines: [] }
       ];
       COACH_TIMELINE = [
         {
@@ -314,37 +281,6 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     }
   });
 
-  // src/components/Ornaments.jsx
-  function CornerOrnament({ className }) {
-    return /* @__PURE__ */ React.createElement("svg", { className, viewBox: "0 0 64 64", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 2 L26 2 M2 2 L2 26", stroke: "currentColor", strokeWidth: "0.8", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M8 2 Q8 8 14 8 M2 8 Q8 8 8 14", stroke: "currentColor", strokeWidth: "0.8", fill: "none", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "14", cy: "14", r: "1.5", fill: "currentColor" }), /* @__PURE__ */ React.createElement("path", { d: "M14 14 Q24 14 24 24", stroke: "currentColor", strokeWidth: "0.6", fill: "none", opacity: "0.7" }), /* @__PURE__ */ React.createElement("circle", { cx: "24", cy: "24", r: "1", fill: "currentColor", opacity: "0.7" }), /* @__PURE__ */ React.createElement("path", { d: "M4 18 Q4 24 10 24", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }), /* @__PURE__ */ React.createElement("path", { d: "M18 4 Q24 4 24 10", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }));
-  }
-  function AvatarFiligree() {
-    return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 200", fill: "none" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "ringG", x1: "0", y1: "0", x2: "1", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#d4af7a" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#a47e4a" }))), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "96", stroke: "url(#ringG)", strokeWidth: "0.6", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "92", stroke: "url(#ringG)", strokeWidth: "0.3", fill: "none", strokeDasharray: "1 4" }), Array.from({ length: 24 }).map((_, i) => {
-      const a = i / 24 * Math.PI * 2;
-      const r1 = 88, r2 = i % 2 === 0 ? 82 : 85;
-      const x1 = 100 + Math.cos(a) * r1, y1 = 100 + Math.sin(a) * r1;
-      const x2 = 100 + Math.cos(a) * r2, y2 = 100 + Math.sin(a) * r2;
-      return /* @__PURE__ */ React.createElement("line", { key: i, x1, y1, x2, y2, stroke: "url(#ringG)", strokeWidth: i % 6 === 0 ? 1.2 : 0.5 });
-    }), [0, 90, 180, 270].map((deg) => {
-      const a = deg / 360 * Math.PI * 2;
-      const x = 100 + Math.cos(a) * 96;
-      const y = 100 + Math.sin(a) * 96;
-      return /* @__PURE__ */ React.createElement("g", { key: deg, transform: `translate(${x}, ${y}) rotate(${deg + 90} 0 0)` }, /* @__PURE__ */ React.createElement("path", { d: "M-4 0 L0 -6 L4 0 Z", fill: "url(#ringG)", opacity: "0.9" }));
-    }));
-  }
-  function AvatarFiligree2() {
-    return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 200", fill: "none" }, /* @__PURE__ */ React.createElement("circle", { cx: "100", cy: "100", r: "98", stroke: "#d4af7a", strokeWidth: "0.3", fill: "none", opacity: "0.4" }), Array.from({ length: 60 }).map((_, i) => {
-      const a = i / 60 * Math.PI * 2;
-      const x = 100 + Math.cos(a) * 98;
-      const y = 100 + Math.sin(a) * 98;
-      return /* @__PURE__ */ React.createElement("circle", { key: i, cx: x, cy: y, r: "0.5", fill: "#f1d9a8", opacity: i % 5 === 0 ? 1 : 0.4 });
-    }));
-  }
-  var init_Ornaments = __esm({
-    "src/components/Ornaments.jsx"() {
-    }
-  });
-
   // src/lib/gallery.js
   function shuffleArrayInPlace(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -418,10 +354,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     GallerySection: () => GallerySection
   });
   function GalleryThumb({ item, priority = false }) {
-    const [loaded, setLoaded] = (0, import_react8.useState)(false);
-    const imgRef = (0, import_react8.useRef)(null);
+    const [loaded, setLoaded] = (0, import_react7.useState)(false);
+    const imgRef = (0, import_react7.useRef)(null);
     const src = galleryThumbSrc(item);
-    (0, import_react8.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       setLoaded(false);
       const img = imgRef.current;
       if (img?.complete && img.naturalWidth > 0) setLoaded(true);
@@ -434,7 +370,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         alt: "",
         loading: priority ? "eager" : "lazy",
         decoding: "async",
-        fetchPriority: priority ? "high" : "auto",
+        fetchpriority: priority ? "high" : "auto",
         onLoad: () => setLoaded(true)
       }
     ));
@@ -465,14 +401,14 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     ))), /* @__PURE__ */ React.createElement("button", { type: "button", className: "gp-btn", disabled: page >= totalPages, onClick: () => onPage(page + 1) }, "\u6B21\u3078"), /* @__PURE__ */ React.createElement("span", { className: "gallery-pager-meta" }, start, "\u2013", end, " / ", total, " \u679A \xB7 ", totalPages, " \u30DA\u30FC\u30B8"));
   }
   function GallerySection() {
-    const [manifest, setManifest] = (0, import_react8.useState)(null);
-    const [loadErr, setLoadErr] = (0, import_react8.useState)(null);
-    const [folder, setFolder] = (0, import_react8.useState)("ALL");
-    const [page, setPage] = (0, import_react8.useState)(1);
-    const [pageSize, setPageSize] = (0, import_react8.useState)(11);
-    const [shuffleNonce, setShuffleNonce] = (0, import_react8.useState)(0);
-    const [lightbox, setLightbox] = (0, import_react8.useState)(null);
-    (0, import_react8.useEffect)(() => {
+    const [manifest, setManifest] = (0, import_react7.useState)(null);
+    const [loadErr, setLoadErr] = (0, import_react7.useState)(null);
+    const [folder, setFolder] = (0, import_react7.useState)("ALL");
+    const [page, setPage] = (0, import_react7.useState)(1);
+    const [pageSize, setPageSize] = (0, import_react7.useState)(11);
+    const [shuffleNonce, setShuffleNonce] = (0, import_react7.useState)(0);
+    const [lightbox, setLightbox] = (0, import_react7.useState)(null);
+    (0, import_react7.useEffect)(() => {
       let cancelled = false;
       fetch("gallery-manifest.json").then((r) => {
         if (!r.ok) throw new Error(String(r.status));
@@ -492,17 +428,17 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         cancelled = true;
       };
     }, []);
-    const shuffledAllItems = (0, import_react8.useMemo)(() => {
+    const shuffledAllItems = (0, import_react7.useMemo)(() => {
       if (!manifest?.items) return [];
       const a = manifest.items.slice();
       shuffleArrayInPlace(a);
       return a;
     }, [manifest, shuffleNonce]);
-    const folderOrder = (0, import_react8.useMemo)(() => {
+    const folderOrder = (0, import_react7.useMemo)(() => {
       if (manifest?.folderOrder && Array.isArray(manifest.folderOrder)) return manifest.folderOrder;
       return GALLERY_FOLDER_ORDER;
     }, [manifest]);
-    const counts = (0, import_react8.useMemo)(() => {
+    const counts = (0, import_react7.useMemo)(() => {
       const c = {};
       if (!manifest?.items) return c;
       manifest.items.forEach((it) => {
@@ -510,7 +446,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       });
       return c;
     }, [manifest]);
-    const itemsByCategory = (0, import_react8.useMemo)(() => {
+    const itemsByCategory = (0, import_react7.useMemo)(() => {
       const m = {};
       if (!manifest?.items) return m;
       for (const it of manifest.items) {
@@ -522,14 +458,14 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       }
       return m;
     }, [manifest]);
-    const filtered = (0, import_react8.useMemo)(() => {
+    const filtered = (0, import_react7.useMemo)(() => {
       if (!manifest?.items) return [];
       if (folder === "ALL") return shuffledAllItems;
       return itemsByCategory[folder] || [];
     }, [manifest, folder, shuffledAllItems, itemsByCategory]);
     const totalPages = filtered.length === 0 ? 0 : Math.ceil(filtered.length / pageSize);
     const safePage = totalPages === 0 ? 1 : Math.min(Math.max(1, page), totalPages);
-    const pageItems = (0, import_react8.useMemo)(() => {
+    const pageItems = (0, import_react7.useMemo)(() => {
       if (totalPages === 0) return [];
       const start = (safePage - 1) * pageSize;
       return filtered.slice(start, start + pageSize);
@@ -540,7 +476,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       const idx = list.findIndex((x) => x.id === item.id);
       if (idx >= 0) setLightbox({ list, idx });
     }
-    (0, import_react8.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       if (!lightbox) return;
       function onKey(e) {
         if (e.key === "Escape") setLightbox(null);
@@ -566,16 +502,16 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         window.removeEventListener("keydown", onKey);
       };
     }, [lightbox]);
-    (0, import_react8.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       if (pageItems.length) prefetchThumbs(pageItems, pageItems.length);
     }, [folder, safePage, pageItems]);
-    (0, import_react8.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       setPage(1);
     }, [folder, pageSize]);
-    (0, import_react8.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       if (totalPages > 0 && page > totalPages) setPage(totalPages);
     }, [page, totalPages]);
-    (0, import_react8.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       if (!manifest) return;
       window.observeReveal?.();
       const id = setTimeout(() => window.observeReveal?.(), 100);
@@ -731,10 +667,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       /* @__PURE__ */ React.createElement("div", { className: "gallery-lightbox-cap", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement("span", { className: "g-label" }, lightboxItem.category), /* @__PURE__ */ React.createElement("span", { className: "g-file" }, lightboxItem.file), /* @__PURE__ */ React.createElement("span", { className: "gallery-lightbox-pos" }, lightbox.idx + 1, " / ", lightboxList.length))
     ));
   }
-  var import_react8;
+  var import_react7;
   var init_GallerySection = __esm({
     "src/components/GallerySection.jsx"() {
-      import_react8 = __require("react");
+      import_react7 = __require("react");
       init_gallery();
     }
   });
@@ -745,7 +681,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     GamesSection: () => GamesSection
   });
   function GameCard({ g }) {
-    const [hover, setHover] = (0, import_react9.useState)(false);
+    const [hover, setHover] = (0, import_react8.useState)(false);
     return /* @__PURE__ */ React.createElement(
       "article",
       {
@@ -767,10 +703,10 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   function GamesSection() {
     return /* @__PURE__ */ React.createElement("section", { id: "games" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "04 / Games \u2014 \u4E00\u7DD2\u306B\u30D7\u30EC\u30A4"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u3088\u304F\u904A\u3076 ", /* @__PURE__ */ React.createElement("em", null, "\u30B2\u30FC\u30E0")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u521D\u5FC3\u8005\u6B53\u8FCE\u30FB\u4E00\u7DD2\u306B\u3084\u308C\u308B\u4EBA\u52DF\u96C6\u4E2D\uFF01\uFF01", /* @__PURE__ */ React.createElement("br", null), "VALORANT \u3068\u304B Overwatch\uFF08OW\uFF09\u3082\u3084\u3063\u3066\u308B\u3088\u3002")), /* @__PURE__ */ React.createElement("div", { className: "game-grid" }, GAMES.map((g) => /* @__PURE__ */ React.createElement(GameCard, { key: g.code, g }))));
   }
-  var import_react9;
+  var import_react8;
   var init_GamesSection = __esm({
     "src/components/GamesSection.jsx"() {
-      import_react9 = __require("react");
+      import_react8 = __require("react");
       init_content();
     }
   });
@@ -806,41 +742,47 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     }
   });
 
-  // src/components/KonkatsuSection.jsx
-  var KonkatsuSection_exports = {};
-  __export(KonkatsuSection_exports, {
-    KonkatsuSection: () => KonkatsuSection
+  // src/components/DetailedProfile.jsx
+  var DetailedProfile_exports = {};
+  __export(DetailedProfile_exports, {
+    DetailedProfile: () => DetailedProfile
   });
-  function KonkatsuSection() {
-    const [unlocked, setUnlocked] = (0, import_react10.useState)(false);
-    (0, import_react10.useEffect)(() => {
-      if (!unlocked) return;
-      window.observeReveal?.();
-      const id = setTimeout(() => window.observeReveal?.(), 120);
-      return () => clearTimeout(id);
-    }, [unlocked]);
-    return /* @__PURE__ */ React.createElement("section", { id: "konkatsu" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "07 / VRC\u5A5A\u6D3B \u2014 Bonus"), /* @__PURE__ */ React.createElement("h2", { className: "section-title", style: { fontSize: "clamp(28px, 4vw, 48px)" } }, "VRC", /* @__PURE__ */ React.createElement("em", null, "\u5A5A\u6D3B"), "\u30B3\u30FC\u30CA\u30FC"), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle konkatsu-teaser" }, "\u3053\u3053\u307E\u3067\u8AAD\u3093\u3067\u304F\u308C\u305F\u3063\u3066\u3001\u3082\u3057\u304B\u3057\u3066\u8208\u5473\u3042\u308B\u2026\uFF1F", /* @__PURE__ */ React.createElement("br", null), "\u3082\u3046\u3061\u3087\u3063\u3068\u8E0F\u307F\u8FBC\u3093\u3060\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3002\u898B\u305F\u304F\u306A\u3051\u308C\u3070\u30B9\u30EB\u30FC\u3067OK\uFF01")), !unlocked ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-gate reveal" }, /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        type: "button",
-        className: "konkatsu-unlock-btn",
-        onClick: () => setUnlocked(true)
-      },
-      /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-label" }, "\u8A73\u3057\u304F\u898B\u3066\u307F\u308B"),
-      /* @__PURE__ */ React.createElement("span", { className: "konkatsu-unlock-arrow" }, "\u2192")
-    ), /* @__PURE__ */ React.createElement("p", { className: "konkatsu-gate-note" }, "\u30AF\u30EA\u30C3\u30AF\u3067\u8A73\u7D30\u3092\u8868\u793A")) : /* @__PURE__ */ React.createElement("div", { className: "konkatsu-panel reveal in-view" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tr" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco bl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-grid" }, KONKATSU_PROFILE.map((item) => /* @__PURE__ */ React.createElement("div", { className: `konkatsu-item ${item.alt ? "alt" : ""}`, key: item.label }, /* @__PURE__ */ React.createElement("div", { className: "konkatsu-label" }, item.label), /* @__PURE__ */ React.createElement("div", { className: "konkatsu-value" }, item.value), item.lines?.length ? /* @__PURE__ */ React.createElement("div", { className: "konkatsu-lines" }, item.lines.map((line, i) => /* @__PURE__ */ React.createElement("span", { key: i }, line, i < item.lines.length - 1 ? /* @__PURE__ */ React.createElement("br", null) : null))) : null)))));
+  function IncomeChart() {
+    const x = (i) => 66 + i * 94;
+    const y = (value) => 308 - value * 0.25;
+    const points = INCOME.map((item, i) => `${x(i)},${y(item.value)}`);
+    return /* @__PURE__ */ React.createElement("figure", { className: "detail-income" }, /* @__PURE__ */ React.createElement("div", { className: "detail-chart-heading" }, /* @__PURE__ */ React.createElement("h3", null, "\u5E74\u53CE\u306E\u63A8\u79FB"), /* @__PURE__ */ React.createElement("span", null, "\u5358\u4F4D\uFF1A\u4E07\u5186")), /* @__PURE__ */ React.createElement("p", { className: "detail-chart-legend" }, /* @__PURE__ */ React.createElement("span", null, "\u2500 \u5B9F\u7E3E"), /* @__PURE__ */ React.createElement("span", null, "\u2504 \u6607\u9032\u6642\u306E\u898B\u8FBC\u307F")), /* @__PURE__ */ React.createElement("div", { className: "detail-chart-scroll", role: "region", "aria-label": "\u5E74\u53CE\u63A8\u79FB\u30B0\u30E9\u30D5\u3002\u6A2A\u306B\u30B9\u30AF\u30ED\u30FC\u30EB\u3067\u304D\u307E\u3059", tabIndex: 0 }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 900 380", role: "img", "aria-labelledby": "income-title income-description" }, /* @__PURE__ */ React.createElement("title", { id: "income-title" }, "\u5E74\u53CE\u63A8\u79FB\uFF1A\u73FE\u5728650\u4E07\u5186"), /* @__PURE__ */ React.createElement("desc", { id: "income-description" }, INCOME.map((item) => `${item.year} ${item.value}\u4E07\u5186${item.projected ? "\uFF08\u6607\u9032\u6642\u306E\u898B\u8FBC\u307F\uFF09" : ""}`).join("\u3001")), [200, 400, 600, 800, 1e3].map((value) => /* @__PURE__ */ React.createElement("g", { key: value }, /* @__PURE__ */ React.createElement("line", { x1: "48", x2: "855", y1: y(value), y2: y(value), className: "detail-gridline" }), /* @__PURE__ */ React.createElement("text", { x: "36", y: y(value) + 4, textAnchor: "end", className: "detail-axis" }, value))), /* @__PURE__ */ React.createElement("polyline", { points: points.slice(0, 7).join(" "), className: "detail-income-line" }), /* @__PURE__ */ React.createElement("polyline", { points: points.slice(6).join(" "), className: "detail-income-line projected" }), INCOME.map((item, i) => /* @__PURE__ */ React.createElement("g", { key: item.year }, i === 6 && /* @__PURE__ */ React.createElement("circle", { cx: x(i), cy: y(item.value), r: "11", className: "detail-current-ring" }), /* @__PURE__ */ React.createElement("circle", { cx: x(i), cy: y(item.value), r: "5", className: item.projected ? "detail-dot projected" : "detail-dot" }), /* @__PURE__ */ React.createElement("text", { x: x(i), y: y(item.value) - 17, textAnchor: "middle", className: "detail-value" }, item.value, "\u4E07"), item.note && /* @__PURE__ */ React.createElement("text", { x: x(i), y: y(item.value) + 25, textAnchor: "middle", className: "detail-axis" }, item.note), /* @__PURE__ */ React.createElement("text", { x: x(i), y: "342", textAnchor: "middle", className: "detail-axis" }, item.year))))), /* @__PURE__ */ React.createElement("figcaption", null, "7\u5E74\u76EE\u307E\u3067\u304C\u5B9F\u7E3E\u3067\u3059\u30028\u5E74\u76EE\u4EE5\u964D\u306E800\u4E07\u5186\u30FB950\u4E07\u5186\u306F\u3001\u6607\u9032\u3057\u305F\u5834\u5408\u306E\u898B\u8FBC\u307F\u3067\u3059\u3002"));
   }
-  var import_react10;
-  var init_KonkatsuSection = __esm({
-    "src/components/KonkatsuSection.jsx"() {
-      import_react10 = __require("react");
-      init_content();
-      init_Ornaments();
+  function DetailedProfile() {
+    const [open, setOpen] = (0, import_react9.useState)(false);
+    return /* @__PURE__ */ React.createElement("section", { id: "profile-details", className: "detailed-profile" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "08 / A little more"), /* @__PURE__ */ React.createElement("h2", { className: "section-title in-view" }, "\u3082\u3046\u5C11\u3057\u8A73\u3057\u3044", /* @__PURE__ */ React.createElement("em", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB")), /* @__PURE__ */ React.createElement("p", { className: "section-subtitle" }, "\u5B66\u3093\u3067\u304D\u305F\u3053\u3068\u3001\u3053\u308C\u307E\u3067\u306E\u4ED5\u4E8B\u3002\u6C17\u306B\u306A\u3063\u305F\u65B9\u306F\u3053\u3061\u3089\u304B\u3089\u3002"), /* @__PURE__ */ React.createElement("button", { type: "button", className: "detail-profile-toggle", "aria-expanded": open, "aria-controls": "profile-details-panel", onClick: () => setOpen((value) => !value) }, /* @__PURE__ */ React.createElement("span", null, open ? "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u9589\u3058\u308B" : "\u8A73\u3057\u3044\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u898B\u308B"), /* @__PURE__ */ React.createElement("span", { "aria-hidden": "true" }, open ? "\u2212" : "\uFF0B")), /* @__PURE__ */ React.createElement("div", { id: "profile-details-panel", hidden: !open }, open && /* @__PURE__ */ React.createElement("div", { className: "detail-profile-content" }, /* @__PURE__ */ React.createElement("div", { className: "detail-background-grid" }, /* @__PURE__ */ React.createElement("article", { className: "detail-background-card" }, /* @__PURE__ */ React.createElement("span", { className: "detail-kicker" }, "EDUCATION"), /* @__PURE__ */ React.createElement("h3", null, "\u5B66\u6B74"), /* @__PURE__ */ React.createElement("p", { className: "detail-education" }, "MARCH\u5352"), /* @__PURE__ */ React.createElement("p", null, "\u7D4C\u6E08\u5B66\u90E8")), /* @__PURE__ */ React.createElement("article", { className: "detail-background-card" }, /* @__PURE__ */ React.createElement("span", { className: "detail-kicker" }, "CAREER"), /* @__PURE__ */ React.createElement("h3", null, "\u8077\u6B74"), /* @__PURE__ */ React.createElement("ol", { className: "detail-career-list" }, CAREER.map(([period, workplace]) => /* @__PURE__ */ React.createElement("li", { key: period }, /* @__PURE__ */ React.createElement("span", null, period), /* @__PURE__ */ React.createElement("strong", null, workplace)))))), /* @__PURE__ */ React.createElement(IncomeChart, null))));
+  }
+  var import_react9, INCOME, CAREER;
+  var init_DetailedProfile = __esm({
+    "src/components/DetailedProfile.jsx"() {
+      import_react9 = __require("react");
+      INCOME = [
+        { year: "1\u5E74\u76EE", value: 200 },
+        { year: "2\u5E74\u76EE", value: 200 },
+        { year: "3\u5E74\u76EE", value: 350 },
+        { year: "4\u5E74\u76EE", value: 400 },
+        { year: "5\u5E74\u76EE", value: 500 },
+        { year: "6\u5E74\u76EE", value: 600 },
+        { year: "7\u5E74\u76EE", value: 650, note: "\u73FE\u5728" },
+        { year: "8\u5E74\u76EE", value: 800, note: "\u30EA\u30FC\u30C0\u30FC", projected: true },
+        { year: "9\u301C10\u5E74\u76EE", value: 950, note: "\u30DE\u30CD\u30FC\u30B8\u30E3\u30FC", projected: true }
+      ];
+      CAREER = [
+        ["1\u301C2\u5E74\u76EE", "LoL\u3067\u77E5\u308A\u5408\u3063\u305F\u65B9\u306E\u4F1A\u793E"],
+        ["3\u5E74\u76EE", "\u8EE2\u8077\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8 / FE"],
+        ["4\u301C6\u5E74\u76EE", "QA\u30D9\u30F3\u30C0\u30FC"],
+        ["7\u5E74\u76EE\u301C\u73FE\u5728", "\u4E8B\u696D\u4F1A\u793E / QA"]
+      ];
     }
   });
 
   // src/App.jsx
-  var import_react11 = __require("react");
+  var import_react10 = __require("react");
   init_content();
 
   // src/components/Nav.jsx
@@ -887,80 +829,53 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   }
 
   // src/components/Hero.jsx
-  var import_react3 = __require("react");
-  init_content();
-
-  // src/hooks/useTyping.js
   var import_react2 = __require("react");
-  function useTyping(lines, speed = 32, lineDelay = 700) {
-    const [out, setOut] = (0, import_react2.useState)("");
-    const [done, setDone] = (0, import_react2.useState)(false);
-    (0, import_react2.useEffect)(() => {
-      let cancelled = false;
-      let i = 0, j = 0;
-      let acc = "";
-      function step() {
-        if (cancelled) return;
-        if (i >= lines.length) {
-          setDone(true);
-          return;
-        }
-        const line = lines[i];
-        if (j <= line.length) {
-          setOut(acc + line.slice(0, j));
-          j++;
-          setTimeout(step, speed);
-        } else {
-          acc += line + "\n";
-          i++;
-          j = 0;
-          setTimeout(step, lineDelay);
-        }
-      }
-      step();
-      return () => {
-        cancelled = true;
-      };
-    }, [lines, speed, lineDelay]);
-    return { out, done };
-  }
-
-  // src/components/Hero.jsx
-  init_Ornaments();
+  init_content();
+  var AVATARS = [
+    { src: "/assets/avatar-silver.webp", label: "Silver", thumb: "/assets/avatar-silver-thumb.webp", description: "\u9280\u9AEA\u30FB\u30B0\u30EC\u30FC\u306E\u30B8\u30E3\u30B1\u30C3\u30C8\u306E\u30A2\u30D0\u30BF\u30FC", position: "50% 25%" },
+    { src: "/assets/avatar-winter.webp", label: "Winter", thumb: "/assets/avatar-winter-thumb.webp", description: "\u9ED2\u9AEA\u30FB\u8D64\u3044\u30DE\u30D5\u30E9\u30FC\u306E\u30A2\u30D0\u30BF\u30FC", position: "50% 15%" },
+    { src: "/assets/avatar.jpg", label: "Peach", thumb: "/assets/avatar-peach-thumb.webp", description: "\u30D4\u30F3\u30AF\u9AEA\u306E\u30A2\u30D0\u30BF\u30FC", position: "50% 50%" },
+    { src: "/assets/avatar-alt.jpg", label: "Classic", thumb: "/assets/avatar-classic-thumb.webp", description: "\u3053\u308C\u307E\u3067\u306E\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u30A2\u30D0\u30BF\u30FC", position: "50% 18%" }
+  ];
   function HeroSnsLink({ platform, sub, value, href, external, action, onClick }) {
     const Tag = onClick ? "button" : "a";
     const props = onClick ? { type: "button", onClick } : { href, ...external ? { target: "_blank", rel: "noopener noreferrer" } : {} };
     return /* @__PURE__ */ React.createElement(Tag, { className: `sns-card sns-${platform.toLowerCase()}`, ...props }, /* @__PURE__ */ React.createElement("span", { className: "sns-card-top" }, /* @__PURE__ */ React.createElement("span", { className: "sns-card-platform" }, platform), sub && /* @__PURE__ */ React.createElement("span", { className: "sns-card-sub" }, sub)), /* @__PURE__ */ React.createElement("span", { className: "sns-card-value" }, value), /* @__PURE__ */ React.createElement("span", { className: "sns-card-action" }, action));
   }
   function Hero() {
-    const { out, done } = useTyping(PROFILE.intro, 30, 500);
-    const wrapRef = (0, import_react3.useRef)(null);
-    const [discordCopied, setDiscordCopied] = (0, import_react3.useState)(false);
-    function copyDiscord() {
-      navigator.clipboard?.writeText(PROFILE.discord);
-      setDiscordCopied(true);
-      setTimeout(() => setDiscordCopied(false), 1800);
-    }
-    (0, import_react3.useEffect)(() => {
-      const wrap = wrapRef.current;
-      if (!wrap) return;
-      function move(e) {
-        const r = wrap.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) / r.width;
-        const y = (e.clientY - r.top - r.height / 2) / r.height;
-        wrap.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
-      }
-      function leave() {
-        wrap.style.transform = "";
-      }
-      wrap.addEventListener("mousemove", move);
-      wrap.addEventListener("mouseleave", leave);
+    const [avatarIndex, setAvatarIndex] = (0, import_react2.useState)(0);
+    const avatar = AVATARS[avatarIndex];
+    const [discordCopied, setDiscordCopied] = (0, import_react2.useState)(false);
+    (0, import_react2.useEffect)(() => {
+      document.documentElement.dataset.avatarTheme = avatar.label.toLowerCase();
       return () => {
-        wrap.removeEventListener("mousemove", move);
-        wrap.removeEventListener("mouseleave", leave);
+        delete document.documentElement.dataset.avatarTheme;
       };
-    }, []);
-    return /* @__PURE__ */ React.createElement("section", { id: "hero", className: "hero" }, /* @__PURE__ */ React.createElement("div", { className: "hero-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "hero-eyebrow" }, "A VRC Profile \xB7 Est. 2024"), /* @__PURE__ */ React.createElement("h1", { className: "hero-name" }, /* @__PURE__ */ React.createElement("span", { className: "glyph" }, Array.from(PROFILE.name).map((ch, i) => /* @__PURE__ */ React.createElement("span", { className: "ch", key: i }, ch))), /* @__PURE__ */ React.createElement("span", { className: "swash", "aria-hidden": true }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 240 26", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 14 Q40 4, 80 14 T160 14 Q200 18, 232 8", stroke: "url(#swashG)", strokeWidth: "1", strokeLinecap: "round", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "232", cy: "8", r: "2", fill: "#f1d9a8" }), /* @__PURE__ */ React.createElement("circle", { cx: "2", cy: "14", r: "1.5", fill: "#e8b4b8" }), /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "swashG", x1: "0", y1: "0", x2: "1", y2: "0" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#e8b4b8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#d4af7a" })))))), /* @__PURE__ */ React.createElement("div", { className: "hero-handle" }, "@", PROFILE.twitter, " ", /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\xB7"), " ", /* @__PURE__ */ React.createElement("span", { className: "en" }, PROFILE.nameEn)), /* @__PURE__ */ React.createElement("div", { className: "hero-meta" }, /* @__PURE__ */ React.createElement("div", { className: "line" }, /* @__PURE__ */ React.createElement("span", { className: "key" }, "status"), /* @__PURE__ */ React.createElement("span", null, PROFILE.status))), /* @__PURE__ */ React.createElement("p", { className: "hero-intro" }, out.split("\n").map((l, i) => /* @__PURE__ */ React.createElement("span", { key: i }, l, /* @__PURE__ */ React.createElement("br", null))), !done && /* @__PURE__ */ React.createElement("span", { className: "cursor-blink" })), /* @__PURE__ */ React.createElement("div", { className: "hero-stats" }, STATS.map((s) => /* @__PURE__ */ React.createElement("div", { className: "stat", key: s.label }, /* @__PURE__ */ React.createElement("div", { className: "label" }, s.label), /* @__PURE__ */ React.createElement("div", { className: "value" }, s.value, /* @__PURE__ */ React.createElement("span", { className: "unit" }, s.unit))))), /* @__PURE__ */ React.createElement("a", { href: "#konkatsu", className: "hero-konkatsu-jump" }, /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-tag" }, HERO_KONKATSU.tag), /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-body" }, /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-title" }, HERO_KONKATSU.title), /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-note" }, HERO_KONKATSU.note)), /* @__PURE__ */ React.createElement("span", { className: "hero-konkatsu-arrow", "aria-hidden": true }, "\u2192")), /* @__PURE__ */ React.createElement("div", { className: "hero-sns" }, /* @__PURE__ */ React.createElement("p", { className: "hero-sns-label" }, "\u9023\u7D61\u5148 \xB7 Contact"), /* @__PURE__ */ React.createElement("div", { className: "hero-sns-grid" }, /* @__PURE__ */ React.createElement(
+    }, [avatar.label]);
+    function tiltPortrait(event) {
+      if (event.pointerType !== "mouse" || !matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches) return;
+      const surface = event.currentTarget;
+      const rect = surface.getBoundingClientRect();
+      const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+      const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+      surface.style.setProperty("--tilt-x", -(y - 0.5) * 6 + "deg");
+      surface.style.setProperty("--tilt-y", (x - 0.5) * 8 + "deg");
+      surface.style.setProperty("--light-x", x * 100 + "%");
+      surface.style.setProperty("--light-y", y * 100 + "%");
+    }
+    function resetPortrait(event) {
+      for (const name of ["--tilt-x", "--tilt-y", "--light-x", "--light-y"]) event.currentTarget.style.removeProperty(name);
+    }
+    async function copyDiscord() {
+      try {
+        await navigator.clipboard.writeText(PROFILE.discord);
+        setDiscordCopied(true);
+        setTimeout(() => setDiscordCopied(false), 1800);
+      } catch {
+        setDiscordCopied(false);
+      }
+    }
+    return /* @__PURE__ */ React.createElement("section", { id: "hero", className: "hero" }, /* @__PURE__ */ React.createElement("div", { className: "hero-grid" }, /* @__PURE__ */ React.createElement("div", { className: "hero-copy" }, /* @__PURE__ */ React.createElement("div", { className: "hero-eyebrow" }, "A VRC Profile \xB7 Est. 2024"), /* @__PURE__ */ React.createElement("h1", { className: "hero-name" }, /* @__PURE__ */ React.createElement("span", { className: "glyph" }, Array.from(PROFILE.name).map((ch, i) => /* @__PURE__ */ React.createElement("span", { className: "ch", key: i }, ch))), /* @__PURE__ */ React.createElement("span", { className: "swash", "aria-hidden": true }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 240 26", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 14 Q40 4, 80 14 T160 14 Q200 18, 232 8", stroke: "url(#swashG)", strokeWidth: "1", strokeLinecap: "round", fill: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "232", cy: "8", r: "2", fill: "#f1d9a8" }), /* @__PURE__ */ React.createElement("circle", { cx: "2", cy: "14", r: "1.5", fill: "#e8b4b8" }), /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "swashG", x1: "0", y1: "0", x2: "1", y2: "0" }, /* @__PURE__ */ React.createElement("stop", { offset: "0%", stopColor: "#e8b4b8" }), /* @__PURE__ */ React.createElement("stop", { offset: "50%", stopColor: "#f1d9a8" }), /* @__PURE__ */ React.createElement("stop", { offset: "100%", stopColor: "#d4af7a" })))))), /* @__PURE__ */ React.createElement("p", { className: "hero-greeting" }, PROFILE.intro[0]), /* @__PURE__ */ React.createElement("div", { className: "hero-handle" }, "@", PROFILE.twitter, " ", /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\xB7"), " ", /* @__PURE__ */ React.createElement("span", { className: "en" }, PROFILE.nameEn)), /* @__PURE__ */ React.createElement("div", { className: "hero-meta" }, /* @__PURE__ */ React.createElement("div", { className: "line" }, /* @__PURE__ */ React.createElement("span", { className: "key" }, "status"), /* @__PURE__ */ React.createElement("span", null, PROFILE.status))), /* @__PURE__ */ React.createElement("p", { className: "hero-intro" }, PROFILE.intro.slice(1).map((line) => /* @__PURE__ */ React.createElement("span", { key: line }, line, /* @__PURE__ */ React.createElement("br", null)))), /* @__PURE__ */ React.createElement("div", { className: "hero-actions" }, /* @__PURE__ */ React.createElement("a", { className: "hero-primary-link", href: PROFILE.vrcUrl, target: "_blank", rel: "noopener noreferrer" }, "VRChat\u3067\u3064\u306A\u304C\u308B ", /* @__PURE__ */ React.createElement("span", { "aria-hidden": "true" }, "\u2197")), /* @__PURE__ */ React.createElement("a", { className: "hero-secondary-link", href: "#gallery" }, "\u5199\u771F\u3092\u306E\u305E\u304F ", /* @__PURE__ */ React.createElement("span", { "aria-hidden": "true" }, "\u2193"))), /* @__PURE__ */ React.createElement("div", { className: "hero-stats" }, STATS.map((s) => /* @__PURE__ */ React.createElement("div", { className: "stat", key: s.label }, /* @__PURE__ */ React.createElement("div", { className: "label" }, s.label), /* @__PURE__ */ React.createElement("div", { className: "value" }, s.value, /* @__PURE__ */ React.createElement("span", { className: "unit" }, s.unit))))), /* @__PURE__ */ React.createElement("div", { className: "hero-sns" }, /* @__PURE__ */ React.createElement("p", { className: "hero-sns-label" }, "\u9023\u7D61\u5148 \xB7 Contact"), /* @__PURE__ */ React.createElement("div", { className: "hero-sns-grid" }, /* @__PURE__ */ React.createElement(
       HeroSnsLink,
       {
         platform: "X",
@@ -987,23 +902,29 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
         external: true,
         action: "VRC\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB \u2192"
       }
-    )))), /* @__PURE__ */ React.createElement("div", { className: "hero-avatar" }, /* @__PURE__ */ React.createElement("div", { className: "avatar-ring-2" }, /* @__PURE__ */ React.createElement(AvatarFiligree2, null)), /* @__PURE__ */ React.createElement("div", { className: "avatar-ring" }, /* @__PURE__ */ React.createElement(AvatarFiligree, null)), /* @__PURE__ */ React.createElement("div", { className: "avatar-wrap", ref: wrapRef }, /* @__PURE__ */ React.createElement("div", { className: "avatar-img" }, /* @__PURE__ */ React.createElement("div", { className: "avatar-img-layer primary", "aria-hidden": "true" }), /* @__PURE__ */ React.createElement("div", { className: "avatar-img-layer alt", "aria-hidden": "true" })), /* @__PURE__ */ React.createElement("div", { className: "avatar-frame" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "avatar-corner tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "avatar-corner tr" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "avatar-corner bl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "avatar-corner br" }), /* @__PURE__ */ React.createElement("div", { className: "avatar-tag t1" }, "Avatar \xB7 v3"), /* @__PURE__ */ React.createElement("div", { className: "avatar-tag t2" }, "Peach Neko"), /* @__PURE__ */ React.createElement("div", { className: "avatar-tag t3" }, "ID \xB7 0329")))), /* @__PURE__ */ React.createElement("div", { className: "hero-scroll" }, /* @__PURE__ */ React.createElement("span", null, "scroll"), /* @__PURE__ */ React.createElement("span", { className: "line" })));
+    )))), /* @__PURE__ */ React.createElement("div", { className: "hero-avatar portrait-gallery" }, /* @__PURE__ */ React.createElement("div", { className: "portrait-depth", onPointerMove: tiltPortrait, onPointerLeave: resetPortrait, onPointerCancel: resetPortrait }, /* @__PURE__ */ React.createElement("div", { className: "portrait-atmosphere", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("div", { className: "orbit-system" }, /* @__PURE__ */ React.createElement("i", { className: "orbit orbit-one" }), /* @__PURE__ */ React.createElement("i", { className: "orbit orbit-two" }), /* @__PURE__ */ React.createElement("i", { className: "orbit orbit-three" })), /* @__PURE__ */ React.createElement("i", { className: "atmosphere-pearl pearl-one" }), /* @__PURE__ */ React.createElement("i", { className: "atmosphere-pearl pearl-two" }), /* @__PURE__ */ React.createElement("span", { className: "atmosphere-coordinate" }, "K / 0329")), /* @__PURE__ */ React.createElement("figure", { className: "portrait-card" }, /* @__PURE__ */ React.createElement("div", { className: "portrait-topline" }, /* @__PURE__ */ React.createElement("span", null, "THE AVATAR COLLECTION"), /* @__PURE__ */ React.createElement("span", null, "0", avatarIndex + 1, " / 04")), /* @__PURE__ */ React.createElement("div", { className: "portrait-stage" }, /* @__PURE__ */ React.createElement("span", { className: "portrait-word", "aria-hidden": "true" }, "Konny."), /* @__PURE__ */ React.createElement("img", { key: avatar.src, className: "portrait-image", src: avatar.src, alt: avatar.description, width: "1080", height: "1920", style: { objectPosition: avatar.position }, fetchpriority: "high" })), /* @__PURE__ */ React.createElement("figcaption", { className: "portrait-caption", "aria-live": "polite" }, /* @__PURE__ */ React.createElement("span", null, avatar.label, /* @__PURE__ */ React.createElement("small", null, "\u3053\u306B\u30FC / Konny")), /* @__PURE__ */ React.createElement("span", { className: "portrait-caption-note" }, "VIRTUAL SELF.", /* @__PURE__ */ React.createElement("br", null), "SAME ME.")))), /* @__PURE__ */ React.createElement("div", { className: "avatar-picker", role: "group", "aria-label": "\u8868\u793A\u3059\u308B\u30A2\u30D0\u30BF\u30FC\u3092\u9078\u3076" }, AVATARS.map((item, index) => /* @__PURE__ */ React.createElement("button", { type: "button", key: item.src, className: "avatar-choice", "aria-pressed": index === avatarIndex, "aria-label": item.description + "\u3092\u8868\u793A", onClick: () => setAvatarIndex(index) }, /* @__PURE__ */ React.createElement("span", { className: "avatar-choice-image" }, /* @__PURE__ */ React.createElement("img", { src: item.thumb, alt: "", decoding: "async", width: "52", height: "52", style: { objectPosition: item.position } })), /* @__PURE__ */ React.createElement("span", null, item.label)))), /* @__PURE__ */ React.createElement("p", { className: "avatar-picker-hint", "aria-live": "polite" }, /* @__PURE__ */ React.createElement("span", { className: "theme-swatch", "aria-hidden": "true" }), { Silver: "\u6708\u660E\u304B\u308A\u306E\u30B7\u30EB\u30D0\u30FC", Winter: "\u51AC\u591C\u306E\u30A2\u30F3\u30D0\u30FC", Peach: "\u6843\u8272\u306E\u30C8\u30EF\u30A4\u30E9\u30A4\u30C8", Classic: "\u7FE1\u7FE0\u306E\u30DF\u30C3\u30C9\u30CA\u30A4\u30C8" }[avatar.label]))), /* @__PURE__ */ React.createElement("div", { className: "hero-scroll" }, /* @__PURE__ */ React.createElement("span", null, "scroll"), /* @__PURE__ */ React.createElement("span", { className: "line" })));
   }
 
   // src/components/Marquee.jsx
-  var import_react4 = __toESM(__require("react"), 1);
+  var import_react3 = __toESM(__require("react"), 1);
   function Marquee({ items }) {
     const loop = [...items, ...items];
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "marquee", "aria-hidden": true }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "marquee-track" }, loop.map((it, i) => /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, { key: i }, it.kind === "muted" ? /* @__PURE__ */ import_react4.default.createElement("span", { className: "muted" }, it.text) : /* @__PURE__ */ import_react4.default.createElement("span", null, it.text), /* @__PURE__ */ import_react4.default.createElement("span", { className: "dot" }, "\u2726")))));
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "marquee", "aria-hidden": true }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "marquee-track" }, loop.map((it, i) => /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, { key: i }, it.kind === "muted" ? /* @__PURE__ */ import_react3.default.createElement("span", { className: "muted" }, it.text) : /* @__PURE__ */ import_react3.default.createElement("span", null, it.text), /* @__PURE__ */ import_react3.default.createElement("span", { className: "dot" }, "\u2726")))));
   }
 
   // src/components/HobbiesSection.jsx
-  var import_react5 = __require("react");
+  var import_react4 = __require("react");
   init_content();
   init_gallery();
-  init_Ornaments();
+
+  // src/components/Ornaments.jsx
+  function CornerOrnament({ className }) {
+    return /* @__PURE__ */ React.createElement("svg", { className, viewBox: "0 0 64 64", fill: "none" }, /* @__PURE__ */ React.createElement("path", { d: "M2 2 L26 2 M2 2 L2 26", stroke: "currentColor", strokeWidth: "0.8", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: "M8 2 Q8 8 14 8 M2 8 Q8 8 8 14", stroke: "currentColor", strokeWidth: "0.8", fill: "none", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "14", cy: "14", r: "1.5", fill: "currentColor" }), /* @__PURE__ */ React.createElement("path", { d: "M14 14 Q24 14 24 24", stroke: "currentColor", strokeWidth: "0.6", fill: "none", opacity: "0.7" }), /* @__PURE__ */ React.createElement("circle", { cx: "24", cy: "24", r: "1", fill: "currentColor", opacity: "0.7" }), /* @__PURE__ */ React.createElement("path", { d: "M4 18 Q4 24 10 24", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }), /* @__PURE__ */ React.createElement("path", { d: "M18 4 Q24 4 24 10", stroke: "currentColor", strokeWidth: "0.5", fill: "none", opacity: "0.4" }));
+  }
+
+  // src/components/HobbiesSection.jsx
   function HobbiesSection() {
-    const [active, setActive] = (0, import_react5.useState)(0);
+    const [active, setActive] = (0, import_react4.useState)(0);
     const h = HOBBIES[active];
     return /* @__PURE__ */ React.createElement("section", { id: "hobbies" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "02 / Hobbies \u2014 \u8DA3\u5473"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u3053\u3093\u306A\u3053\u3068\u304C ", /* @__PURE__ */ React.createElement("em", null, "\u597D\u304D\u3067\u3059")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u6C17\u306B\u306A\u3063\u305F\u3089\u3068\u308A\u3042\u3048\u305A\u3084\u3063\u3066\u307F\u308B\u30BF\u30A4\u30D7\u3002\u8A71\u306E\u304D\u3063\u304B\u3051\u306B\u3069\u3046\u305E\u3002")), /* @__PURE__ */ React.createElement("div", { className: "hobby-wrap reveal" }, /* @__PURE__ */ React.createElement("div", { className: "hobby-tabs" }, HOBBIES.map((hb, i) => /* @__PURE__ */ React.createElement(
       "button",
@@ -1030,36 +951,32 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   }
 
   // src/components/Contact.jsx
-  var import_react6 = __require("react");
+  var import_react5 = __require("react");
   init_content();
-  init_Ornaments();
-  function SectionDivider() {
-    return /* @__PURE__ */ React.createElement("div", { className: "section-divider reveal", "aria-hidden": true }, /* @__PURE__ */ React.createElement("span", { className: "bar" }), /* @__PURE__ */ React.createElement("span", { className: "star" }, "\u2726"), /* @__PURE__ */ React.createElement("span", { className: "bar" }));
-  }
   function FriendCTA() {
-    const [copied, setCopied] = (0, import_react6.useState)(false);
+    const [copied, setCopied] = (0, import_react5.useState)(false);
     function copy() {
       navigator.clipboard?.writeText(PROFILE.discord);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     }
-    return /* @__PURE__ */ React.createElement("section", { id: "contact" }, /* @__PURE__ */ React.createElement("div", { className: "contact-card reveal" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "section-label", style: { marginBottom: 14 } }, "08 / Say Hi"), /* @__PURE__ */ React.createElement("h3", null, "\u6C17\u8EFD\u306B ", /* @__PURE__ */ React.createElement("em", null, "\u58F0\u304B\u3051\u3066"), " \u304F\u3060\u3055\u3044"), /* @__PURE__ */ React.createElement("p", null, "\u8DA3\u5473\u304C\u5408\u3046\u4EBA\u3084\u3001PC\u30B2\u30FC\u30E0\u3059\u308B\u4EBA\u306F\u305C\u3072\u4E00\u7DD2\u306B\u904A\u3073\u307E\u3057\u3087\u3046\uFF01", /* @__PURE__ */ React.createElement("br", null), "VRC\u3067\u306F\u30EF\u30FC\u30EB\u30C9\u5DE1\u308A\u3001\u30AB\u30E9\u30AA\u30B1\u3001\u8B0E\u89E3\u304D\u30EF\u30FC\u30EB\u30C9\u306A\u3069\u3001\u4E00\u7DD2\u306B\u3067\u304D\u308B\u65B9\u52DF\u96C6\u4E2D\uFF01", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", color: "var(--text-mute)", fontSize: 12, letterSpacing: "0.1em" } }, "\u30D5\u30EC\u30F3\u30C9\u7533\u8ACB \xB7 \u6C17\u306B\u306A\u3063\u305F\u3089\u8A31\u53EF\u3002X\u76F8\u4E92\u306A\u3089\u7533\u8ACB\u6B53\u8FCE\u3002"))), /* @__PURE__ */ React.createElement("div", { className: "contact-actions" }, /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "\u{1D54F} \xB7 @", PROFILE.twitter), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2192")), /* @__PURE__ */ React.createElement("button", { className: "contact-btn", onClick: copy }, /* @__PURE__ */ React.createElement("span", null, "\u2726 Discord \xB7 ", PROFILE.discord), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, copied ? "\u30B3\u30D4\u30FC\u3057\u307E\u3057\u305F \u2713" : "ID\u3092\u30B3\u30D4\u30FC")), /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: PROFILE.vrcUrl, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "VRChat \xB7 ", PROFILE.vrcId), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2197")))));
+    return /* @__PURE__ */ React.createElement("section", { id: "contact" }, /* @__PURE__ */ React.createElement("div", { className: "contact-card reveal" }, /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco tl" }), /* @__PURE__ */ React.createElement(CornerOrnament, { className: "corner-deco br" }), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "section-label", style: { marginBottom: 14 } }, "07 / Say Hi"), /* @__PURE__ */ React.createElement("h3", null, "\u6C17\u8EFD\u306B ", /* @__PURE__ */ React.createElement("em", null, "\u58F0\u304B\u3051\u3066"), " \u304F\u3060\u3055\u3044"), /* @__PURE__ */ React.createElement("p", null, "\u8DA3\u5473\u304C\u5408\u3046\u4EBA\u3084\u3001PC\u30B2\u30FC\u30E0\u3059\u308B\u4EBA\u306F\u305C\u3072\u4E00\u7DD2\u306B\u904A\u3073\u307E\u3057\u3087\u3046\uFF01", /* @__PURE__ */ React.createElement("br", null), "VRC\u3067\u306F\u30EF\u30FC\u30EB\u30C9\u5DE1\u308A\u3001\u30AB\u30E9\u30AA\u30B1\u3001\u8B0E\u89E3\u304D\u30EF\u30FC\u30EB\u30C9\u306A\u3069\u3001\u4E00\u7DD2\u306B\u3067\u304D\u308B\u65B9\u52DF\u96C6\u4E2D\uFF01", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", color: "var(--text-mute)", fontSize: 12, letterSpacing: "0.1em" } }, "\u30D5\u30EC\u30F3\u30C9\u7533\u8ACB \xB7 \u6C17\u306B\u306A\u3063\u305F\u3089\u8A31\u53EF\u3002X\u76F8\u4E92\u306A\u3089\u7533\u8ACB\u6B53\u8FCE\u3002"))), /* @__PURE__ */ React.createElement("div", { className: "contact-actions" }, /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "\u{1D54F} \xB7 @", PROFILE.twitter), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2192")), /* @__PURE__ */ React.createElement("button", { className: "contact-btn", onClick: copy }, /* @__PURE__ */ React.createElement("span", null, "\u2726 Discord \xB7 ", PROFILE.discord), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, copied ? "\u30B3\u30D4\u30FC\u3057\u307E\u3057\u305F \u2713" : "ID\u3092\u30B3\u30D4\u30FC")), /* @__PURE__ */ React.createElement("a", { className: "contact-btn", href: PROFILE.vrcUrl, target: "_blank", rel: "noopener" }, /* @__PURE__ */ React.createElement("span", null, "VRChat \xB7 ", PROFILE.vrcId), /* @__PURE__ */ React.createElement("span", { className: "arrow" }, "\u2197")))));
   }
   function ContactSection() {
     return /* @__PURE__ */ React.createElement("section", { id: "contact-final", style: { paddingTop: 40 } }, /* @__PURE__ */ React.createElement("footer", null, /* @__PURE__ */ React.createElement("div", { className: "signature" }, "End of Profile"), /* @__PURE__ */ React.createElement("div", { className: "links" }, /* @__PURE__ */ React.createElement("a", { href: `https://twitter.com/${PROFILE.twitter}`, target: "_blank", rel: "noopener" }, "@", PROFILE.twitter), " \xB7 ", /* @__PURE__ */ React.createElement("span", null, "Discord: ", PROFILE.discord), " \xB7 ", /* @__PURE__ */ React.createElement("span", null, "VRChat: ", PROFILE.vrcId)), /* @__PURE__ */ React.createElement("div", { style: { marginTop: 18, color: "var(--text-mute)", fontStyle: "italic" } }, /* @__PURE__ */ React.createElement("span", { className: "section-label", style: { display: "inline-block", marginBottom: 8 } }, "09 / Footer"), /* @__PURE__ */ React.createElement("br", null), "built with caffeine, peach shisha & friends \xB7 \u3053\u306B\u30FC 2026")));
   }
 
   // src/components/CommandPalette.jsx
-  var import_react7 = __require("react");
+  var import_react6 = __require("react");
   init_content();
   function CommandPalette({ open, onClose }) {
-    const [q, setQ] = (0, import_react7.useState)("");
-    const [sel, setSel] = (0, import_react7.useState)(0);
-    const inputRef = (0, import_react7.useRef)(null);
-    const items = (0, import_react7.useMemo)(() => {
+    const [q, setQ] = (0, import_react6.useState)("");
+    const [sel, setSel] = (0, import_react6.useState)(0);
+    const inputRef = (0, import_react6.useRef)(null);
+    const dialogRef = (0, import_react6.useRef)(null);
+    const items = (0, import_react6.useMemo)(() => {
       const base = [
         ...NAV.map((n) => ({ kind: "nav", label: `Go to \xB7 ${n.label}`, target: `#${n.id}`, glyph: "\u2192" })),
-        { kind: "nav", label: "Go to \xB7 VRC\u5A5A\u6D3B\u30B3\u30FC\u30CA\u30FC", target: "#konkatsu", glyph: "\u2665" },
         { kind: "ext", label: "Open \xB7 Twitter (@Konny0329s_VRC)", target: `https://twitter.com/${PROFILE.twitter}`, glyph: "\u{1D54F}" },
         { kind: "copy", label: "Copy \xB7 Discord ID (Konny0329s)", target: PROFILE.discord, glyph: "\u2726" },
         ...PROJECTS.map((p) => ({ kind: "ext", label: `Project \xB7 ${p.name}`, target: p.url, glyph: "\u25CC" })),
@@ -1069,13 +986,18 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       const ql = q.toLowerCase();
       return ql ? base.filter((i) => i.label.toLowerCase().includes(ql)) : base;
     }, [q]);
-    (0, import_react7.useEffect)(() => {
-      if (open) setTimeout(() => inputRef.current?.focus(), 30);
+    (0, import_react6.useEffect)(() => {
+      if (!open) return;
+      const trigger = document.activeElement;
+      inputRef.current?.focus({ preventScroll: true });
+      return () => {
+        if (trigger instanceof HTMLElement && trigger.isConnected) trigger.focus({ preventScroll: true });
+      };
     }, [open]);
-    (0, import_react7.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       setSel(0);
     }, [q, open]);
-    const execute = (0, import_react7.useCallback)((item) => {
+    const execute = (0, import_react6.useCallback)((item) => {
       if (!item) return;
       if (item.kind === "nav") {
         document.querySelector(item.target)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1086,13 +1008,26 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       }
       onClose();
     }, [onClose]);
-    (0, import_react7.useEffect)(() => {
-      if (!open) return;
-      function onKey(e) {
-        if (e.key === "Escape") onClose();
-        else if (e.key === "ArrowDown") {
+    function onKey(e) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        e.stopPropagation();
+        onClose();
+      } else if (e.key === "Tab") {
+        const controls = Array.from(dialogRef.current.querySelectorAll("input, button:not([disabled])"));
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
-          setSel((s) => Math.min(items.length - 1, s + 1));
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      } else if (e.target === inputRef.current) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          setSel((s) => Math.min(Math.max(0, items.length - 1), s + 1));
         } else if (e.key === "ArrowUp") {
           e.preventDefault();
           setSel((s) => Math.max(0, s - 1));
@@ -1101,19 +1036,19 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
           execute(items[sel]);
         }
       }
-      window.addEventListener("keydown", onKey);
-      return () => window.removeEventListener("keydown", onKey);
-    }, [open, items, sel, execute, onClose]);
-    return /* @__PURE__ */ React.createElement("div", { className: `cmdk-overlay ${open ? "open" : ""}`, onClick: onClose }, /* @__PURE__ */ React.createElement("div", { className: "cmdk", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(
+    }
+    if (!open) return null;
+    return /* @__PURE__ */ React.createElement("div", { className: `cmdk-overlay ${open ? "open" : ""}`, onClick: onClose }, /* @__PURE__ */ React.createElement("div", { className: "cmdk", ref: dialogRef, role: "dialog", "aria-modal": "true", "aria-label": "\u30B5\u30A4\u30C8\u5185\u691C\u7D22", onKeyDown: onKey, onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement(
       "input",
       {
         ref: inputRef,
         className: "cmdk-input",
+        "aria-label": "\u79FB\u52D5\u5148\u3084\u30EA\u30F3\u30AF\u3092\u691C\u7D22",
         placeholder: "Search \xB7 jump to section, copy id, open project\u2026",
         value: q,
         onChange: (e) => setQ(e.target.value)
       }
-    ), /* @__PURE__ */ React.createElement("div", { className: "cmdk-list" }, items.length === 0 && /* @__PURE__ */ React.createElement("div", { className: "cmdk-item" }, "// no results"), items.map((it, i) => /* @__PURE__ */ React.createElement(
+    ), /* @__PURE__ */ React.createElement("button", { type: "button", className: "cmdk-close", onClick: onClose, "aria-label": "\u691C\u7D22\u3092\u9589\u3058\u308B" }, "\u9589\u3058\u308B \xD7"), /* @__PURE__ */ React.createElement("div", { className: "cmdk-list" }, items.length === 0 && /* @__PURE__ */ React.createElement("div", { className: "cmdk-item" }, "// no results"), items.map((it, i) => /* @__PURE__ */ React.createElement(
       "button",
       {
         key: i,
@@ -1128,27 +1063,34 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     ))), /* @__PURE__ */ React.createElement("div", { className: "cmdk-foot" }, /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement("kbd", null, "\u2191\u2193"), " navigate \xB7 ", /* @__PURE__ */ React.createElement("kbd", null, "\u21B5"), " open \xB7 ", /* @__PURE__ */ React.createElement("kbd", null, "esc"), " close"), /* @__PURE__ */ React.createElement("span", null, items.length, " results"))));
   }
 
+  // src/components/Interlude.jsx
+  function Interlude({ no, title, sub, tone, scene }) {
+    return /* @__PURE__ */ React.createElement("div", { className: `interlude${tone ? ` tone-${tone}` : ""}`, "data-scene": scene, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("div", { className: "interlude-sticky" }, /* @__PURE__ */ React.createElement("div", { className: "interlude-inner" }, no && /* @__PURE__ */ React.createElement("div", { className: "interlude-no" }, no), /* @__PURE__ */ React.createElement("div", { className: "interlude-title" }, Array.from(title).map(
+      (ch, i) => /\s/.test(ch) ? " " : /* @__PURE__ */ React.createElement("span", { className: "ich", style: { "--ci": i }, key: i }, ch)
+    )), sub && /* @__PURE__ */ React.createElement("div", { className: "interlude-sub" }, sub))));
+  }
+
   // src/App.jsx
-  var GallerySection2 = (0, import_react11.lazy)(
+  var GallerySection2 = (0, import_react10.lazy)(
     () => Promise.resolve().then(() => (init_GallerySection(), GallerySection_exports)).then((m) => ({ default: m.GallerySection }))
   );
-  var GamesSection2 = (0, import_react11.lazy)(
+  var GamesSection2 = (0, import_react10.lazy)(
     () => Promise.resolve().then(() => (init_GamesSection(), GamesSection_exports)).then((m) => ({ default: m.GamesSection }))
   );
-  var DevSection2 = (0, import_react11.lazy)(
+  var DevSection2 = (0, import_react10.lazy)(
     () => Promise.resolve().then(() => (init_DevSection(), DevSection_exports)).then((m) => ({ default: m.DevSection }))
   );
-  var CareerSection2 = (0, import_react11.lazy)(
+  var CareerSection2 = (0, import_react10.lazy)(
     () => Promise.resolve().then(() => (init_CareerSection(), CareerSection_exports)).then((m) => ({ default: m.CareerSection }))
   );
-  var KonkatsuSection2 = (0, import_react11.lazy)(
-    () => Promise.resolve().then(() => (init_KonkatsuSection(), KonkatsuSection_exports)).then((m) => ({ default: m.KonkatsuSection }))
+  var DetailedProfile2 = (0, import_react10.lazy)(
+    () => Promise.resolve().then(() => (init_DetailedProfile(), DetailedProfile_exports)).then((m) => ({ default: m.DetailedProfile }))
   );
   function SectionFallback() {
     return /* @__PURE__ */ React.createElement("div", { className: "section-lazy-placeholder", "aria-hidden": "true" });
   }
   function RevealOnMount({ children }) {
-    (0, import_react11.useEffect)(() => {
+    (0, import_react10.useEffect)(() => {
       window.observeReveal?.();
       const id = setTimeout(() => window.observeReveal?.(), 250);
       return () => clearTimeout(id);
@@ -1156,9 +1098,9 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
     return children;
   }
   function App() {
-    const [active, setActive] = (0, import_react11.useState)("hero");
-    const [cmdOpen, setCmdOpen] = (0, import_react11.useState)(false);
-    (0, import_react11.useEffect)(() => {
+    const [active, setActive] = (0, import_react10.useState)("hero");
+    const [cmdOpen, setCmdOpen] = (0, import_react10.useState)(false);
+    (0, import_react10.useEffect)(() => {
       const ids = NAV.map((n) => n.id);
       const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
       const io = new IntersectionObserver(
@@ -1174,7 +1116,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       sections.forEach((s) => io.observe(s));
       return () => io.disconnect();
     }, []);
-    (0, import_react11.useEffect)(() => {
+    (0, import_react10.useEffect)(() => {
       function onKey(e) {
         if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
           e.preventDefault();
@@ -1184,7 +1126,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       window.addEventListener("keydown", onKey);
       return () => window.removeEventListener("keydown", onKey);
     }, []);
-    (0, import_react11.useEffect)(() => {
+    (0, import_react10.useEffect)(() => {
       if (window.observeReveal) {
         window.observeReveal();
         setTimeout(() => window.observeReveal(), 300);
@@ -1200,7 +1142,7 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
       { kind: "muted", text: "Est. 2024 \u2014 PCVR / Desktop" },
       { text: "Tarkov Raids" },
       { text: "Coaching" }
-    ] }), /* @__PURE__ */ React.createElement(HobbiesSection, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GallerySection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GamesSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(import_react11.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(DevSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(CareerSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(KonkatsuSection2, null))), /* @__PURE__ */ React.createElement(SectionDivider, null), /* @__PURE__ */ React.createElement(FriendCTA, null), /* @__PURE__ */ React.createElement(ContactSection, null)), /* @__PURE__ */ React.createElement(CommandPalette, { open: cmdOpen, onClose: () => setCmdOpen(false) }));
+    ] }), /* @__PURE__ */ React.createElement(Interlude, { no: "02", title: "\u597D\u304D\u306A\u3082\u306E\u306F\u3001\u591A\u3044\u307B\u3046\u304C\u3044\u3044\u3002", sub: "Shisha \xB7 Snowboard \xB7 Poker \xB7 Escape Games", scene: "hobbies" }), /* @__PURE__ */ React.createElement(HobbiesSection, null), /* @__PURE__ */ React.createElement(Interlude, { no: "03", title: "\u3042\u306E\u591C\u306E\u5149\u3092\u3001\u96C6\u3081\u3066\u3042\u308B\u3002", sub: "VRChat Snapshots \xB7 523 Photos", scene: "gallery" }), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GallerySection2, null))), /* @__PURE__ */ React.createElement(Interlude, { no: "04", title: "\u3053\u3053\u304B\u3089\u306F\u3001\u672C\u6C17\u3092\u51FA\u3059\u6642\u9593\u3002", sub: "LoL Challenger \xB7 TFT \xB7 Tarkov", scene: "games" }), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(GamesSection2, null))), /* @__PURE__ */ React.createElement(Interlude, { no: "05", title: "\u904A\u3073\u3092\u3001\u4ED5\u4E8B\u306B\u3057\u3066\u304D\u305F\u3002", sub: "Studio Works \xB7 e-sports Coaching", scene: "dev" }), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(DevSection2, null)), /* @__PURE__ */ React.createElement(RevealOnMount, null, /* @__PURE__ */ React.createElement(CareerSection2, null))), /* @__PURE__ */ React.createElement(Interlude, { no: "07", title: "\u591C\u304C\u660E\u3051\u3066\u3082\u3001\u307E\u305F\u904A\u307C\u3046\u3002", sub: "Friend Request Welcome", scene: "contact" }), /* @__PURE__ */ React.createElement(FriendCTA, null), /* @__PURE__ */ React.createElement(import_react10.Suspense, { fallback: /* @__PURE__ */ React.createElement(SectionFallback, null) }, /* @__PURE__ */ React.createElement(DetailedProfile2, null)), /* @__PURE__ */ React.createElement(ContactSection, null)), /* @__PURE__ */ React.createElement(CommandPalette, { open: cmdOpen, onClose: () => setCmdOpen(false) }));
   }
 
   // src/bundle-entry.jsx

@@ -1,7 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { PROFILE, STATS, HERO_KONKATSU } from "../data/content.js";
-import { useTyping } from "../hooks/useTyping.js";
-import { CornerOrnament, AvatarFiligree, AvatarFiligree2 } from "./Ornaments.jsx";
+import { useState, useEffect } from "react";
+import { PROFILE, STATS } from "../data/content.js";
+const AVATARS = [
+  { src: "/assets/avatar-silver.webp", label: "Silver", thumb: "/assets/avatar-silver-thumb.webp", description: "銀髪・グレーのジャケットのアバター", position: "50% 25%" },
+  { src: "/assets/avatar-winter.webp", label: "Winter", thumb: "/assets/avatar-winter-thumb.webp", description: "黒髪・赤いマフラーのアバター", position: "50% 15%" },
+  { src: "/assets/avatar.jpg", label: "Peach", thumb: "/assets/avatar-peach-thumb.webp", description: "ピンク髪のアバター", position: "50% 50%" },
+  { src: "/assets/avatar-alt.jpg", label: "Classic", thumb: "/assets/avatar-classic-thumb.webp", description: "これまでのプロフィールアバター", position: "50% 18%" },
+];
 
 function HeroSnsLink({ platform, sub, value, href, external, action, onClick }) {
   const Tag = onClick ? "button" : "a";
@@ -21,35 +25,45 @@ function HeroSnsLink({ platform, sub, value, href, external, action, onClick }) 
 }
 
 export function Hero() {
-  const { out, done } = useTyping(PROFILE.intro, 30, 500);
-  const wrapRef = useRef(null);
+  const [avatarIndex, setAvatarIndex] = useState(0);
+  const avatar = AVATARS[avatarIndex];
   const [discordCopied, setDiscordCopied] = useState(false);
 
-  function copyDiscord() {
-    navigator.clipboard?.writeText(PROFILE.discord);
-    setDiscordCopied(true);
-    setTimeout(() => setDiscordCopied(false), 1800);
+  useEffect(() => {
+    document.documentElement.dataset.avatarTheme = avatar.label.toLowerCase();
+    return () => { delete document.documentElement.dataset.avatarTheme; };
+  }, [avatar.label]);
+
+  function tiltPortrait(event) {
+    if (event.pointerType !== "mouse" || !matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches) return;
+    const surface = event.currentTarget;
+    const rect = surface.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+    surface.style.setProperty("--tilt-x", (-(y - .5) * 6) + "deg");
+    surface.style.setProperty("--tilt-y", ((x - .5) * 8) + "deg");
+    surface.style.setProperty("--light-x", (x * 100) + "%");
+    surface.style.setProperty("--light-y", (y * 100) + "%");
   }
 
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    if (!wrap) return;
-    function move(e) {
-      const r = wrap.getBoundingClientRect();
-      const x = (e.clientX - r.left - r.width / 2) / r.width;
-      const y = (e.clientY - r.top - r.height / 2) / r.height;
-      wrap.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+  function resetPortrait(event) {
+    for (const name of ["--tilt-x", "--tilt-y", "--light-x", "--light-y"]) event.currentTarget.style.removeProperty(name);
+  }
+
+  async function copyDiscord() {
+    try {
+      await navigator.clipboard.writeText(PROFILE.discord);
+      setDiscordCopied(true);
+      setTimeout(() => setDiscordCopied(false), 1800);
+    } catch {
+      setDiscordCopied(false);
     }
-    function leave() { wrap.style.transform = ""; }
-    wrap.addEventListener("mousemove", move);
-    wrap.addEventListener("mouseleave", leave);
-    return () => { wrap.removeEventListener("mousemove", move); wrap.removeEventListener("mouseleave", leave); };
-  }, []);
+  }
 
   return (
     <section id="hero" className="hero">
       <div className="hero-grid">
-        <div>
+        <div className="hero-copy">
           <div className="hero-eyebrow">A VRC Profile · Est. 2024</div>
           <h1 className="hero-name">
             <span className="glyph">
@@ -70,6 +84,7 @@ export function Hero() {
               </svg>
             </span>
           </h1>
+          <p className="hero-greeting">{PROFILE.intro[0]}</p>
           <div className="hero-handle">
             @{PROFILE.twitter} <span className="arrow">·</span> <span className="en">{PROFILE.nameEn}</span>
           </div>
@@ -77,9 +92,12 @@ export function Hero() {
             <div className="line"><span className="key">status</span><span>{PROFILE.status}</span></div>
           </div>
           <p className="hero-intro">
-            {out.split("\n").map((l, i) => <span key={i}>{l}<br/></span>)}
-            {!done && <span className="cursor-blink"></span>}
+            {PROFILE.intro.slice(1).map((line) => <span key={line}>{line}<br/></span>)}
           </p>
+          <div className="hero-actions">
+            <a className="hero-primary-link" href={PROFILE.vrcUrl} target="_blank" rel="noopener noreferrer">VRChatでつながる <span aria-hidden="true">↗</span></a>
+            <a className="hero-secondary-link" href="#gallery">写真をのぞく <span aria-hidden="true">↓</span></a>
+          </div>
           <div className="hero-stats">
             {STATS.map((s) => (
               <div className="stat" key={s.label}>
@@ -88,14 +106,6 @@ export function Hero() {
               </div>
             ))}
           </div>
-          <a href="#konkatsu" className="hero-konkatsu-jump">
-            <span className="hero-konkatsu-tag">{HERO_KONKATSU.tag}</span>
-            <span className="hero-konkatsu-body">
-              <span className="hero-konkatsu-title">{HERO_KONKATSU.title}</span>
-              <span className="hero-konkatsu-note">{HERO_KONKATSU.note}</span>
-            </span>
-            <span className="hero-konkatsu-arrow" aria-hidden>→</span>
-          </a>
           <div className="hero-sns">
             <p className="hero-sns-label">連絡先 · Contact</p>
             <div className="hero-sns-grid">
@@ -124,23 +134,31 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-avatar">
-          <div className="avatar-ring-2"><AvatarFiligree2/></div>
-          <div className="avatar-ring"><AvatarFiligree/></div>
-          <div className="avatar-wrap" ref={wrapRef}>
-            <div className="avatar-img">
-              <div className="avatar-img-layer primary" aria-hidden="true" />
-              <div className="avatar-img-layer alt" aria-hidden="true" />
+        <div className="hero-avatar portrait-gallery">
+          <div className="portrait-depth" onPointerMove={tiltPortrait} onPointerLeave={resetPortrait} onPointerCancel={resetPortrait}>
+            <div className="portrait-atmosphere" aria-hidden="true">
+              <div className="orbit-system"><i className="orbit orbit-one" /><i className="orbit orbit-two" /><i className="orbit orbit-three" /></div>
+              <i className="atmosphere-pearl pearl-one" /><i className="atmosphere-pearl pearl-two" />
+              <span className="atmosphere-coordinate">K / 0329</span>
             </div>
-            <div className="avatar-frame"></div>
-            <CornerOrnament className="avatar-corner tl"/>
-            <CornerOrnament className="avatar-corner tr"/>
-            <CornerOrnament className="avatar-corner bl"/>
-            <CornerOrnament className="avatar-corner br"/>
-            <div className="avatar-tag t1">Avatar · v3</div>
-            <div className="avatar-tag t2">Peach Neko</div>
-            <div className="avatar-tag t3">ID · 0329</div>
+          <figure className="portrait-card">
+            <div className="portrait-topline"><span>THE AVATAR COLLECTION</span><span>0{avatarIndex + 1} / 04</span></div>
+            <div className="portrait-stage">
+              <span className="portrait-word" aria-hidden="true">Konny.</span>
+              <img key={avatar.src} className="portrait-image" src={avatar.src} alt={avatar.description} width="1080" height="1920" style={{ objectPosition: avatar.position }} fetchpriority="high" />
+            </div>
+            <figcaption className="portrait-caption" aria-live="polite"><span>{avatar.label}<small>こにー / Konny</small></span><span className="portrait-caption-note">VIRTUAL SELF.<br/>SAME ME.</span></figcaption>
+          </figure>
           </div>
+          <div className="avatar-picker" role="group" aria-label="表示するアバターを選ぶ">
+            {AVATARS.map((item, index) => (
+              <button type="button" key={item.src} className="avatar-choice" aria-pressed={index === avatarIndex} aria-label={item.description + "を表示"} onClick={() => setAvatarIndex(index)}>
+                <span className="avatar-choice-image"><img src={item.thumb} alt="" decoding="async" width="52" height="52" style={{ objectPosition: item.position }} /></span>
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+          <p className="avatar-picker-hint" aria-live="polite"><span className="theme-swatch" aria-hidden="true" />{({ Silver: "月明かりのシルバー", Winter: "冬夜のアンバー", Peach: "桃色のトワイライト", Classic: "翡翠のミッドナイト" })[avatar.label]}</p>
         </div>
       </div>
       <div className="hero-scroll">
