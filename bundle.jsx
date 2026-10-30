@@ -716,15 +716,44 @@ const { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense, Fragm
   __export(DevSection_exports, {
     DevSection: () => DevSection
   });
+  function ChatProductsShowcase() {
+    return /* @__PURE__ */ React.createElement("article", { className: "product-showcase reveal", "aria-labelledby": "chat-products-title" }, /* @__PURE__ */ React.createElement("div", { className: "product-showcase-meta" }, /* @__PURE__ */ React.createElement("span", null, "PLAN + DESIGN + DEV"), /* @__PURE__ */ React.createElement("span", null, "2026 / WEB APPLICATIONS")), /* @__PURE__ */ React.createElement("h3", { id: "chat-products-title" }, "\u4F1A\u8A71\u3092\u3001\u601D\u3044\u51FA\u306B\u3002\u5171\u6709\u3092\u3001\u767A\u898B\u306B\u3002"), /* @__PURE__ */ React.createElement("p", { className: "product-showcase-intro" }, "\u65E5\u3005\u306E\u30C8\u30FC\u30AF\u3068\u5171\u6709\u30EA\u30F3\u30AF\u3092\u3001\u3082\u3046\u4E00\u5EA6\u697D\u3057\u3081\u308B\u4F53\u9A13\u3078\u3002\u4F1A\u8A71\u30A2\u30FC\u30AB\u30A4\u30D6\u3068\u52D5\u753B\u304A\u307F\u304F\u3058\u30012\u3064\u306EWeb\u30A2\u30D7\u30EA\u306E\u5236\u4F5C\u4E8B\u4F8B\u3067\u3059\u3002"), /* @__PURE__ */ React.createElement(
+      "video",
+      {
+        className: "product-showcase-video",
+        controls: true,
+        playsInline: true,
+        preload: "metadata",
+        poster: "/assets/showcase/chat-products/cover.jpg",
+        "aria-label": "\u4F1A\u8A71\u30A2\u30FC\u30AB\u30A4\u30D6\u3068\u52D5\u753B\u304A\u307F\u304F\u3058\u306E\u7D39\u4ECB\u6620\u50CF\u300140\u79D2",
+        "aria-describedby": "chat-products-description"
+      },
+      /* @__PURE__ */ React.createElement("source", { src: "/assets/showcase/chat-products/product-showcase.mp4", type: "video/mp4" }),
+      "\u7D39\u4ECB\u6620\u50CF\u306F\u3001\u3053\u306E\u4E0B\u306E2\u3064\u306E\u30A2\u30D7\u30EA\u8AAC\u660E\u304B\u3089\u3082\u3054\u78BA\u8A8D\u3044\u305F\u3060\u3051\u307E\u3059\u3002"
+    ), /* @__PURE__ */ React.createElement("div", { className: "product-showcase-products", id: "chat-products-description" }, CHAT_PRODUCTS.map((product) => /* @__PURE__ */ React.createElement("div", { className: "product-showcase-product", key: product.name }, /* @__PURE__ */ React.createElement("h4", null, product.name), /* @__PURE__ */ React.createElement("p", null, product.description), /* @__PURE__ */ React.createElement("ul", { "aria-label": `${product.name}\u306E\u6A5F\u80FD` }, product.features.map((feature) => /* @__PURE__ */ React.createElement("li", { key: feature }, feature)))))), /* @__PURE__ */ React.createElement("p", { className: "product-showcase-note" }, "\u30B9\u30DE\u30FC\u30C8\u30D5\u30A9\u30F3\u5BFE\u5FDC\u30FB\u5408\u8A00\u8449\u306B\u3088\u308B\u95B2\u89A7\u3002\u7D39\u4ECB\u6620\u50CF\u306E\u4F1A\u8A71\u30FB\u4EBA\u7269\u30FB\u52D5\u753B\u306F\u3059\u3079\u3066\u67B6\u7A7A\u306E\u30B5\u30F3\u30D7\u30EB\u3067\u3059\u3002"));
+  }
   function ProjectCard({ p }) {
     return /* @__PURE__ */ React.createElement("a", { href: p.url, target: "_blank", rel: "noopener", className: "proj-card reveal" }, /* @__PURE__ */ React.createElement("div", { className: "proj-preview", style: { "--ph-1": p.ph1, "--ph-2": p.ph2 } }, /* @__PURE__ */ React.createElement("div", { className: "browser-bar" }, /* @__PURE__ */ React.createElement("span", { className: "dot" }), /* @__PURE__ */ React.createElement("span", { className: "dot" }), /* @__PURE__ */ React.createElement("span", { className: "dot" }), /* @__PURE__ */ React.createElement("span", { className: "url" }, p.url.replace(/^https?:\/\//, "")), /* @__PURE__ */ React.createElement("span", { className: "status" }, "\u25CF ", p.status)), /* @__PURE__ */ React.createElement("div", { className: "ph" }, /* @__PURE__ */ React.createElement("div", { className: "proj-glyph" }, p.glyph), /* @__PURE__ */ React.createElement("div", { className: "proj-preview-name" }, p.name), /* @__PURE__ */ React.createElement("div", { className: "proj-preview-meta" }, "// site preview"))), /* @__PURE__ */ React.createElement("div", { className: "proj-body" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "proj-meta-row" }, /* @__PURE__ */ React.createElement("span", { className: "proj-role" }, p.role), /* @__PURE__ */ React.createElement("span", { className: "proj-year" }, "\u2014 ", p.year)), /* @__PURE__ */ React.createElement("div", { className: "proj-name" }, p.name)), /* @__PURE__ */ React.createElement("p", { className: "proj-desc" }, p.desc), /* @__PURE__ */ React.createElement("div", { className: "proj-features" }, p.features.map((f) => /* @__PURE__ */ React.createElement("div", { className: "proj-feature", key: f }, /* @__PURE__ */ React.createElement("span", { className: "icn" }, "\u2726"), f))), /* @__PURE__ */ React.createElement("div", { className: "proj-foot" }, /* @__PURE__ */ React.createElement("span", { className: "proj-link" }, "Visit site \u2192"))));
   }
   function DevSection() {
-    return /* @__PURE__ */ React.createElement("section", { id: "dev" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "05 / Studio \xB7 \u500B\u4EBA\u958B\u767A"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u4F5C\u3063\u3066\u308B ", /* @__PURE__ */ React.createElement("em", null, "\u3082\u306E")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u3053\u3093\u306A\u611F\u3058\u306E\u30B5\u30A4\u30C8\u306A\u3089\u4F5C\u308C\u307E\u3059\u3002\u4F55\u304B\u3042\u308C\u3070\u6C17\u8EFD\u306B\u76F8\u8AC7\u3057\u3066\u306D\u3002")), /* @__PURE__ */ React.createElement("div", { className: "portfolio-grid" }, PROJECTS.map((p) => /* @__PURE__ */ React.createElement(ProjectCard, { p, key: p.name }))));
+    return /* @__PURE__ */ React.createElement("section", { id: "dev" }, /* @__PURE__ */ React.createElement("div", { className: "reveal" }, /* @__PURE__ */ React.createElement("div", { className: "section-label" }, "05 / Studio \xB7 \u500B\u4EBA\u958B\u767A"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\u4F5C\u3063\u3066\u308B ", /* @__PURE__ */ React.createElement("em", null, "\u3082\u306E")), /* @__PURE__ */ React.createElement("div", { className: "section-subtitle" }, "\u3053\u3093\u306A\u611F\u3058\u306E\u30B5\u30A4\u30C8\u306A\u3089\u4F5C\u308C\u307E\u3059\u3002\u4F55\u304B\u3042\u308C\u3070\u6C17\u8EFD\u306B\u76F8\u8AC7\u3057\u3066\u306D\u3002")), /* @__PURE__ */ React.createElement(ChatProductsShowcase, null), /* @__PURE__ */ React.createElement("div", { className: "portfolio-grid" }, PROJECTS.map((p) => /* @__PURE__ */ React.createElement(ProjectCard, { p, key: p.name }))));
   }
+  var CHAT_PRODUCTS;
   var init_DevSection = __esm({
     "src/components/DevSection.jsx"() {
       init_content();
+      CHAT_PRODUCTS = [
+        {
+          name: "\u304A\u308C\u305F\u3061\u306E\u653E\u8AB2\u5F8C",
+          description: "LINE\u30C8\u30FC\u30AF\u306E\u76DB\u308A\u4E0A\u304C\u3063\u305F\u5834\u9762\u3092\u3001\u898B\u51FA\u3057\u4ED8\u304D\u3067\u632F\u308A\u8FD4\u308B\u4F1A\u8A71\u30A2\u30FC\u30AB\u30A4\u30D6\u3002\u8AB0\u304C\u8A71\u3057\u305F\u304B\u3001\u524D\u5F8C\u3067\u4F55\u3092\u8A71\u3057\u305F\u304B\u307E\u3067\u3001LINE\u98A8\u306E\u753B\u9762\u3067\u8AAD\u307F\u8FD4\u305B\u307E\u3059\u3002",
+          features: ["\u540D\u5834\u9762\u306E\u30D4\u30C3\u30AF\u30A2\u30C3\u30D7", "\u8A71\u8005\u3054\u3068\u306E\u4F1A\u8A71\u8868\u793A", "\u30AD\u30FC\u30EF\u30FC\u30C9\u691C\u7D22"]
+        },
+        {
+          name: "\u8679\u8272\u6620\u50CF\u795E\u793E",
+          description: "\u5171\u6709\u3055\u308C\u305FYouTube\u30FBInstagram\u306E\u52D5\u753B\u304B\u3089\u3001\u6B21\u306B\u89B3\u308B\u4E00\u672C\u3092\u5F15\u304F\u52D5\u753B\u304A\u307F\u304F\u3058\u3002\u30B5\u30A4\u30B1\u30C7\u30EA\u30C3\u30AF\u306A\u795E\u793E\u3092\u30E2\u30C1\u30FC\u30D5\u306B\u3001\u52D5\u753B\u3068\u306E\u5076\u7136\u306E\u51FA\u4F1A\u3044\u3092\u697D\u3057\u3081\u307E\u3059\u3002",
+          features: ["\u30E9\u30F3\u30C0\u30E0\u62BD\u9078", "\u6295\u7A3F\u8005\u30FB\u30B5\u30FC\u30D3\u30B9\u5225", "\u4E00\u5DE1\u307E\u3067\u91CD\u8907\u56DE\u907F"]
+        }
+      ];
     }
   });
 

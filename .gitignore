@@ -19,6 +19,7 @@ dist/
 *.MOV
 *.mp4
 *.MP4
+!assets/showcase/chat-products/*.mp4
 *.avi
 *.mkv
 *.tif

@@ -3559,6 +3559,89 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .detail-dot { fill: var(--gold-hi); stroke: var(--scene-shadow); stroke-width: 2; }
 .detail-dot.projected { fill: var(--rose); }
 .detail-current-ring { fill: none; stroke: var(--gold-hi); stroke-width: 1; }
+.product-showcase {
+  min-width: 0;
+  margin: 0 0 28px;
+  padding: clamp(20px, 3vw, 34px);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.product-showcase-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--gold);
+  font: 10px/1.7 var(--font-mono);
+  letter-spacing: .16em;
+}
+.product-showcase h3 {
+  margin: 18px 0 12px;
+  color: var(--ivory);
+  font: 400 clamp(22px, 3.4vw, 34px)/1.6 var(--font-jp);
+  letter-spacing: .02em;
+}
+.product-showcase-intro {
+  max-width: 750px;
+  color: var(--text-dim);
+  font: 13px/2 var(--font-jp);
+}
+.product-showcase-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  margin: 26px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+.product-showcase-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+.product-showcase-product { min-width: 0; }
+.product-showcase-product h4 {
+  margin: 0 0 10px;
+  color: var(--gold-hi);
+  font: 400 22px/1.6 var(--font-jp);
+}
+.product-showcase-product p {
+  margin: 0;
+  color: var(--text-dim);
+  font: 13px/1.95 var(--font-jp);
+}
+.product-showcase-product ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.product-showcase-product li {
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text-dim);
+  font: 11px/1.7 var(--font-jp);
+}
+.product-showcase-note {
+  margin: 24px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--text-mute);
+  font: 11px/1.9 var(--font-jp);
+}
+@media (max-width: 640px) {
+  .product-showcase-products { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .product-showcase-meta { font-size: 9px; letter-spacing: .08em; }
+  .product-showcase-video { margin: 20px 0; }
+  .product-showcase-product h4 { font-size: 20px; }
+}
 .detail-income figcaption { color: var(--text-dim); font: 12px/1.9 var(--font-sans); margin-top: 14px; }
 @media(max-width:640px) {
   .detail-background-grid { grid-template-columns: minmax(0,1fr); gap: 16px; }
